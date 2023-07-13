@@ -1,3 +1,5 @@
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -5,8 +7,22 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    colors: {
+      transparent: 'transparent',
+      black: '#4a4a4a',
+      white: '#ffffff',
+    },
+    fontFamily: {
+      sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+    },
+    extend: {
+      colors: {
+        'shrink-me': {
+          primary: '#48bfcd',
+          secondary: '#034e56'
+        }
+      }
+    },
   },
   plugins: [],
 }
-
