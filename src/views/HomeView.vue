@@ -1,9 +1,24 @@
 <script setup lang="ts">
-console.log('HomeView.vue')
+import PageHeader from '@/components/layout/PageHeader.vue'
+
+const navItems = [
+  {
+    title: 'WHY',
+    anchor: '#why'
+  },
+  {
+    title: 'WHAT',
+    anchor: '#what'
+  },
+  {
+    title: 'FAQ',
+    anchor: '#faq'
+  }
+]
 </script>
 
 <template>
-  <main>
-    <h1>Home</h1>
-  </main>
+  <header>
+    <PageHeader :nav-items="navItems" />
+  </header>
 </template>
