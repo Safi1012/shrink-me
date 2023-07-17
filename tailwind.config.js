@@ -21,6 +21,9 @@ export default {
           primary: '#48bfcd',
           secondary: '#034e56'
         }
+      },
+      gridTemplateColumns: {
+        '12': 'repeat(12, 1fr)',
       }
     },
   },
