@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PageHeader from '@/components/layout/PageHeader.vue'
+import PageHero from '@/components/layout/PageHero.vue'
 
 const navItems = [
   {
@@ -20,5 +21,6 @@ const navItems = [
 <template>
   <header>
     <PageHeader :nav-items="navItems" />
+    <PageHero />
   </header>
 </template>
