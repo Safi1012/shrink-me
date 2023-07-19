@@ -1,7 +1,33 @@
 <script setup lang="ts">
-import FileArea from '@/components/shared/File/FileArea.vue'
+import { useProgressStore } from '@/stores/progress'
+import FileSelector from './FileSelector.vue'
+import { storeToRefs } from 'pinia'
+import { onMounted, ref } from 'vue'
+import { useElementBounding, useEventListener } from '@vueuse/core'
+
+const el = ref(null)
+const { stage } = storeToRefs(useProgressStore())
+const { setDimensions } = useProgressStore()
+const { width } = useElementBounding(el)
+
+const updateDimensions = () => {
+  const w = Math.floor(width.value)
+  const h = Math.floor(width.value / (16 / 9))
+
+  setDimensions(w, h)
+}
+
+useEventListener('resize', () => {
+  updateDimensions()
+})
+
+onMounted(() => {
+  updateDimensions()
+})
 </script>
 
 <template>
-  <FileArea />
+  <div ref="el">
+    <FileSelector v-if="stage === 0" />
+  </div>
 </template>
