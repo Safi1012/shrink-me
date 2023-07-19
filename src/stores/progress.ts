@@ -8,11 +8,21 @@ enum Stage {
 }
 
 export const useProgressStore = defineStore('progress', () => {
-  const percentage = ref(0)
   const stage = ref<Stage>(Stage.Select)
+  const percentage = ref(0)
   const width = ref(0)
   const height = ref(0)
   const circumference = ref(0)
 
-  return { percentage, stage, width, height, circumference }
+  const incrementStage = () => {
+    stage.value = (stage.value + 1) % 3
+  }
+
+  const setDimensions = (w: number, h: number) => {
+    width.value = w
+    height.value = h
+    circumference.value = w * 2 + h * 2
+  }
+
+  return { percentage, stage, width, height, circumference, incrementStage, setDimensions }
 })
