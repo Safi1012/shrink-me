@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FileManager from '@/components/shared/FileManager.vue'
+import FileManager from '@/components/shared/File/FileManager.vue'
 import DisplayCounter from '@/components/shared/DisplayCounter.vue'
 </script>
 
