@@ -11,5 +11,10 @@ export const useImageStore = defineStore('image', () => {
       .filter((file) => file.type.match(/image.*(png|jpg|jpeg|webp|svg)/))
   }
 
-  return { images, compressedImages, setImages }
+  const resetImages = () => {
+    images.value = []
+    compressedImages.value = []
+  }
+
+  return { images, compressedImages, setImages, resetImages }
 })
