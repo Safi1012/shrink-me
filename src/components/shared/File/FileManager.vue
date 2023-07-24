@@ -4,6 +4,7 @@ import FileSelector from './FileSelector.vue'
 import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue'
 import { useElementBounding, useEventListener } from '@vueuse/core'
+import FileCompressor from './FileCompressor.vue'
 
 const el = ref(null)
 const { stage } = storeToRefs(useProgressStore())
@@ -29,5 +30,6 @@ onMounted(() => {
 <template>
   <div ref="el">
     <FileSelector v-if="stage === 0" />
+    <FileCompressor v-if="stage === 1" />
   </div>
 </template>
