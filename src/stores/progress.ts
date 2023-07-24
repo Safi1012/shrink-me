@@ -24,5 +24,18 @@ export const useProgressStore = defineStore('progress', () => {
     circumference.value = w * 2 + h * 2
   }
 
-  return { percentage, stage, width, height, circumference, incrementStage, setDimensions }
+  const setPercentage = (newPercentage: number) => {
+    percentage.value = newPercentage
+  }
+
+  return {
+    percentage,
+    stage,
+    width,
+    height,
+    circumference,
+    incrementStage,
+    setDimensions,
+    setPercentage
+  }
 })

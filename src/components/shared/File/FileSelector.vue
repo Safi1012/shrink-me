@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { useImageStore } from '@/stores/image'
 import { useProgressStore } from '@/stores/progress'
-import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import FileArea from './FileArea.vue'
 
-const router = useRouter()
-const { stage } = storeToRefs(useProgressStore())
 const { setImages } = useImageStore()
 const { incrementStage } = useProgressStore()
 const isDragAreaActive = ref(false)
@@ -41,7 +37,6 @@ const onInputChange = (e: Event) => {
 
 const navigateToNextStage = () => {
   incrementStage()
-  router.push({ query: { stage: stage.value } })
 }
 </script>
 

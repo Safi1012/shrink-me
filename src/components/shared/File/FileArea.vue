@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { useProgressStore } from '@/stores/progress'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+import { computed, watchEffect, ref } from 'vue'
 
-const { width, height } = storeToRefs(useProgressStore())
+const borderPath = ref<SVGPathElement | null>(null)
+const { width, height, circumference, percentage } = storeToRefs(useProgressStore())
 
 const getViewBox = computed(() => `0 0 ${width.value} ${height.value}`)
-
 const getPath = computed(
   () => `M0,0 L${width.value},0 L${width.value},${height.value} L0,${height.value} L0,0 Z`
 )
+
+watchEffect(() => {
+  const pathToAnimate = circumference.value - circumference.value * percentage.value
+
+  borderPath.value?.style.setProperty('stroke-dasharray', circumference.value.toString())
+  borderPath.value?.style.setProperty('stroke-dashoffset', pathToAnimate.toString())
+})
 </script>
 
 <template>
