@@ -226,36 +226,43 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="outer">
-    <div class="container">
-      <h1>{{ resultTitle }}</h1>
+  <div class="outer flex flex-col items-end">
+    <div class="container flex flex-col content-center justify-center">
+      <h1 class="mb-5 text-center text-2xl font-light text-black md:mb-10 md:mt-0 md:text-5xl">
+        {{ resultTitle }}
+      </h1>
       <!-- <Fireworks :bus="bus" /> -->
 
       <FileArea ref="fileArea">
-        <div class="content">
-          <icon
+        <div class="content flex h-full flex-col items-center justify-center">
+          <img
             for="file"
-            icon="icon-files"
-            :original="true"
-            height="40%"
-            width="auto"
-            stroke-dasharray="0"
+            alt="Files icon"
+            src="@/assets/icons/files.svg"
+            class="h-[40%] w-[auto]"
           />
-          <span v-if="totalSavedBytes === 0">{{ resultSubtitle }}</span>
-          <span v-else
-            >You saved <strong>{{ totalSavedSize }}</strong> (-{{ totalSavedPercentage }}%)
-            &nbsp;🎉</span
+          <span v-if="totalSavedBytes === 0" class="mt-3">{{ resultSubtitle }}</span>
+          <span v-else class="mt-3"
+            >You saved
+            <strong class="font-semibold text-shrink-me-primary">{{ totalSavedSize }}</strong> (-{{
+              totalSavedPercentage
+            }}%) &nbsp;🎉</span
           >
         </div>
       </FileArea>
 
-      <a v-if="totalSavedBytes === 0" id="myButton" @click="resetFileManagerComponentData"
+      <a
+        v-if="totalSavedBytes === 0"
+        id="myButton"
+        class="relative m-auto mt-[-2em] inline-block cursor-pointer rounded-[3px] border-0 bg-shrink-me-primary px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-[0.3s] ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
+        @click="resetFileManagerComponentData"
         >Select New</a
       >
       <a
         v-else-if="isDownloadAttributeSupported()"
         id="myButton"
         ref="download"
+        class="relative m-auto mt-[-2em] inline-block cursor-pointer rounded-[3px] border-0 bg-shrink-me-primary px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-[0.3s] ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
         href="#"
         @click="handleDownloadClick"
       >
@@ -266,30 +273,40 @@ onMounted(() => {
 
       <button
         v-if="getMobileOperatingSystem() === 'Android'"
-        class="retry share"
+        class="retry share relative z-[2] m-auto ml-[-1.25em] mr-auto mt-[-2.7em] flex h-[2.7em] w-[2.7em] cursor-pointer items-center justify-center rounded-[3px] border-0 bg-shrink-me-primary p-0 px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#c7c7c7fa] transition-shadow duration-[0.3s] ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
         @click="shareImages"
       >
-        <icon
-          class="icon-share"
-          icon="icon-share"
-          :original="true"
-          height="55%"
-          width="55%"
-          stroke-dasharray="0"
+        <img
+          for="file"
+          alt="Files icon more"
+          src="@/assets/icons/share.svg"
+          class="icon-share my-0 ml-0 mr-[0.125em] h-[55%] w-[55%]"
         />
       </button>
     </div>
 
-    <button v-if="userPressedSave" class="retry" @click="resetFileManagerComponentData">
-      <icon
-        class="icon-retry"
+    <button
+      v-if="userPressedSave"
+      class="retry z-[2] m-auto mr-[-1.25em] mt-[-2.7em] flex h-[2.7em] w-[2.7em] cursor-pointer items-center justify-center rounded-[50%] border-0 bg-shrink-me-primary p-0 px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#c7c7c7fa] transition-shadow duration-[0.3s] ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
+      @click="resetFileManagerComponentData"
+    >
+      <img
         for="file"
-        icon="icon-more"
-        :original="true"
-        height="80%"
-        width="80%"
-        stroke-dasharray="0"
+        alt="Files icon more"
+        src="@/assets/icons/more.svg"
+        class="icon-retry m-0 h-8 w-8 max-w-none"
       />
     </button>
   </div>
 </template>
+
+<style scoped>
+svg {
+  margin-bottom: 1em;
+}
+
+.retry {
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+}
+</style>

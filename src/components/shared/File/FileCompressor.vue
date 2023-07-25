@@ -82,7 +82,7 @@ onMounted(() => {
     <FileArea>
       <div class="content flex h-full flex-col items-center justify-center">
         <img for="file" alt="Files icon" src="@/assets/icons/files.svg" class="h-2/5 w-auto" />
-        <span>
+        <span class="mt-3">
           Image: &nbsp;<strong class="text-shrink-me-primary">{{ alreadyCompressed }}</strong> /
           <strong class="text-shrink-me-primary">{{ totalImages }}</strong>
         </span>
