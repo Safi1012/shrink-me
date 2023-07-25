@@ -52,7 +52,7 @@ const navigateToNextStage = () => {
         class="form-area flex h-full w-full flex-col items-center justify-center"
         @dragenter.prevent="onDragEnter"
         @dragover.prevent
-        @drop.prevent="(e) => onDrop"
+        @drop.prevent="onDrop"
         @dragleave.prevent="onDragLeave"
       >
         <input
@@ -62,7 +62,7 @@ const navigateToNextStage = () => {
           name="files[]"
           multiple
           accept=".png,.jpg,.jpeg,.webp,.svg"
-          @change="(e) => onInputChange"
+          @change="onInputChange"
         />
         <label
           class="area z-[-1] flex h-full w-full flex-col items-center justify-center hover:cursor-pointer"
