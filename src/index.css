@@ -33,3 +33,31 @@
     font-weight: 600;
   }
 }
+
+@layer components {
+  h1 {
+    /* maybe use 3xl */
+    @apply text-2xl font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+  }
+
+  p {
+    @apply text-base font-light;
+    hyphens: auto;
+  }
+
+  strong {
+    @apply text-base;
+  }
+
+  a {
+    @apply text-base font-semibold no-underline;
+  }
+}

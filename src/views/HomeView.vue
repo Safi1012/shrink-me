@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PageHeader from '@/components/layout/PageHeader.vue'
 import PageHero from '@/components/layout/PageHero.vue'
+import PageWhy from '@/components/layout/PageWhy.vue'
 
 const navItems = [
   {
@@ -23,4 +24,5 @@ const navItems = [
     <PageHeader :nav-items="navItems" />
   </header>
   <PageHero />
+  <PageWhy />
 </template>
