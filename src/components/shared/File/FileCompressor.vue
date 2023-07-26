@@ -2,9 +2,10 @@
 import { computed, onMounted, watchEffect } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useImageStore } from '@/stores/image'
-import FileArea from './FileArea.vue'
 import Compressor from 'compressorjs'
 import { useProgressStore } from '@/stores/progress'
+import FileArea from './FileArea.vue'
+import compressSVGs from '@/utils/svgCompressor'
 
 const { images, compressedImages } = storeToRefs(useImageStore())
 const { incrementStage, setPercentage } = useProgressStore()
@@ -23,40 +24,32 @@ const totalImages = computed(() => {
 })
 
 const shrinkImages = () => {
-  const imageCompressionTasks = images.value.map((image) => {
-    // if (image.name.includes('.svg') && image.type === 'image/svg+xml') {
-    //   return compressSVGs(image)
-    //     .then((result) => {
-    //       compressedImages.value.push(result);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.message);
-    //     });
-    // }
-
+  const imageCompressionTasks = images.value.map(async (image) => {
     return new Promise<File>((resolve, reject) => {
-      new Compressor(image, {
-        quality: 0.6,
-        success(result) {
-          compressedImages.value.push(result as File)
-          resolve(result as File)
-        },
-        error(err) {
-          console.log(err.message)
-          reject(err)
-        }
-      })
+      if (image.name.includes('.svg') && image.type === 'image/svg+xml') {
+        compressSVGs(image)
+          .then((result) => {
+            compressedImages.value.push(result as File)
+            resolve(result as File)
+          })
+          .catch((err) => {
+            console.log(err)
+            reject(err)
+          })
+      } else {
+        new Compressor(image, {
+          quality: 0.6,
+          success(result) {
+            compressedImages.value.push(result as File)
+            resolve(result as File)
+          },
+          error(err) {
+            console.log(err.message)
+            reject(err)
+          }
+        })
+      }
     })
-
-    // return new Compressor(image, {
-    //   quality: 0.6,
-    //   success(result) {
-    //     compressedImages.value.push(result as File)
-    //   },
-    //   error(err) {
-    //     console.log(err.message)
-    //   }
-    // })
   })
 
   Promise.all(imageCompressionTasks)
