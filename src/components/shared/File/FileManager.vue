@@ -6,8 +6,9 @@ import { onMounted, ref } from 'vue'
 import { useElementBounding, useEventListener } from '@vueuse/core'
 import FileCompressor from './FileCompressor.vue'
 import FileExporter from './FileExporter.vue'
+import FireworkAnimation from '../FireworkAnimation.vue'
 
-const el = ref(null)
+const el = ref<HTMLElement | null>(null)
 const { stage } = storeToRefs(useProgressStore())
 const { setDimensions } = useProgressStore()
 const { width } = useElementBounding(el)
@@ -30,6 +31,8 @@ onMounted(() => {
 
 <template>
   <div ref="el">
+    <FireworkAnimation v-if="stage === 2 && el" :draw-area="el" />
+
     <FileSelector v-if="stage === 0" />
     <FileCompressor v-if="stage === 1" />
     <FileExporter v-if="stage === 2" />

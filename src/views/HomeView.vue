@@ -21,6 +21,6 @@ const navItems = [
 <template>
   <header>
     <PageHeader :nav-items="navItems" />
-    <PageHero />
   </header>
+  <PageHero />
 </template>

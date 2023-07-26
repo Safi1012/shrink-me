@@ -10,7 +10,6 @@ const { images, compressedImages } = storeToRefs(useImageStore())
 const { resetProgress } = useProgressStore()
 const { resetImages } = useImageStore()
 
-const fileArea = ref<typeof FileArea | null>(null)
 const download = ref<HTMLAnchorElement | null>(null)
 const url = ref('')
 const userPressedSave = ref(false)
@@ -69,8 +68,6 @@ const exportImages = () => {
     }
 
     url.value = downloadUrl
-
-    // this.displayFireworks()
   })
 
   // ENABLE WHEN DONE
@@ -84,60 +81,6 @@ const exportImages = () => {
   //   headers: { "Content-Type": "application/json" },
   // });
 }
-
-// const getRandomInt = (min: number, max: number) => {
-//       return Math.floor(Math.random() * (max - min + 1)) + min;
-//     }
-
-// const displayFireworks = () => {
-//   if (!fileArea.value) return
-
-//       const rect = fileArea.value.$el.getBoundingClientRect();
-//       const fileAreaPosition = {
-//         x_min: rect.left,
-//         x_max: rect.left + rect.width,
-//         y_min: rect.top,
-//         y_max: rect.top + rect.height,
-//       };
-//       const xPos1 = getRandomInt(
-//         fileAreaPosition.x_min,
-//         fileAreaPosition.x_max
-//       );
-//       const yPos1 = getRandomInt(
-//         fileAreaPosition.y_min,
-//         fileAreaPosition.y_max
-//       );
-
-//       const xPos2 = getRandomInt(
-//         fileAreaPosition.x_min,
-//         fileAreaPosition.x_max
-//       );
-//       const yPos2 = getRandomInt(
-//         fileAreaPosition.y_min,
-//         fileAreaPosition.y_max
-//       );
-
-//       const xPos3 = getRandomInt(
-//         fileAreaPosition.x_min,
-//         fileAreaPosition.x_max
-//       );
-//       const yPos3 = getRandomInt(
-//         fileAreaPosition.y_min,
-//         fileAreaPosition.y_max
-//       );
-
-//       setTimeout(() => {
-//         this.bus.$emit("displayFireworks", xPos1, yPos1);
-//       }, 250);
-
-//       setTimeout(() => {
-//         this.bus.$emit("displayFireworks", xPos2, yPos2);
-//       }, 500);
-
-//       setTimeout(() => {
-//         this.bus.$emit("displayFireworks", xPos3, yPos3);
-//       }, 750);
-//     }
 
 const resetFileManagerComponentData = () => {
   resetProgress()
@@ -231,9 +174,8 @@ onMounted(() => {
       <h1 class="mb-5 text-center text-2xl font-light text-black md:mb-10 md:mt-0 md:text-5xl">
         {{ resultTitle }}
       </h1>
-      <!-- <Fireworks :bus="bus" /> -->
 
-      <FileArea ref="fileArea">
+      <FileArea>
         <div class="content flex h-full flex-col items-center justify-center">
           <img
             for="file"
