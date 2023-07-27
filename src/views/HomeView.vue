@@ -3,6 +3,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
 import PageHero from '@/components/layout/PageHero.vue'
 import PageWhat from '@/components/layout/PageWhat.vue'
 import PageWhy from '@/components/layout/PageWhy.vue'
+import PageFAQ from '@/components/layout/PageFAQ.vue'
 
 const navItems = [
   {
@@ -27,4 +28,5 @@ const navItems = [
   <PageHero />
   <PageWhy />
   <PageWhat />
+  <PageFAQ />
 </template>
