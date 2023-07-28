@@ -7,7 +7,7 @@ export const useImageStore = defineStore('image', () => {
 
   const setImages = (files: FileList) => {
     images.value = Object.keys(files)
-      .map((key) => files[key])
+      .map((key) => files[key as any])
       .filter((file) => file.type.match(/image.*(png|jpg|jpeg|webp|svg)/))
   }
 

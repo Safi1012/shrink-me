@@ -76,7 +76,7 @@ const setCanvasSize = () => {
   canvas.value.getContext('2d')?.scale(2, 2)
 }
 
-const setParticuleDirection = (p) => {
+const setParticuleDirection = (p: any) => {
   const angle = (anime.random(0, 360) * Math.PI) / 180
   const value = anime.random(50, 180)
   const radius = [-1, 1][anime.random(0, 1)] * value
