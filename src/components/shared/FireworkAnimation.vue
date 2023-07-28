@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import anime from 'animejs/lib/anime.es.js'
-import { onMounted, ref, watchEffect } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useElementBounding, type UseElementBoundingReturn } from '@vueuse/core'
 
 const props = defineProps<{
@@ -9,6 +9,7 @@ const props = defineProps<{
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const ctx = ref<CanvasRenderingContext2D | null>(null)
+const elementBounding = useElementBounding(props.drawArea)
 
 const numberOfParticles = 40
 const colors = ['#05BED4', '#12E2FA', '#43E9FC', '#74EFFE', '#A7F5FF']
@@ -57,14 +58,6 @@ const displayFireworks = ({ left, width, height, top }: UseElementBoundingReturn
     executeAnimation(xPos3, yPos3)
   }, 750)
 }
-
-watchEffect(() => {
-  const elementBounding = useElementBounding(props.drawArea)
-
-  if (elementBounding.width.value > 0 && elementBounding.height.value > 0) {
-    displayFireworks(elementBounding)
-  }
-})
 
 const setCanvasSize = () => {
   if (!canvas.value) return
@@ -177,6 +170,7 @@ onMounted(() => {
     ctx.value = canvas.value.getContext('2d')
   }
   setCanvasSize()
+  displayFireworks(elementBounding)
 })
 </script>
 

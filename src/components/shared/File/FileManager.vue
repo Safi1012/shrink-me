@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useProgressStore } from '@/stores/progress'
-import FileSelector from './FileSelector.vue'
 import { storeToRefs } from 'pinia'
-import { onMounted, ref } from 'vue'
+import { defineAsyncComponent, onMounted, ref } from 'vue'
 import { useElementBounding, useEventListener } from '@vueuse/core'
+import FileSelector from './FileSelector.vue'
 import FileCompressor from './FileCompressor.vue'
 import FileExporter from './FileExporter.vue'
-import FireworkAnimation from '../FireworkAnimation.vue'
 
+const FireworkAnimation = defineAsyncComponent(() => import('../FireworkAnimation.vue'))
 const el = ref<HTMLElement | null>(null)
 const { stage } = storeToRefs(useProgressStore())
 const { setDimensions } = useProgressStore()
