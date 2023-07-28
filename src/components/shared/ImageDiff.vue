@@ -17,7 +17,7 @@ const props = defineProps<{
 }>()
 
 const imageHeadline = ref('')
-const defaultImage = `src/assets/images/${props.imageType}/wave_270w.jpg`
+const defaultImage = `/assets/images/${props.imageType}/wave_270w.jpg`
 const imageSizes = [270, 480, 540, 640, 700, 810, 960, 1050, 1280]
 const imageSizeHeadlines: HeadlineSizes = {
   original: {
@@ -59,7 +59,7 @@ const imgOnload = (e: Event) => {
 const generateSrcset = () => {
   return imageSizes
     .map((size) => {
-      const src = `src/assets/images/${props.imageType}/wave_${size}w.jpg`
+      const src = `/assets/images/${props.imageType}/wave_${size}w.jpg`
       return `${src} ${size}w`
     })
     .join(', ')
