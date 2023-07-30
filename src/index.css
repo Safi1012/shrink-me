@@ -61,3 +61,10 @@
     @apply text-base font-semibold no-underline;
   }
 }
+
+@layer base {
+  ul, ol {
+    list-style: revert;
+    @apply pl-3;
+  }
+}

@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 import { useEventListener } from '@vueuse/core'
 
 defineProps<{
-  navItems: {
+  navItems?: {
     title: string
     anchor: string
   }[]
