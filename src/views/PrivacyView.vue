@@ -143,6 +143,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
       </section>
     </section>
   </article>
+
   <PageFooter />
 </template>
 
