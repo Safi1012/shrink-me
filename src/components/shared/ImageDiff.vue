@@ -17,7 +17,10 @@ const props = defineProps<{
 }>()
 
 const imageHeadline = ref('')
-const defaultImage = `/assets/images/${props.imageType}/wave_270w.jpg`
+const defaultImage =
+  props.imageType === 'compressed'
+    ? `/assets/images/compressed/wave_270w.jpg`
+    : `https://github.com/Safi1012/shrink-me-images/blob/main/wave_270w.jpg?raw=true`
 const imageSizes = [270, 480, 540, 640, 700, 810, 960, 1050, 1280]
 const imageSizeHeadlines: HeadlineSizes = {
   original: {
@@ -47,8 +50,8 @@ const imageSizeHeadlines: HeadlineSizes = {
 }
 
 const extractNumberFromURL = (input: string): number | null => {
-  const match = input.match(/_(\d+)w\.jpg$/)
-  return match ? parseInt(match[1], 10) : null
+  const match = input.match(/(\d+)w\.jpg(?:\?raw=true)?$/)
+  return match ? parseInt(match[1]) : null
 }
 
 const imgOnload = (e: Event) => {
@@ -59,7 +62,12 @@ const imgOnload = (e: Event) => {
 const generateSrcset = () => {
   return imageSizes
     .map((size) => {
-      const src = `/assets/images/${props.imageType}/wave_${size}w.jpg`
+      // the uncompressed images are served from GitHub instead,
+      // in order to not max out the free bandwidth capacity on Netlify.
+      const src =
+        props.imageType === 'compressed'
+          ? `/assets/images/${props.imageType}/wave_${size}w.jpg`
+          : `https://github.com/Safi1012/shrink-me-images/blob/main/wave_${size}w.jpg?raw=true`
       return `${src} ${size}w`
     })
     .join(', ')
