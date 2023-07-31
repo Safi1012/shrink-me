@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import PageFooter from '@/components/layout/PageFooter.vue'
 import PageHeader from '@/components/layout/PageHeader.vue'
-
-// TODO load lang from i18n
 </script>
 
 <template>
@@ -13,48 +11,42 @@ import PageHeader from '@/components/layout/PageHeader.vue'
     class="grid auto-rows-[minmax(2em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em]"
   >
     <section class="mt-16">
-      <h1 class="mb-4">Privacy Policy</h1>
+      <h1 class="mb-4">{{ $t('privacy.headline_privacy') }}</h1>
       <p>
-        Personal data (usually referred to just as "data" below) will only be processed by us to the
-        extent necessary and for the purpose of providing a functional and user-friendly website,
-        including its contents, and the services offered there.
+        {{ $t('privacy.description_privacy_1') }}
       </p>
 
       <p>
-        Per Art. 4 No. 1 of Regulation (EU) 2016/679, i.e. the General Data Protection Regulation
-        (hereinafter referred to as the "GDPR"), "processing" refers to any operation or set of
-        operations such as collection, recording, organization, structuring, storage, adaptation,
-        alteration, retrieval, consultation, use, disclosure by transmission, dissemination, or
-        otherwise making available, alignment, or combination, restriction, erasure, or destruction
-        performed on personal data, whether by automated means or not.
+        {{ $t('privacy.description_privacy_2') }}
       </p>
 
       <p>
-        The following privacy policy is intended to inform you in particular about the type, scope,
-        purpose, duration, and legal basis for the processing of such data either under our own
-        control or in conjunction with others. We also inform you below about the third-party
-        components we use to optimize our website and improve the user experience which may result
-        in said third parties also processing data they collect and control.
+        {{ $t('privacy.description_privacy_3') }}
       </p>
 
-      <p>Our privacy policy is structured as follows:</p>
+      <p>{{ $t('privacy.description_privacy_4') }}</p>
       <ol>
-        <li><p>Information about us as controllers of your data</p></li>
-        <li><p>The rights of users and data subjects</p></li>
-        <li><p>Information about the data processing</p></li>
+        <li>
+          <p>{{ $t('privacy.description_privacy_list_item_1') }}</p>
+        </li>
+        <li>
+          <p>{{ $t('privacy.description_privacy_list_item_2') }}</p>
+        </li>
+        <li>
+          <p>{{ $t('privacy.description_privacy_list_item_3') }}</p>
+        </li>
       </ol>
 
       <section class="mt-16">
-        <h2 class="mb-4">I. Information about us as controllers of your data</h2>
+        <h2 class="mb-4">{{ $t('privacy.headline_controller') }}</h2>
         <p>
-          The party responsible for this website (the "controller") for purposes of data protection
-          law is:
+          {{ $t('privacy.description_controller') }}
         </p>
         <p class="center">
-          Filipe Santos Correa <br />
-          Musterstraße 1 <br />
-          12345 Musterstadt <br />
-          Germany <br /><br />
+          {{ $t('privacy.address_name') }} <br />
+          {{ $t('privacy.address_street') }} <br />
+          {{ $t('privacy.address_city') }} <br />
+          {{ $t('privacy.address_country') }} <br /><br />
           <a
             href="mailto:mail@shrinkme.app"
             class="text-base font-light text-[#48bfcd] no-underline"
@@ -64,81 +56,61 @@ import PageHeader from '@/components/layout/PageHeader.vue'
       </section>
 
       <section class="mt-16">
-        <h2 class="mb-4">II. The rights of users and data subjects</h2>
+        <h2 class="mb-4">{{ $t('privacy.headline_rights') }}</h2>
         <p>
-          With regard to the data processing to be described in more detail below, users and data
-          subjects have the right
+          {{ $t('privacy.description_rights_1') }}
         </p>
         <ul>
           <li>
             <p>
-              to confirmation of whether data concerning them is being processed, information about
-              the data being processed, further information about the nature of the data processing,
-              and copies of the data (cf. also Art. 15 GDPR);
+              {{ $t('privacy.description_rights_list_item_1') }}
             </p>
           </li>
         </ul>
 
         <ul>
           <li>
-            <p>to correct or complete incorrect or incomplete data (cf. also Art. 16 GDPR);</p>
+            <p>{{ $t('privacy.description_rights_list_item_2') }}</p>
           </li>
         </ul>
 
         <ul>
           <li>
-            <p>
-              to the immediate deletion of data concerning them (cf. also Art. 17 DSGVO), or,
-              alternatively, if further processing is necessary as stipulated in Art. 17 Para. 3
-              GDPR, to restrict said processing per Art. 18 GDPR;
-            </p>
+            <p></p>
+            <p>{{ $t('privacy.description_rights_list_item_3') }}</p>
           </li>
         </ul>
 
         <ul>
           <li>
-            <p>
-              to receive copies of the data concerning them and/or provided by them and to have the
-              same transmitted to other providers/controllers (cf. also Art. 20 GDPR);
-            </p>
+            <p></p>
+            <p>{{ $t('privacy.description_rights_list_item_4') }}</p>
           </li>
         </ul>
 
         <ul>
           <li>
-            <p>
-              to file complaints with the supervisory authority if they believe that data concerning
-              them is being processed by the controller in breach of data protection provisions (see
-              also Art. 77 GDPR).
-            </p>
+            <p></p>
+            <p>{{ $t('privacy.description_rights_list_item_5') }}</p>
           </li>
         </ul>
 
         <p>
-          In addition, the controller is obliged to inform all recipients to whom it discloses data
-          of any such corrections, deletions, or restrictions placed on processing the same per Art.
-          16, 17 Para. 1, 18 GDPR. However, this obligation does not apply if such notification is
-          impossible or involves a disproportionate effort. Nevertheless, users have a right to
-          information about these recipients.
+          {{ $t('privacy.description_rights_2') }}
         </p>
         <p>
-          Likewise, under Art. 21 GDPR, users and data subjects have the right to object to the
-          controller's future processing of their data pursuant to Art. 6 Para. 1 lit. f) GDPR. In
-          particular, an objection to data processing for the purpose of direct advertising is
-          permissible.
+          {{ $t('privacy.description_rights_3') }}
         </p>
       </section>
 
       <section class="mt-16">
-        <h3 class="mb-4">III. Information about the data processing</h3>
+        <h3 class="mb-4">{{ $t('privacy.headline_data_processing') }}</h3>
         <p>
-          Your data processed when using our website will be deleted or blocked as soon as the
-          purpose for its storage ceases to apply, provided the deletion of the same is not in
-          breach of any statutory storage obligations or unless otherwise stipulated below.
+          {{ $t('privacy.description_data_processing_1') }}
         </p>
         <p>
           <br />
-          Model Data Protection Statement for Anwaltskanzlei Weiß & Partner
+          {{ $t('privacy.description_data_processing_2') }}
         </p>
       </section>
     </section>
