@@ -5,18 +5,21 @@ import PageWhat from '@/components/layout/PageWhat.vue'
 import PageWhy from '@/components/layout/PageWhy.vue'
 import PageFAQ from '@/components/layout/PageFAQ.vue'
 import PageFooter from '@/components/layout/PageFooter.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const navItems = [
   {
-    title: 'WHY',
+    title: t('navigation.why'),
     anchor: '#why'
   },
   {
-    title: 'WHAT',
+    title: t('navigation.what'),
     anchor: '#what'
   },
   {
-    title: 'FAQ',
+    title: t('navigation.faq'),
     anchor: '#faq'
   }
 ]

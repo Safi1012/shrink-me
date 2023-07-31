@@ -10,21 +10,17 @@ import PageHeader from '@/components/layout/PageHeader.vue'
     class="grid auto-rows-[minmax(2em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em]"
   >
     <section>
-      <h1>Credits</h1>
+      <h1>{{ $t('credits.headline_credits') }}</h1>
       <p>
-        First I want to thank <strong>Marco Eckert</strong> for helping me with my Shrink Me by
-        teaching me fundamental design principles.
+        {{ $t('credits.description_marco') }}
       </p>
 
       <p>
-        Shrink Me uses Open Source components and CC0 / CC BY 3.0 images. Below you can find the
-        source code of their open source projects along with license information below and
-        attribution to the authors of the images. I acknowledge and am grateful to these developers
-        and photographers for their contributions to the open source community.
+        {{ $t('credits.description_open_source') }}
       </p>
 
       <section class="center">
-        <h1>Image</h1>
+        <h1>{{ $t('credits.headline_image') }}</h1>
 
         <a href="https://unsplash.com/@sotti" target="_blank" rel="noopener">
           <h3>Shifaaz shamoon</h3>
@@ -40,7 +36,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
       </section>
 
       <section class="center">
-        <h1>Icons</h1>
+        <h1>{{ $t('credits.headline_icons') }}</h1>
 
         <a href="https://www.flaticon.com/authors/iconnice" target="_blank" rel="noopener">
           <h3>iconnice</h3>
@@ -79,7 +75,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
       </section>
 
       <section>
-        <h1>Open Source</h1>
+        <h1>{{ $t('credits.headline_oss') }}</h1>
 
         <a href="https://github.com/xkeshi/image-compressor" target="_blank" rel="noopener">
           <h3>image-compressor</h3>
@@ -248,7 +244,7 @@ h3 {
 }
 
 p {
-  text-align: justify;
+  @apply mb-4 text-justify;
 }
 
 .wrap {
