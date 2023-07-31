@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /privacy
+Disallow: /legal
+Disallow: /credits
+Sitemap: https://shrinkme.app/sitemap.xml
