@@ -7,7 +7,6 @@ import PageHeader from '@/components/layout/PageHeader.vue'
   <PageHeader />
 
   <article
-    lang="en"
     class="grid auto-rows-[minmax(2em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em]"
   >
     <section class="mt-16">
