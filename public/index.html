@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Shrink Me - Compress JPG, PNG, WEBP, and SVG Images</title>
+    <meta name="title" content="Shrink Me - Compress JPG, PNG, WEBP, and SVG Images">
+    <meta name="description" content="Shrink Me enables you to easily compress JPG, PNG, WEBP, and SVG images
+      in order to make your site / apps smaller and faster for your users.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shrinkme.app">
+    <meta property="og:title" content="Shrink Me - Compress JPG, PNG, WEBP, and SVG Images">
+    <meta property="og:description" content="Shrink Me enables you to easily compress JPG, PNG, WEBP, and SVG images
+      in order to make your site / apps smaller and faster for your users.">
+    <meta property="og:image" content="./social/wave_1280w.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shrinkme.app">
+    <meta property="twitter:title" content="Shrink Me - Compress JPG, PNG, WEBP, and SVG Images">
+    <meta property="twitter:description" content="Shrink Me enables you to easily compress JPG, PNG, WEBP, and SVG images
+      in order to make your site / apps smaller and faster for your users.">
+    <meta property="twitter:image" content="./social/wave_1280w.jpg">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="./favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-128.png" sizes="128x128" />
+
+    <!-- pwa -->
+    <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-touch-icon-152x152.png" />
+
+    <meta name="application-name" content="Shrink Me" />
+    <meta name="theme-color" content="#48bfcd">
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="./favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="./favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="./favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="./favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="./favicon/mstile-310x310.png" />
+    <meta name="msapplication-navbutton-color" content="#48bfcd">
+    <meta name="msapplication-starturl" content="/">
+    <meta name="apple-mobile-web-app-title" content="Shrink Me">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <link rel="canonical" href="https://shrinkme.app">
+    <link rel="manifest" href="./manifest.json">
+  </head>
+
+  <body>
+    <noscript>
+      <strong>I'm sorry but Shrink Me doesn't work without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+
+    <div id="app"></div>
+
+    <script>
+      if ('serviceWorker' in navigator && window.location.href === 'https://shrinkme.app/') {
+        window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js'))
+      }
+    </script>
+  </body>
+</html>
