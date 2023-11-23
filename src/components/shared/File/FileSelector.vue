@@ -41,7 +41,7 @@ const navigateToNextStage = () => {
 </script>
 
 <template>
-  <div>
+  <div class="text-center">
     <h1 class="mb-5 text-center text-2xl font-light text-black md:mb-10 md:mt-0 md:text-5xl">
       {{ $t('home.hero.headline') }}
     </h1>
@@ -92,7 +92,7 @@ const navigateToNextStage = () => {
     </FileArea>
 
     <form
-      class="form-select relative m-auto mt-[-2em] block h-[2.5em] w-[6em] rounded-[3px] bg-shrink-me-primary text-base text-white shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-[0.3s] ease-[ease-in-out] hover:shadow-[0_2px_10px_0_#adadadfa]"
+      class="form-select relative m-auto mt-[-2em] inline-block h-[2.5em] rounded-[3px] bg-shrink-me-primary text-base text-white shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-[0.3s] ease-[ease-in-out] hover:shadow-[0_2px_10px_0_#adadadfa]"
     >
       <input
         id="fileButton"
@@ -105,7 +105,7 @@ const navigateToNextStage = () => {
       />
       <label
         for="fileButton"
-        class="flex h-full items-center justify-center font-semibold hover:cursor-pointer"
+        class="flex h-full items-center justify-center px-2 font-semibold hover:cursor-pointer"
       >
         <span class="text-white">{{ $t('home.hero.button') }}</span>
       </label>
@@ -121,9 +121,5 @@ input:focus + label {
 
 strong {
   color: #48bfcd;
-}
-
-svg {
-  margin-bottom: 1em;
 }
 </style>
