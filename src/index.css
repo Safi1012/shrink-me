@@ -63,7 +63,8 @@
 }
 
 @layer base {
-  ul, ol {
+  ul,
+  ol {
     list-style: revert;
     @apply pl-3;
   }
