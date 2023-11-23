@@ -1,0 +1,74 @@
+{
+  "navigation": {
+    "why": "WHY",
+    "what": "WHAT",
+    "faq": "FAQ"
+  },
+  "contact": {
+    "headline": "Kontakt",
+    "description": "Wenn Sie Fragen haben, können Sie mich gerne kontaktieren:",
+    "send_mail_link": "E-MAIL SENDEN",
+    "paper_plane_icon_alt": "Symbol Papierflugzeug: Symbolisiert das Versenden einer E-Mail."
+  },
+  "credits": {
+    "headline_credits": "Credits",
+    "headline_image": "Bild",
+    "headline_icons": "Symbole",
+    "headline_oss": "Open Source",
+    "description_marco": "Zuerst möchte ich Marco Eckert dafür danken, dass er mir bei Shrink Me geholfen hat, indem er mir grundlegende Designprinzipien beigebracht hat.",
+    "description_open_source": "Shrink Me verwendet Open-Source-Komponenten und CC0 / CC BY 3.0-Bilder. Unten finden Sie den Quellcode ihrer Open-Source-Projekte sowie Lizenzinformationen und die Zuschreibung an die Autoren der Bilder. Ich erkenne an und bin dankbar für diese Beiträge zur Open-Source-Community von Entwicklern und Fotografen."
+  },
+  "home": {
+    "hero": {
+      "headline": "Bilder Verkleinern",
+      "instructions": "Drag and Drop",
+      "button": "Auswählen"
+    },
+    "why": {
+      "headline": "Warum?",
+      "description_top": "Mit Shrink Me können Sie die Größe Ihrer Bilddateien reduzieren, ohne visuellen Qualitätsverlust zu erleiden, und so Ihre Websites und Apps für Ihre Benutzer schneller machen.",
+      "description_bottom": "Wie die folgenden beiden Bilder zeigen, ist es für das menschliche Auge fast unmöglich, visuelle Unterschiede zu finden.",
+      "image_before": "VORHER",
+      "image_after": "NACHHER"
+    },
+    "what": {
+      "headline": "Was?",
+      "description": "Was Shrink Me wirklich auszeichnet, ist, dass der Service keine Werbung hat, kostenlos ist, schnell ist und offline funktioniert.",
+      "no_ads_headline": "Werbefrei",
+      "no_ads_description": "Ich glaube an schöne Websites ohne Werbung.",
+      "no_ads_image_alt": "Verbotssymbol: Ein roter Kreis mit einer diagonalen Linie darüber, das das Verbot von Werbung symbolisiert.",
+      "free_headline": "Kostenlos",
+      "free_description": "Kostenlos für jeden nutzbar. Komprimieren Sie so viele Dateien, wie Sie möchten.",
+      "free_image_alt": "Sparschwein-Symbol: Ein Sparschwein-Symbol, das die Verfügbarkeit des Dienstes kostenlos repräsentiert.",
+      "fast_headline": "Schnell",
+      "fast_description": "Es dauert nur wenige Sekunden, um Ihre Bilder zu komprimieren.",
+      "fast_image_alt": "Schnell-Symbol: Ein Blitz, der die hohe Geschwindigkeit des Kompressionsservices symbolisiert.",
+      "offline_headline": "Offline",
+      "offline_description": "Shrink Me funktioniert sogar offline in jedem modernen Browser.",
+      "offline_image_alt": "WLAN-Symbol: Zeigt an, dass der Service offline in jedem modernen Browser funktioniert."
+    },
+    "faq": {
+      "headline": "FAQs",
+      "faq_headline_1": "Warum ist es kostenlos?",
+      "faq_description_1": "Ich habe Shrink Me erstellt, um meine eigenen Bilder auf eine unterhaltsame und intuitive Weise zu komprimieren.",
+      "faq_description_11": "Ich liebe es auch, neue Produkterlebnisse zu schaffen, um mein Entwicklerwissen zu erweitern und aufzufrischen.",
+      "faq_headline_2": "Warum sollte ich Bilder komprimieren?",
+      "faq_description_2": "Bildkompression ist besonders vorteilhaft, wenn Sie Speicherplatz sparen möchten, beispielsweise beim Versand von E-Mails, um Limitierungen zu umgehen.",
+      "faq_headline_3": "Leiden komprimierte Bilder unter Qualitätsverlust?",
+      "faq_description_3": "Nein, Ihre Bilder sollten für das menschliche Auge identisch aussehen.",
+      "faq_description_33": "Sie werden kaum Unterschiede sehen, probieren Sie es einfach aus.",
+      "faq_headline_4": "Welche Kompressionsqualität wird für JPG- und WEBP-Bilder verwendet?",
+      "faq_description_4": "Die Kompressionsqualität von Shrink Me für JPG- und WEBP-Bilder beträgt 60%.",
+      "faq_description_44": "In Zukunft wird es möglich sein, diesen Wert zu ändern.",
+      "faq_headline_5": "Was ist die maximale Dateigröße?",
+      "faq_description_5": "Derzeit gibt es keine maximale Dateigrößenbeschränkung.",
+      "faq_description_55": "Beachten Sie, dass große Dateigrößen länger dauern, um komprimiert zu werden.",
+      "faq_headline_6": "Kann ich mehrere Dateien gleichzeitig komprimieren?",
+      "faq_description_6": "Ja, Sie können so viele auf einmal verkleinern, wie Sie möchten.",
+      "faq_headline_7": "Warum wurde mein Bild nicht kleiner?",
+      "faq_description_7": "Dies kann bei Bildern passieren, die bereits optimiert wurden.",
+      "faq_headline_8": "Shrink Me? ❤️",
+      "faq_description_8": "Wenn Ihnen die Verwendung von Shrink Me wirklich gefällt, erwägen Sie bitte, mich mit einer Tasse Kaffee zu unterstützen."
+    }
+  }
+}

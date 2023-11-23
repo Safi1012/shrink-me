@@ -4,63 +4,65 @@
     class="grid auto-rows-[minmax(6em,auto)] grid-cols-[repeat(12,1fr)] justify-items-center gap-[2em_0.75em] bg-[#032c30]"
   >
     <div>
-      <h1 class="text-center text-white">FAQs</h1>
+      <h1 class="text-center text-white">{{ $t('home.faq.headline') }}</h1>
 
       <article class="free my-[4em] mb-[2em] text-center text-white">
-        <h2 class="mb-5">Why is it free?</h2>
+        <h2 class="mb-5">{{ $t('home.faq.faq_headline_1') }}</h2>
         <p>
-          I created Shrink Me in order to compress my own images in a fun and intuitive way. <br />
-          I also love to create new product experiences in order to extend and refresh my developer
-          knowledge.
+          {{ $t('home.faq.faq_description_1') }} <br />
+          {{ $t('home.faq.faq_description_11') }}
         </p>
       </article>
 
       <article class="my-[4em] text-center text-white">
-        <h2 class="mb-5">Why should I compress images?</h2>
+        <h2 class="mb-5">{{ $t('home.faq.faq_headline_2') }}</h2>
         <p>
-          Image compression is ideal if you want to make your site / app load faster or to save some
-          storage.
+          {{ $t('home.faq.faq_description_2') }}
         </p>
       </article>
 
       <article class="my-[4em] text-center text-white">
-        <h2 class="mb-5">Do compressed images suffer from quality loss?</h2>
+        <h2 class="mb-5">{{ $t('home.faq.faq_headline_3') }}</h2>
         <p>
-          No, your images should look identical to the human eye.<br />
-          You almost won't see any differences, just give it a try.
+          {{ $t('home.faq.faq_description_3') }} <br />
+          {{ $t('home.faq.faq_description_33') }}
         </p>
       </article>
 
       <article class="my-[4em] text-center text-white">
-        <h2 class="mb-5">What Compression Quality is used for JPG and WEBP images?</h2>
+        <h2 class="mb-5">{{ $t('home.faq.faq_headline_4') }}</h2>
         <p>
-          Shrink Me's compression quality for JPG and WEBP images is 60%. <br />
-          In the future, you will be able to change this value.
+          {{ $t('home.faq.faq_description_4') }} <br />
+          {{ $t('home.faq.faq_description_44') }}
         </p>
       </article>
 
       <article class="my-[4em] text-center text-white">
-        <h2 class="mb-5">What is the maximum file size?</h2>
+        <h2 class="mb-5">{{ $t('home.faq.faq_headline_5') }}</h2>
         <p>
-          Currently there is no maximum file size limit. <br />
-          Beware that big file sizes will take longer to compress.
+          {{ $t('home.faq.faq_description_5') }} <br />
+          {{ $t('home.faq.faq_description_55') }}
         </p>
       </article>
 
       <article class="my-[4em] text-center text-white">
-        <h2 class="mb-5">Can I compress multiple files at once?</h2>
-        <p>Yes, you can shrink as many as you like at once.</p>
+        <h2 class="mb-5">{{ $t('home.faq.faq_headline_6') }}</h2>
+        <p>
+          {{ $t('home.faq.faq_description_6') }}
+        </p>
       </article>
 
       <article class="my-[4em] text-center text-white">
-        <h2 class="mb-5">Why didn't my image get any smaller?</h2>
-        <p>This may happen to images which already have been optimized.</p>
+        <h2 class="mb-5">{{ $t('home.faq.faq_headline_7') }}</h2>
+        <p>
+          {{ $t('home.faq.faq_description_7') }}
+        </p>
       </article>
 
       <article class="free my-[4em] mb-[2em] text-center text-white">
-        <h2 class="mb-5">Shrink Me? ❤️</h2>
+        <h2 class="mb-5">{{ $t('home.faq.faq_headline_8') }}</h2>
         <p>
-          If you truly enjoy using Shrink Me, please consider supporting me with a cup of coffee.
+          {{ $t('home.faq.faq_description_8') }}
         </p>
         <a
           class="bmc mt-[2em] inline-flex items-center justify-center rounded-[5px] bg-[#ff813f] p-[0.6em] text-sm shadow-[0_6px_20px_0_#190d0d] transition-shadow duration-[0.15s] ease-[ease-in-out] hover:shadow-[0_0_0_0_#034e56]"
