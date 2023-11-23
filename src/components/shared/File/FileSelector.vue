@@ -43,7 +43,7 @@ const navigateToNextStage = () => {
 <template>
   <div>
     <h1 class="mb-5 text-center text-2xl font-light text-black md:mb-10 md:mt-0 md:text-5xl">
-      Shrink your images
+      {{ $t('home.hero.headline') }}
     </h1>
 
     <FileArea>
@@ -84,7 +84,7 @@ const navigateToNextStage = () => {
           />
 
           <span class="area-text mt-3 text-center leading-[1.7em]">
-            <span class="hidden sm:block">Drag and Drop<br /></span>
+            <span class="hidden sm:block">{{ $t('home.hero.instructions') }}<br /></span>
             <strong>JPG</strong>, <strong>PNG</strong>, <strong>WEBP</strong> & <strong>SVG</strong>
           </span>
         </label>
@@ -107,7 +107,7 @@ const navigateToNextStage = () => {
         for="fileButton"
         class="flex h-full items-center justify-center font-semibold hover:cursor-pointer"
       >
-        <span class="text-white">Select</span>
+        <span class="text-white">{{ $t('home.hero.button') }}</span>
       </label>
     </form>
   </div>

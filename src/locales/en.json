@@ -17,5 +17,58 @@
     "headline_oss": "Open Source",
     "description_marco": "First I want to thank Marco Eckert for helping me with my Shrink Me by teaching me fundamental design principles.",
     "description_open_source": "Shrink Me uses Open Source components and CC0 / CC BY 3.0 images. Below you can find the source code of their open source projects along with license information below and attribution to the authors of the images. I acknowledge and am grateful to these developers and photographers for their contributions to the open source community."
+  },
+  "home": {
+    "hero": {
+      "headline": "Shrink your images",
+      "instructions": "Drag and Drop",
+      "button": "Select"
+    },
+    "why": {
+      "headline": "Why?",
+      "description_top": "With Shrink Me you can reduce your image file sizes without suffering visual quality loss, and thus make your sites and apps faster for your users.",
+      "description_bottom": "As the following two images show, it is almost impossible for the human eye to find any visual distinctions.",
+      "image_before": "BEFORE",
+      "image_after": "AFTER"
+    },
+    "what": {
+      "headline": "What?",
+      "description": "What really makes Shrink Me stand out, is that the service has: no Ads, is Free, is Fast and works Offline.",
+      "no_ads_headline": "No Ads",
+      "no_ads_description": "I believe in beautiful apps without any ads.",
+      "no_ads_image_alt": "Forbidden icon: A red circle with a diagonal line across it, symbolizing the prohibition of ads.",
+      "free_headline": "Free",
+      "free_description": "Free to use for everyone. Compress as much as you like.",
+      "free_image_alt": "Piggy bank icon: A piggy bank symbol, representing the availability of the service at no cost.",
+      "fast_headline": "Fast",
+      "fast_description": "It just takes a few seconds to compress your images.",
+      "fast_image_alt": "Fast icon: A lightning bolt, symbolizing the high speed of the compression service.",
+      "offline_headline": "Offline",
+      "offline_description": "Shrink Me even works offline in any modern browser.",
+      "offline_image_alt": "Wi-Fi icon: Depicting that the service works offline in any modern browser."
+    },
+    "faq": {
+      "headline": "FAQs",
+      "faq_headline_1": "Why is it free?",
+      "faq_description_1": "I created Shrink Me in order to compress my own images in a fun and intuitive way.",
+      "faq_description_11": "I also love to create new product experiences in order to extend and refresh my developer knowledge.",
+      "faq_headline_2": "Why should I compress images?",
+      "faq_description_2": "Image compression is ideal if you want to make your site / app load faster or to save some storage.",
+      "faq_headline_3": "Do compressed images suffer from quality loss?",
+      "faq_description_3": "No, your images should look identical to the human eye.",
+      "faq_description_33": "You almost won't see any differences, just give it a try.",
+      "faq_headline_4": "What Compression Quality is used for JPG and WEBP images?",
+      "faq_description_4": "Shrink Me's compression quality for JPG and WEBP images is 60%.",
+      "faq_description_44": "In the future, you will be able to change this value.",
+      "faq_headline_5": "What is the maximum file size?",
+      "faq_description_5": "Currently there is no maximum file size limit.",
+      "faq_description_55": "Beware that big file sizes will take longer to compress.",
+      "faq_headline_6": "Can I compress multiple files at once?",
+      "faq_description_6": "Yes, you can shrink as many as you like at once.",
+      "faq_headline_7": "Why didn't my image get any smaller?",
+      "faq_description_7": "This may happen to images which already have been optimized.",
+      "faq_headline_8": "Shrink Me? ❤️",
+      "faq_description_8": "If you truly enjoy using Shrink Me, please consider supporting me with a cup of coffee."
+    }
   }
 }
