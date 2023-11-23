@@ -105,7 +105,7 @@ const navigateToNextStage = () => {
       />
       <label
         for="fileButton"
-        class="flex h-full items-center justify-center px-2 font-semibold hover:cursor-pointer"
+        class="flex h-full items-center justify-center px-6 font-semibold hover:cursor-pointer"
       >
         <span class="text-white">{{ $t('home.hero.button') }}</span>
       </label>
