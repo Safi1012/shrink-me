@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useImageStore } from '@/stores/image'
+import { useFileStore } from '@/stores/file'
 import { storeToRefs } from 'pinia'
 import JSZip from 'jszip'
 import FileArea from './FileArea.vue'
 import { useProgressStore } from '@/stores/progress'
 
-const { images, compressedImages } = storeToRefs(useImageStore())
+const { files, compressedFiles } = storeToRefs(useFileStore())
 const { resetProgress } = useProgressStore()
-const { resetImages } = useImageStore()
+const { resetFiles } = useFileStore()
 
 const download = ref<HTMLAnchorElement | null>(null)
 const url = ref('')
@@ -35,30 +35,30 @@ const resultTitle = computed(() => {
 })
 
 const resultSubtitle = computed(() => {
-  return images.value.length === 1
-    ? 'Image was already optimized 🤓'
-    : 'Images were already optimized 🤓'
+  return files.value.length === 1
+    ? 'File was already optimized 🤓'
+    : 'Files were already optimized 🤓'
 })
 
-const exportImages = () => {
+const exportFiles = () => {
   if (totalSavedBytes.value === 0) return
 
   const zip = new JSZip()
 
-  compressedImages.value.forEach((image) => {
-    zip.file(image.name, image)
+  compressedFiles.value.forEach((file) => {
+    zip.file(file.name, file)
   })
 
   zip.generateAsync({ type: 'blob' }).then((content) => {
     let downloadUrl
     let fileName
 
-    if (compressedImages.value.length === 1) {
-      downloadUrl = window.URL.createObjectURL(compressedImages.value[0])
-      fileName = compressedImages.value[0].name
+    if (compressedFiles.value.length === 1) {
+      downloadUrl = window.URL.createObjectURL(compressedFiles.value[0])
+      fileName = compressedFiles.value[0].name
     } else {
       downloadUrl = window.URL.createObjectURL(content)
-      fileName = 'CompressedImages_ShrinkMe.zip'
+      fileName = 'CompressedFiles_ShrinkMe.zip'
     }
 
     if (download.value) {
@@ -75,7 +75,7 @@ const exportImages = () => {
   // fetch("https://shrinkme.app/.netlify/functions/increment", {
   //   method: "POST",
   //   body: JSON.stringify({
-  //     compressedImages: compressedImages.value.length,
+  //     compressedImages: compressedFiles.value.length,
   //     savedBytes: totalSavedBytes.value,
   //   }),
   //   headers: { "Content-Type": "application/json" },
@@ -84,7 +84,7 @@ const exportImages = () => {
 
 const resetFileManagerComponentData = () => {
   resetProgress()
-  resetImages()
+  resetFiles()
 }
 
 const isDownloadAttributeSupported = () => {
@@ -99,9 +99,9 @@ const downloadFiles = () => {
   userPressedSave.value = true
 
   link.download =
-    compressedImages.value.length === 1
-      ? compressedImages.value[0].name
-      : 'CompressedImages_ShrinkMe.zip'
+    compressedFiles.value.length === 1
+      ? compressedFiles.value[0].name
+      : 'CompressedFiles_ShrinkMe.zip'
   link.href = url.value
 
   document.body.appendChild(link)
@@ -111,7 +111,7 @@ const downloadFiles = () => {
 
 const handleDownloadClick = () => {
   userPressedSave.value = true
-  exportImages()
+  exportFiles()
 }
 
 const getMobileOperatingSystem = () => {
@@ -134,8 +134,8 @@ const getMobileOperatingSystem = () => {
   return 'unknown'
 }
 
-const shareImages = () => {
-  const files = compressedImages.value.map(
+const shareFiles = () => {
+  const files = compressedFiles.value.map(
     (blob) => new File([blob], blob.name, { type: blob.type })
   )
 
@@ -143,8 +143,8 @@ const shareImages = () => {
     navigator
       .share({
         files,
-        title: 'Compressed Images',
-        text: 'Your compressed Images from Shrink Me'
+        title: 'Compressed Files',
+        text: 'Your compressed Files from Shrink Me'
       })
       .then(() => console.log('Share was successful.'))
       .catch((error) => console.log('Sharing failed', error))
@@ -154,17 +154,17 @@ const shareImages = () => {
 }
 
 onMounted(() => {
-  totalOriginalSizeInBytes.value = images.value.reduce(
+  totalOriginalSizeInBytes.value = files.value.reduce(
     (accumulator, currentValue) => accumulator + currentValue.size,
     0
   )
-  totalCompressedSizeInBytes.value = compressedImages.value.reduce(
+  totalCompressedSizeInBytes.value = compressedFiles.value.reduce(
     (accumulator, currentValue) => accumulator + currentValue.size,
     0
   )
   totalSavedBytes.value = totalOriginalSizeInBytes.value - totalCompressedSizeInBytes.value
 
-  exportImages()
+  exportFiles()
 })
 </script>
 
@@ -216,7 +216,7 @@ onMounted(() => {
       <button
         v-if="getMobileOperatingSystem() === 'Android'"
         class="retry share relative z-[2] m-auto ml-[-1.25em] mr-auto mt-[-2.7em] flex h-[2.7em] w-[2.7em] cursor-pointer items-center justify-center rounded-[3px] border-0 bg-shrink-me-primary p-0 px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#c7c7c7fa] transition-shadow duration-[0.3s] ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
-        @click="shareImages"
+        @click="shareFiles"
       >
         <img
           for="file"
