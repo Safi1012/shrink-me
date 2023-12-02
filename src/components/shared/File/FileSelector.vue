@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useImageStore } from '@/stores/image'
+import { useFileStore } from '@/stores/file'
 import { useProgressStore } from '@/stores/progress'
 import { ref } from 'vue'
 import FileArea from './FileArea.vue'
 
-const { setImages } = useImageStore()
+const { setFiles } = useFileStore()
 const { incrementStage } = useProgressStore()
 const isDragAreaActive = ref(false)
 
@@ -20,7 +20,7 @@ const onDrop = (e: DragEvent) => {
   const files = e.dataTransfer?.files
 
   if (files) {
-    setImages(files)
+    setFiles(files)
   }
   isDragAreaActive.value = false
   navigateToNextStage()
@@ -30,8 +30,9 @@ const onInputChange = (e: Event) => {
   const files = (e.target as HTMLInputElement).files
 
   if (files) {
-    setImages(files)
+    setFiles(files)
   }
+
   navigateToNextStage()
 }
 
@@ -100,7 +101,7 @@ const navigateToNextStage = () => {
         type="file"
         name="files[]"
         multiple
-        accept=".png,.jpg,.jpeg,.webp,.svg"
+        accept=".png,.jpg,.jpeg,.webp,.svg,.pdf"
         @change="onInputChange"
       />
       <label
