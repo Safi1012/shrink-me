@@ -12,23 +12,31 @@ declare global {
   }
 }
 
-export const ghostScriptToPDF = (
-  dataStruct,
-  responseCallback,
-  progressCallback,
-  statusUpdateCallback
-) => {
-  const fileInputName = `input.pdf`
-  const fileOutputName = `output.pdf`
+interface GhostscriptProps {
+  url: string
+  name: string
+  statusUpdate: (status: string) => void
+  onSuccess: (pdfDataURL: string) => void
+  onError: (error: Error) => void
+}
+
+export const ghostScriptToPDF = ({
+  url,
+  name,
+  statusUpdate,
+  onSuccess,
+  onError
+}: GhostscriptProps) => {
+  const fileInputName = `${name}-input.pdf`
+  const fileOutputName = `${name}-output.pdf`
   const xhr = new XMLHttpRequest()
 
-  xhr.open('GET', dataStruct.psDataURL)
+  xhr.open('GET', url)
   xhr.responseType = 'arraybuffer'
 
   xhr.onload = function () {
-    window.URL.revokeObjectURL(dataStruct.fileName)
+    window.URL.revokeObjectURL(name)
 
-    //set up EMScripten environment
     const Ghostscript = {
       preRun: [
         function () {
@@ -40,7 +48,7 @@ export const ghostScriptToPDF = (
           const uarray = window.FS.readFile(fileOutputName, { encoding: 'binary' })
           const blob = new Blob([uarray], { type: 'application/octet-stream' })
           const pdfDataURL = window.URL.createObjectURL(blob)
-          responseCallback({ pdfDataURL: pdfDataURL, url: dataStruct.url })
+          onSuccess(pdfDataURL)
         }
       ],
       arguments: [
@@ -54,18 +62,17 @@ export const ghostScriptToPDF = (
         fileInputName
       ],
       printErr: (text: string) => {
-        statusUpdateCallback('Error: ' + text)
-        console.error(text)
+        onError(new Error(text))
       },
       setStatus: (text: string) => {
-        statusUpdateCallback(text)
+        statusUpdate(text)
       },
       totalDependencies: 0
     }
     Ghostscript.setStatus('Loading Ghostscript...')
     window.Ghostscript = Ghostscript
 
-    import('./gs').then((gs) => {
+    import('../ghostscript/gs').then((gs) => {
       gs.executeModule()
     })
   }

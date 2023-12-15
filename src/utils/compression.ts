@@ -1,5 +1,5 @@
 import { optimize } from 'svgo/dist/svgo.browser.js'
-import { ghostScriptToPDF } from '@/ghostscript/background'
+import { ghostScriptToPDF } from '@/utils/ghostscript'
 import Compressor from 'compressorjs'
 import type { Ref } from 'vue'
 
@@ -37,32 +37,34 @@ export const compressRasterImage = async (image: File, compressedFiles: Ref<File
 
 export const compressPDF = async (pdf: File, compressedFiles: Ref<File[]>) => {
   const url = window.URL.createObjectURL(pdf)
-  const dataObject = { psDataURL: url, fileName: pdf.name }
 
   await new Promise((resolve) => {
-    ghostScriptToPDF(
-      dataObject,
-      (element) => {
-        loadPDFData(element, pdf.name).then((pdf) => {
+    ghostScriptToPDF({
+      name: pdf.name,
+      url,
+      statusUpdate: (status) => {
+        console.log('Progress:', JSON.stringify(status))
+      },
+      onSuccess: (pdfDataURL) => {
+        loadPDFData(pdfDataURL, pdf.name).then((pdf) => {
           compressedFiles.value.push(pdf as File)
           resolve(pdf)
         })
       },
-      (...args) => console.log('Progress:', JSON.stringify(args)),
-      (element) => {
-        console.log('Status Update:', JSON.stringify(element))
+      onError: (error) => {
+        console.log('Error:', JSON.stringify(error))
       }
-    )
+    })
   })
 }
 
-const loadPDFData = (response: { pdfDataURL: string; url: string }, filename: string) => {
+const loadPDFData = (pdfDataURL: string, filename: string) => {
   return new Promise((resolve) => {
     const xhr = new XMLHttpRequest()
-    xhr.open('GET', response.pdfDataURL)
+    xhr.open('GET', pdfDataURL)
     xhr.responseType = 'arraybuffer'
     xhr.onload = function () {
-      window.URL.revokeObjectURL(response.pdfDataURL)
+      window.URL.revokeObjectURL(pdfDataURL)
       const blob = new Blob([xhr.response], { type: 'application/pdf' })
       const pdf = new File([blob], filename, { type: blob.type })
 
