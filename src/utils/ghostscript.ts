@@ -72,6 +72,7 @@ export const ghostScriptToPDF = ({
     Ghostscript.setStatus('Loading Ghostscript...')
     window.Ghostscript = Ghostscript
 
+    // @ts-ignore
     import('../ghostscript/gs').then((gs) => {
       gs.executeModule()
     })
