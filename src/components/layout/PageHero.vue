@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import FileManager from '@/components/shared/File/FileManager.vue'
-// import DisplayCounter from '@/components/shared/DisplayCounter.vue'
+import DisplayCounter from '@/components/shared/DisplayCounter.vue'
+import { useEventListener } from '@vueuse/core'
+import { ref } from 'vue'
+
+const innerWidth = ref(window.innerWidth)
+
+useEventListener(window, 'resize', () => {
+  innerWidth.value = window.innerWidth
+})
 </script>
 
 <template>
   <section class="grid auto-rows-[minmax(6em,auto)] grid-cols-12 gap-[2em_0.75em]">
     <FileManager class="file-manager" />
-
-    <!-- TODO -->
-    <!-- <DisplayCounter class="display-counter hidden md:block" /> -->
+    <DisplayCounter v-if="innerWidth >= 425" class="display-counter" :inner-width="innerWidth" />
   </section>
 </template>
 
