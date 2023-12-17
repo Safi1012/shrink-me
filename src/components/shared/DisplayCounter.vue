@@ -38,10 +38,9 @@ const compressedImages = ref(0)
 const savedBytes = ref({ value: 0, symbol: '' })
 
 onMounted(() => {
-  const db = getDatabase()
-  const starCountRef = firebaseRef(db, '/')
+  const counterRef = firebaseRef(getDatabase(), '/')
 
-  onValue(starCountRef, (snapshot) => {
+  onValue(counterRef, (snapshot) => {
     const data = snapshot.val()
     const file = filesize(data.savedBytes, { round: 2, output: 'object' })
 
