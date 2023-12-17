@@ -3,8 +3,9 @@ import { computed, onMounted, ref } from 'vue'
 import { useFileStore } from '@/stores/file'
 import { storeToRefs } from 'pinia'
 import JSZip from 'jszip'
-import FileArea from './FileArea.vue'
 import { useProgressStore } from '@/stores/progress'
+import { getDatabase, ref as firebaseRef, runTransaction } from 'firebase/database'
+import FileArea from './FileArea.vue'
 
 const { files, compressedFiles } = storeToRefs(useFileStore())
 const { resetProgress } = useProgressStore()
@@ -69,17 +70,18 @@ const exportFiles = () => {
 
     url.value = downloadUrl
   })
+}
 
-  // ENABLE WHEN DONE
-  // increment values in Firebase
-  // fetch("https://shrinkme.app/.netlify/functions/increment", {
-  //   method: "POST",
-  //   body: JSON.stringify({
-  //     compressedImages: compressedFiles.value.length,
-  //     savedBytes: totalSavedBytes.value,
-  //   }),
-  //   headers: { "Content-Type": "application/json" },
-  // });
+const updateDatabaseCounter = () => {
+  const counterRef = firebaseRef(getDatabase(), '/')
+
+  runTransaction(counterRef, (counter) => {
+    if (counter) {
+      counter.savedBytes += totalSavedBytes.value
+      counter.compressedImages += compressedFiles.value.length
+    }
+    return counter
+  })
 }
 
 const resetFileManagerComponentData = () => {
@@ -154,16 +156,11 @@ const shareFiles = () => {
 }
 
 onMounted(() => {
-  totalOriginalSizeInBytes.value = files.value.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.size,
-    0
-  )
-  totalCompressedSizeInBytes.value = compressedFiles.value.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.size,
-    0
-  )
+  totalOriginalSizeInBytes.value = files.value.reduce((acc, curr) => acc + curr.size, 0)
+  totalCompressedSizeInBytes.value = compressedFiles.value.reduce((acc, curr) => acc + curr.size, 0)
   totalSavedBytes.value = totalOriginalSizeInBytes.value - totalCompressedSizeInBytes.value
 
+  updateDatabaseCounter()
   exportFiles()
 })
 </script>
