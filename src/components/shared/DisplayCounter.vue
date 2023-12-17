@@ -52,3 +52,9 @@ onMounted(() => {
   })
 })
 </script>
+
+<style scoped>
+.odometer.odometer-theme-default {
+  line-height: 0.9em;
+}
+</style>
