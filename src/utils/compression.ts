@@ -51,8 +51,8 @@ export const compressPDF = async (pdf: File, compressedFiles: Ref<File[]>) => {
           resolve(pdf)
         })
       },
-      onError: (error) => {
-        console.log('Error:', JSON.stringify(error))
+      onError: () => {
+        // TODO: Handle error
       }
     })
   })
