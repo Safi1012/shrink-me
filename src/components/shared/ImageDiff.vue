@@ -20,7 +20,8 @@ const imageHeadline = ref('')
 const defaultImage =
   props.imageType === 'compressed'
     ? `/assets/images/compressed/wave_270w.jpg`
-    : `https://github.com/Safi1012/shrink-me-images/blob/main/wave_270w.jpg?raw=true`
+    : `https://safi1012.github.io/shrink-me-assets/wave_270w.jpg`
+
 const imageSizes = [270, 480, 540, 640, 700, 810, 960, 1050, 1280]
 const imageSizeHeadlines: HeadlineSizes = {
   original: {
@@ -67,7 +68,7 @@ const generateSrcset = () => {
       const src =
         props.imageType === 'compressed'
           ? `/assets/images/${props.imageType}/wave_${size}w.jpg`
-          : `https://github.com/Safi1012/shrink-me-images/blob/main/wave_${size}w.jpg?raw=true`
+          : `https://safi1012.github.io/shrink-me-assets/wave_${size}w.jpg`
       return `${src} ${size}w`
     })
     .join(', ')
