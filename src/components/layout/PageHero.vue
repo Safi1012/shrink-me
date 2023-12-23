@@ -14,7 +14,7 @@ useEventListener(window, 'resize', () => {
 <template>
   <section class="grid auto-rows-[minmax(6em,auto)] grid-cols-12 gap-[2em_0.75em]">
     <FileManager class="file-manager" />
-    <DisplayCounter v-if="innerWidth >= 425" class="display-counter" :inner-width="innerWidth" />
+    <DisplayCounter v-if="innerWidth >= 440" class="display-counter" :inner-width="innerWidth" />
   </section>
 </template>
 
@@ -35,7 +35,7 @@ section {
     '.  .  .  .  .  .  .  .  .  .  .  .';
 }
 
-@media (min-width: 480px) {
+@media (min-width: 440px) {
   section {
     grid-template-areas:
       '.  .  .  .  .  .  .  .  .  .  .  .'

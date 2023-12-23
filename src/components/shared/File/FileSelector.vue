@@ -86,7 +86,8 @@ const navigateToNextStage = () => {
 
           <span class="area-text mt-3 text-center leading-[1.7em]">
             <span class="hidden sm:block">{{ $t('home.hero.instructions') }}<br /></span>
-            <strong>JPG</strong>, <strong>PNG</strong>, <strong>WEBP</strong> & <strong>SVG</strong>
+            <strong>JPG</strong>, <strong>PNG</strong>, <strong>WEBP</strong>,
+            <strong>SVG</strong> & <strong>PDF</strong>
           </span>
         </label>
       </form>
