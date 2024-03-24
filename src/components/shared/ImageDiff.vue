@@ -20,7 +20,7 @@ const imageHeadline = ref('')
 const defaultImage =
   props.imageType === 'compressed'
     ? `/assets/images/compressed/wave_270w.jpg`
-    : `https://safi1012.github.io/shrink-me-assets/wave_270w.jpg`
+    : `/assets/images/original/wave_270w.jpg`
 
 const imageSizes = [270, 480, 540, 640, 700, 810, 960, 1050, 1280]
 const imageSizeHeadlines: HeadlineSizes = {
@@ -67,8 +67,8 @@ const generateSrcset = () => {
       // in order to not max out the free bandwidth capacity on Netlify.
       const src =
         props.imageType === 'compressed'
-          ? `/assets/images/${props.imageType}/wave_${size}w.jpg`
-          : `https://safi1012.github.io/shrink-me-assets/wave_${size}w.jpg`
+          ? `/assets/images/compressed/wave_${size}w.jpg`
+          : `/assets/images/original/wave_${size}w.jpg`
       return `${src} ${size}w`
     })
     .join(', ')

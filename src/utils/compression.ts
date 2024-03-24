@@ -1,5 +1,5 @@
 import { optimize } from 'svgo/dist/svgo.browser.js'
-import { ghostScriptToPDF } from '@/utils/ghostscript'
+import { ghostScriptToPDF } from '@/ghostscript/ghostscript'
 import Compressor from 'compressorjs'
 import type { Ref } from 'vue'
 
