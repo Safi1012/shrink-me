@@ -73,7 +73,7 @@ export const ghostScriptToPDF = ({
     window.Ghostscript = Ghostscript
 
     // @ts-ignore
-    import('https://safi1012.github.io/shrink-me-assets/gs-compressed.js').then((gs) => {
+    import('./gs.js').then((gs) => {
       gs.executeModule()
     })
   }

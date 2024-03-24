@@ -26,7 +26,7 @@
     },
     "why": {
       "headline": "Why?",
-      "description_top": "With Shrink Me you can reduce your image file sizes without suffering visual quality loss, and thus make your sites and apps faster for your users.",
+      "description_top": "With Shrink Me you can reduce your images and pdf file sizes without suffering visual quality loss, and thus make your sites and apps faster for your users.",
       "description_bottom": "As the following two images show, it is almost impossible for the human eye to find any visual distinctions.",
       "image_before": "BEFORE",
       "image_after": "AFTER"
@@ -50,10 +50,10 @@
     "faq": {
       "headline": "FAQs",
       "faq_headline_1": "Why is it free?",
-      "faq_description_1": "I created Shrink Me in order to compress my own images in a fun and intuitive way.",
+      "faq_description_1": "I created Shrink Me in order to compress my own images and pdf files in a fun and intuitive way.",
       "faq_description_11": "I also love to create new product experiences in order to extend and refresh my developer knowledge.",
-      "faq_headline_2": "Why should I compress images?",
-      "faq_description_2": "Image compression is ideal if you want to make your site / app load faster or to save some storage.",
+      "faq_headline_2": "Why should I compress images/pdfs?",
+      "faq_description_2": "Image/pdf compression is ideal if you want to make your site / app load faster or to save some storage.",
       "faq_headline_3": "Do compressed images suffer from quality loss?",
       "faq_description_3": "No, your images should look identical to the human eye.",
       "faq_description_33": "You almost won't see any differences, just give it a try.",
