@@ -17,7 +17,8 @@
       <article class="my-[4em] text-center text-white">
         <h2 class="mb-5">{{ $t('home.faq.faq_headline_2') }}</h2>
         <p>
-          {{ $t('home.faq.faq_description_2') }}
+          {{ $t('home.faq.faq_description_2') }} <br />
+          {{ $t('home.faq.faq_description_22') }}
         </p>
       </article>
 
