@@ -20,7 +20,7 @@
   },
   "home": {
     "hero": {
-      "headline": "Bilder Verkleinern",
+      "headline": "Bilder verkleinern",
       "instructions": "Drag and Drop",
       "button": "Auswählen"
     },
@@ -53,7 +53,8 @@
       "faq_description_1": "Ich habe Shrink Me erstellt, um meine eigenen Bilder auf eine unterhaltsame und intuitive Weise zu komprimieren.",
       "faq_description_11": "Ich liebe es auch, neue Produkterlebnisse zu schaffen, um mein Entwicklerwissen zu erweitern und aufzufrischen.",
       "faq_headline_2": "Warum sollte ich Bilder komprimieren?",
-      "faq_description_2": "Bildkompression ist besonders vorteilhaft, wenn Sie Speicherplatz sparen möchten, beispielsweise beim Versand von E-Mails, um Limitierungen zu umgehen.",
+      "faq_description_2": "Bildkompression ist besonders vorteilhaft,",
+      "faq_description_22": "wenn Sie Speicherplatz sparen möchten, beispielsweise beim Versand von E-Mails, um Limitierungen zu umgehen.",
       "faq_headline_3": "Leiden komprimierte Bilder unter Qualitätsverlust?",
       "faq_description_3": "Nein, Ihre Bilder sollten für das menschliche Auge identisch aussehen.",
       "faq_description_33": "Sie werden kaum Unterschiede sehen, probieren Sie es einfach aus.",
