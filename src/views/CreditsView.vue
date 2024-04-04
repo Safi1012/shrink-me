@@ -77,6 +77,36 @@ import PageHeader from '@/components/layout/PageHeader.vue'
       <section>
         <h1>{{ $t('credits.headline_oss') }}</h1>
 
+        <a
+          href="https://github.com/laurentmmeyer/ghostscript-pdf-compress.wasm"
+          target="_blank"
+          rel="noopener"
+        >
+          <h3>@laurentmmeyer & @ochachacha</h3>
+        </a>
+        <p>
+          Shrink Me incorporates a Ghostscript WebAssembly (Wasm) module and draws significant
+          inspiration from Laurent Meyers' demo, leveraging the pre-compiled gs.wasm binary from
+          @ochachacha.
+        </p>
+        <a
+          href="https://github.com/laurentmmeyer/ghostscript-pdf-compress.wasm/blob/master/LICENSE"
+          target="_blank"
+          rel="noopener"
+        >
+          <p>License</p>
+        </a>
+        <a
+          href="https://github.com/laurentmmeyer/ghostscript-pdf-compress.wasm"
+          target="_blank"
+          rel="noopener"
+        >
+          <p>@laurentmmeyer: Ghostscript pdf demo</p>
+        </a>
+        <a href="https://github.com/ochachacha/ps-wasm" target="_blank" rel="noopener">
+          <p>@ochachacha: Pre-compiled gs.wasm binary</p>
+        </a>
+
         <a href="https://github.com/xkeshi/image-compressor" target="_blank" rel="noopener">
           <h3>image-compressor</h3>
         </a>
