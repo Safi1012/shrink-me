@@ -1,0 +1,40 @@
+name: Shrink-Me pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup node with cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.11.1"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Prettier
+        run: yarn prettier:check
+
+      - name: ESLint
+        run: yarn lint
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=shrinkme --commit-dirty=true
