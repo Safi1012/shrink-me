@@ -21,6 +21,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         globPatterns: ['**/*.{js,css,html,wasm,svg,json,woff,woff2,eot,ttf,png,jpg}'],
+        globIgnores: ['assets/404.html'],
+        // Give hashed assets a revision too, so they are precached with `cache: 'reload'`
+        // and never from a stale HTTP cache entry (e.g. an SPA fallback served mid-deploy)
+        dontCacheBustURLsMatching: undefined,
         maximumFileSizeToCacheInBytes: 20000000,
         navigateFallbackDenylist: [/^\/api\//]
       },
