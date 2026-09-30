@@ -203,7 +203,9 @@ onMounted(() => {
         SAVE
       </a>
       <!-- iOS Safari fallback, IE -->
-      <button v-else ref="download" type="submit" @click="downloadFiles">SAVE</button>
+      <button v-else ref="download" class="relative" type="submit" @click="downloadFiles">
+        SAVE
+      </button>
 
       <button
         v-if="getMobileOperatingSystem() === 'Android'"

@@ -7,6 +7,7 @@ import FileArea from './FileArea.vue'
 const { setFiles } = useFileStore()
 const { incrementStage } = useProgressStore()
 const isDragAreaActive = ref(false)
+const acceptedFileTypes = '.png,.jpg,.jpeg,.webp,.svg,.pdf'
 
 const onDragEnter = () => {
   isDragAreaActive.value = true
@@ -62,7 +63,7 @@ const navigateToNextStage = () => {
           type="file"
           name="files[]"
           multiple
-          accept=".png,.jpg,.jpeg,.webp,.svg"
+          :accept="acceptedFileTypes"
           @change="onInputChange"
         />
         <label
@@ -102,7 +103,7 @@ const navigateToNextStage = () => {
         type="file"
         name="files[]"
         multiple
-        accept=".png,.jpg,.jpeg,.webp,.svg,.pdf"
+        :accept="acceptedFileTypes"
         @change="onInputChange"
       />
       <label
