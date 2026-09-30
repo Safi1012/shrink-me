@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useFileStore } from '@/stores/file'
 import { storeToRefs } from 'pinia'
 import JSZip from 'jszip'
+import { filesize } from 'filesize'
 import { useProgressStore } from '@/stores/progress'
 import { addToCounter } from '@/counter'
 import { uniqueName } from '@/utils/files'
@@ -19,14 +20,8 @@ const totalOriginalSizeInBytes = ref(0)
 const totalCompressedSizeInBytes = ref(0)
 const totalSavedBytes = ref(0)
 
-const totalSavedSize = computed(() => {
-  const savedKb = totalSavedBytes.value / 1024
-
-  if (savedKb >= 1024) {
-    return `${(savedKb / 1024).toFixed(1)} MB`
-  }
-  return `${savedKb.toFixed(1)} KB`
-})
+// Same units as the counter in the hero, so a batch adds exactly what it says it saved
+const totalSavedSize = computed(() => filesize(totalSavedBytes.value, { round: 1 }))
 
 const totalSavedPercentage = computed(() => {
   return Math.floor((totalSavedBytes.value / totalOriginalSizeInBytes.value) * 100)

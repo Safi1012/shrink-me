@@ -9,8 +9,8 @@ export const fixture = (name: string) => path.join(import.meta.dirname, 'fixture
 
 export const fixtureSize = async (name: string) => (await readFile(fixture(name))).byteLength
 
-// e.g. "You saved 108.1 KB (-94%)", never a negative saving
-export const savings = /You saved\s+[\d.]+ [KM]B\s+\(-\d+%\)/
+// e.g. "You saved 108.1 kB (-94%)", never a negative saving
+export const savings = /You saved\s+[\d.]+ (B|kB|MB|GB)\s+\(-\d+%\)/
 
 // The first PDF of a run loads the 15 MB Ghostscript wasm
 export const COMPRESSION_TIMEOUT = 20_000
