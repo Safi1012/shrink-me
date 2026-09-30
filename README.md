@@ -14,15 +14,21 @@ When you require a straightforward and user-friendly solution to compress images
 
 ## 📦 Run & Build
 
+Requires [Node.js](https://nodejs.org/) 24 LTS (see `.nvmrc`). The package manager ([pnpm](https://pnpm.io/)) is pinned via the `packageManager` field and provided by [Corepack](https://github.com/nodejs/corepack), so enable it once:
+
+```sh
+corepack enable
+```
+
 All commands are run from the root of the project, from a terminal:
 
 | Command          | Action                                                         |
 | :--------------- | :------------------------------------------------------------- |
-| `yarn install`   | Installs dependencies                                          |
-| `yarn dev`       | Starts local dev server at `localhost:5173`                    |
-| `yarn build`     | Type-Check, Compile and Minify for Production                  |
-| `yarn test:unit` | Run Unit Tests with [Vitest](https://vitest.dev/)              |
-| `yarn test:e2e`  | Run End-to-End Tests with [Playwright](https://playwright.dev) |
+| `pnpm install`   | Installs dependencies                                          |
+| `pnpm dev`       | Starts local dev server at `localhost:5173`                    |
+| `pnpm build`     | Type-Check, Compile and Minify for Production                  |
+| `pnpm test:unit` | Run Unit Tests with [Vitest](https://vitest.dev/)              |
+| `pnpm test:e2e`  | Run End-to-End Tests with [Playwright](https://playwright.dev) |
 
 ## 💻 Recommended IDE Setup
 

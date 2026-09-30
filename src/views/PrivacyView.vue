@@ -8,7 +8,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
 
   <article
     lang="en"
-    class="grid auto-rows-[minmax(2em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em]"
+    class="grid auto-rows-[minmax(2em,auto)] grid-cols-12 justify-items-stretch gap-[2em_0.75em]"
   >
     <section class="mt-16">
       <h1 class="mb-4">Privacy Policy</h1>
@@ -55,7 +55,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
           Germany <br /><br />
           <a
             href="mailto:mail@shrinkme.app"
-            class="text-base font-light text-[#48bfcd] no-underline"
+            class="text-base font-light text-shrink-me-primary no-underline"
             >mail@shrinkme.app</a
           >
         </p>
@@ -146,6 +146,8 @@ import PageHeader from '@/components/layout/PageHeader.vue'
 </template>
 
 <style scoped>
+@reference "@/index.css";
+
 article {
   grid-template-areas:
     '.  .  .  .  .  .  .  .  .  .  .  .'

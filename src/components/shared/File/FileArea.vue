@@ -44,7 +44,7 @@ watchEffect(() => {
       >
         <use xlink:href="#path-1"></use>
       </mask>
-      <path id="path-2" ref="borderPath" class="z-[2]" :d="getPath"></path>
+      <path id="path-2" ref="borderPath" class="z-2" :d="getPath"></path>
       <mask
         id="mask-4"
         maskContentUnits="userSpaceOnUse"

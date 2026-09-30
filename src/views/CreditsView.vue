@@ -7,7 +7,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
   <PageHeader />
 
   <article
-    class="grid auto-rows-[minmax(2em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em]"
+    class="grid auto-rows-[minmax(2em,auto)] grid-cols-12 justify-items-stretch gap-[2em_0.75em]"
   >
     <section>
       <h1>{{ $t('credits.headline_credits') }}</h1>
@@ -241,6 +241,8 @@ import PageHeader from '@/components/layout/PageHeader.vue'
 </template>
 
 <style scoped>
+@reference "@/index.css";
+
 article {
   grid-template-areas:
     '.  .  .  .  .  .  .  .  .  .  .  .'
@@ -249,7 +251,7 @@ article {
 }
 
 a {
-  @apply text-base font-light text-[#48bfcd] no-underline;
+  @apply text-base font-light text-shrink-me-primary no-underline;
 }
 
 section {

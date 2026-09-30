@@ -54,7 +54,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <h1 class="mb-5 text-center text-2xl font-light text-black md:mb-10 md:mt-0 md:text-5xl">
+    <h1 class="mb-5 text-center text-2xl font-light text-black md:mt-0 md:mb-10 md:text-5xl">
       Shrinking...
     </h1>
 

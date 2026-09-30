@@ -14,23 +14,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup node with cache
+      - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: "20.11.1"
-          cache: "yarn"
+          node-version-file: ".nvmrc"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Setup pnpm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Prettier
-        run: yarn format:check
+        run: pnpm format:check
 
       - name: ESLint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

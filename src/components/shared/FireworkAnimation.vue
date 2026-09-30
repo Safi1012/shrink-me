@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import anime from 'animejs/lib/anime.es.js'
+import { createTimeline, createTimer, utils, type JSAnimation } from 'animejs'
 import { onMounted, ref } from 'vue'
 import { useElementBounding, type UseElementBoundingReturn } from '@vueuse/core'
 
@@ -13,9 +13,9 @@ const elementBounding = useElementBounding(props.drawArea)
 
 const numberOfParticles = 40
 const colors = ['#05BED4', '#12E2FA', '#43E9FC', '#74EFFE', '#A7F5FF']
-const render = anime({
+const render = createTimer({
   duration: Infinity,
-  update: () => {
+  onUpdate: () => {
     ctx.value?.clearRect(0, 0, canvas.value?.width || 0, canvas.value?.height || 0)
   }
 })
@@ -69,10 +69,29 @@ const setCanvasSize = () => {
   canvas.value.getContext('2d')?.scale(2, 2)
 }
 
-const setParticuleDirection = (p: any) => {
-  const angle = (anime.random(0, 360) * Math.PI) / 180
-  const value = anime.random(50, 180)
-  const radius = [-1, 1][anime.random(0, 1)] * value
+interface Particle {
+  x: number
+  y: number
+  color: string
+  radius: number
+  endPos: { x: number; y: number }
+  draw: () => void
+}
+
+interface Circle {
+  x: number
+  y: number
+  color: string
+  radius: number
+  alpha: number
+  lineWidth: number
+  draw: () => void
+}
+
+const setParticuleDirection = (p: Pick<Particle, 'x' | 'y'>) => {
+  const angle = (utils.random(0, 360) * Math.PI) / 180
+  const value = utils.random(50, 180)
+  const radius = [-1, 1][utils.random(0, 1)] * value
   return {
     x: p.x + radius * Math.cos(angle),
     y: p.y + radius * Math.sin(angle)
@@ -80,12 +99,13 @@ const setParticuleDirection = (p: any) => {
 }
 
 const createParticule = (x: number, y: number) => {
-  const p: anime.AnimeParams = {}
+  const p = {
+    x,
+    y,
+    color: colors[utils.random(0, colors.length - 1)],
+    radius: utils.random(16, 32)
+  } as Particle
 
-  p.x = x
-  p.y = y
-  p.color = colors[anime.random(0, colors.length - 1)]
-  p.radius = anime.random(16, 32)
   p.endPos = setParticuleDirection(p)
   p.draw = () => {
     if (ctx.value) {
@@ -99,14 +119,15 @@ const createParticule = (x: number, y: number) => {
 }
 
 const createCircle = (x: number, y: number) => {
-  const p: anime.AnimeAnimParams = {}
+  const p = {
+    x,
+    y,
+    color: '#FFF',
+    radius: 0.1,
+    alpha: 0.5,
+    lineWidth: 6
+  } as Circle
 
-  p.x = x
-  p.y = y
-  p.color = '#FFF'
-  p.radius = 0.1
-  p.alpha = 0.5
-  p.lineWidth = 6
   p.draw = () => {
     if (ctx.value) {
       ctx.value.globalAlpha = p.alpha
@@ -121,47 +142,39 @@ const createCircle = (x: number, y: number) => {
   return p
 }
 
-const renderParticle = (anim: anime.AnimeInstance) => {
-  for (let i = 0; i < anim.animatables.length; i++) {
-    ;(anim.animatables[i].target as any).draw()
+const renderParticle = (anim: JSAnimation) => {
+  for (const target of anim.targets) {
+    ;(target as unknown as Particle | Circle).draw()
   }
 }
 
 const animateParticles = (x: number, y: number) => {
   const circle = createCircle(x, y)
-  const particles = []
+  const particles: Particle[] = []
   for (let i = 0; i < numberOfParticles; i++) {
     particles.push(createParticule(x, y))
   }
 
-  anime
-    .timeline()
-    .add({
-      targets: particles,
-      x(p: any) {
-        return p.endPos.x
-      },
-      y(p: any) {
-        return p.endPos.y
-      },
+  createTimeline()
+    .add(particles, {
+      x: (p: object) => (p as Particle).endPos.x,
+      y: (p: object) => (p as Particle).endPos.y,
       radius: 0.1,
-      duration: anime.random(1200, 1800),
-      easing: 'easeOutExpo',
-      update: renderParticle
+      duration: utils.random(1200, 1800),
+      ease: 'outExpo',
+      onUpdate: renderParticle
     })
-    .add({
-      targets: circle,
-      radius: anime.random(80, 160),
+    .add(circle, {
+      radius: utils.random(80, 160),
       lineWidth: 0,
       alpha: {
-        value: 0,
-        easing: 'linear',
-        duration: anime.random(600, 800)
+        to: 0,
+        ease: 'linear',
+        duration: utils.random(600, 800)
       },
-      duration: anime.random(1200, 1800),
-      easing: 'easeOutExpo',
-      update: renderParticle,
-      offset: 0
+      duration: utils.random(1200, 1800),
+      ease: 'outExpo',
+      onUpdate: renderParticle
     })
 }
 
@@ -175,5 +188,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas" class="absolute left-0 top-0 h-full w-full"></canvas>
+  <canvas ref="canvas" class="absolute top-0 left-0 h-full w-full"></canvas>
 </template>

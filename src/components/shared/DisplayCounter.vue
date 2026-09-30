@@ -4,7 +4,7 @@
       Shrink Me compressed
       <IOdometer
         :value="compressedImages"
-        class="rgba(#48bfcd, 0.5) mx-2 text-3xl font-normal leading-[0.8em] text-[rgba(72,191,205,0.5)]"
+        class="rgba(#48bfcd, 0.5) mx-2 text-3xl leading-[0.8em] font-normal text-[rgba(72,191,205,0.5)]"
       ></IOdometer>
       files
     </p>
@@ -17,7 +17,7 @@
       <IOdometer
         :value="savedBytes.value"
         format="( ddd),dd"
-        class="mx-2 text-3xl font-normal leading-[0.8em] text-[rgba(72,191,205,0.5)]"
+        class="mx-2 text-3xl leading-[0.8em] font-normal text-[rgba(72,191,205,0.5)]"
       />
       {{ savedBytes.symbol }}
       of storage
