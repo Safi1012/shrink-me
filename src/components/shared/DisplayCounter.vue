@@ -26,30 +26,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { getDatabase, onValue, ref as firebaseRef } from 'firebase/database'
+import { computed } from 'vue'
 import IOdometer from 'vue3-odometer'
 import 'odometer/themes/odometer-theme-default.css'
 import { filesize } from 'filesize'
+import { useCounter } from '@/counter'
 
 defineProps<{ innerWidth: number }>()
 
-const compressedImages = ref(0)
-const savedBytes = ref({ value: 0, symbol: '' })
+const totals = useCounter()
 
-onMounted(() => {
-  const counterRef = firebaseRef(getDatabase(), '/')
+const compressedImages = computed(() => totals.value?.compressedImages ?? 0)
 
-  onValue(counterRef, (snapshot) => {
-    const data = snapshot.val()
-    const file = filesize(data.savedBytes, { round: 2, output: 'object' })
+const savedBytes = computed(() => {
+  if (!totals.value) return { value: 0, symbol: '' }
 
-    compressedImages.value = data.compressedImages
-    savedBytes.value = {
-      symbol: file.symbol,
-      value: Number(file.value)
-    }
-  })
+  const file = filesize(totals.value.savedBytes, { round: 2, output: 'object' })
+  return { symbol: file.symbol, value: Number(file.value) }
 })
 </script>
 

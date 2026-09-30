@@ -54,6 +54,14 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
+      - name: Deploy counter Worker
+        if: github.ref == 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy -c workers/counter/wrangler.jsonc
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:

@@ -1,0 +1,16 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "shrink-me-counter",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-26",
+  // Only reachable through the route below, on the same origin as the site
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "shrinkme.app/api/counter*", "zone_name": "shrinkme.app" }],
+  "durable_objects": {
+    "bindings": [{ "name": "COUNTER", "class_name": "Counter" }]
+  },
+  // SQLite-backed Durable Objects are the ones included in the Workers free plan
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Counter"] }],
+  "observability": { "enabled": true }
+}

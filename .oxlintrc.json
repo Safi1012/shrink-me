@@ -12,7 +12,8 @@
     "builtin": true
   },
   "ignorePatterns": [
-    "src/ghostscript/gs.js"
+    "src/ghostscript/gs.js",
+    "workers/counter/worker-configuration.d.ts"
   ],
   "rules": {
     "vue/no-arrow-functions-in-watch": "error",

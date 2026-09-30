@@ -11,6 +11,7 @@ When you require a straightforward and user-friendly solution to compress images
 - **Compressor.js**: A pure JavaScript image compressor library.
 - **SVGO**: A Node.js tool for optimizing SVG files.
 - **WebAssembly (WASM)**: A binary instruction format for a stack-based virtual machine.
+- **Cloudflare Workers & Durable Objects**: The live "files compressed" counter (`workers/counter`), pushed to visitors over hibernatable WebSockets.
 
 ## 📦 Run & Build
 
@@ -22,15 +23,17 @@ corepack enable
 
 All commands are run from the root of the project, from a terminal:
 
-| Command          | Action                                                         |
-| :--------------- | :------------------------------------------------------------- |
-| `pnpm install`   | Installs dependencies                                          |
-| `pnpm dev`       | Starts local dev server at `localhost:5173`                    |
-| `pnpm build`     | Type-Check, Compile and Minify for Production                  |
-| `pnpm test:unit` | Run Unit Tests with [Vitest](https://vitest.dev/)              |
-| `pnpm test:e2e`  | Run End-to-End Tests with [Playwright](https://playwright.dev) |
-| `pnpm lint`      | Lint with [Oxlint](https://oxc.rs/docs/guide/usage/linter)     |
-| `pnpm format`    | Format with [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) |
+| Command               | Action                                                                     |
+| :-------------------- | :------------------------------------------------------------------------- |
+| `pnpm install`        | Installs dependencies                                                      |
+| `pnpm dev`            | Starts local dev server at `localhost:5173`                                |
+| `pnpm dev:counter`    | Starts the live counter Worker at `localhost:8787` (proxied by `pnpm dev`) |
+| `pnpm build`          | Type-Check, Compile and Minify for Production                              |
+| `pnpm test:unit`      | Run Unit Tests with [Vitest](https://vitest.dev/)                          |
+| `pnpm test:e2e`       | Run End-to-End Tests with [Playwright](https://playwright.dev)             |
+| `pnpm lint`           | Lint with [Oxlint](https://oxc.rs/docs/guide/usage/linter)                 |
+| `pnpm format`         | Format with [Oxfmt](https://oxc.rs/docs/guide/usage/formatter)             |
+| `pnpm deploy:counter` | Deploys the live counter Worker (also done by CI on `main`)                |
 
 ## 💻 Recommended IDE Setup
 

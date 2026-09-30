@@ -21,7 +21,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         globPatterns: ['**/*.{js,css,html,wasm,svg,json,woff,woff2,eot,ttf,png,jpg}'],
-        maximumFileSizeToCacheInBytes: 20000000
+        maximumFileSizeToCacheInBytes: 20000000,
+        navigateFallbackDenylist: [/^\/api\//]
       },
       manifest: false,
       devOptions: {
@@ -29,6 +30,12 @@ export default defineConfig({
       }
     })
   ],
+  server: {
+    // The live counter Worker, started with `pnpm dev:counter`
+    proxy: {
+      '/api': { target: 'http://localhost:8787', ws: true, changeOrigin: true }
+    }
+  },
   build: {
     // odometer's default theme ships legacy IE `*property` hacks that Lightning CSS
     // (Vite's default CSS minifier) rejects, so keep minifying CSS with esbuild
