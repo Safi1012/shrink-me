@@ -5,6 +5,7 @@ import { storeToRefs } from 'pinia'
 import JSZip from 'jszip'
 import { useProgressStore } from '@/stores/progress'
 import { addToCounter } from '@/counter'
+import { uniqueName } from '@/utils/files'
 import FileArea from './FileArea.vue'
 
 const { files, compressedFiles } = storeToRefs(useFileStore())
@@ -45,9 +46,10 @@ const exportFiles = () => {
   if (totalSavedBytes.value === 0) return
 
   const zip = new JSZip()
+  const names = new Set<string>()
 
   compressedFiles.value.forEach((file) => {
-    zip.file(file.name, file)
+    zip.file(uniqueName(file.name, names), file)
   })
 
   zip.generateAsync({ type: 'blob' }).then((content) => {
