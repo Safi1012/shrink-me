@@ -29,6 +29,8 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm build`     | Type-Check, Compile and Minify for Production                  |
 | `pnpm test:unit` | Run Unit Tests with [Vitest](https://vitest.dev/)              |
 | `pnpm test:e2e`  | Run End-to-End Tests with [Playwright](https://playwright.dev) |
+| `pnpm lint`      | Lint with [Oxlint](https://oxc.rs/docs/guide/usage/linter)     |
+| `pnpm format`    | Format with [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) |
 
 ## 💻 Recommended IDE Setup
 
