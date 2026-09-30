@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, watchEffect } from 'vue'
+import { computed, onMounted, reactive, watchEffect } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useFileStore } from '@/stores/file'
 import { useProgressStore } from '@/stores/progress'
@@ -9,8 +9,16 @@ import { compressPDF, compressRasterImage, compressVectorImage } from '@/utils/c
 const { files, compressedFiles } = storeToRefs(useFileStore())
 const { incrementStage, setPercentage } = useProgressStore()
 
+// How far Ghostscript is through each PDF still being compressed (0–1), so a long PDF
+// moves the progress along page by page instead of jumping once it is done
+const pdfProgress = reactive(new Map<File, number>())
+
 watchEffect(() => {
-  const progressInPercent = compressedFiles.value.length / files.value.length // e.g. 0.33
+  let partiallyCompressed = 0
+  for (const progress of pdfProgress.values()) partiallyCompressed += progress
+
+  const progressInPercent =
+    (compressedFiles.value.length + partiallyCompressed) / files.value.length // e.g. 0.33
   setPercentage(progressInPercent)
 })
 
@@ -23,24 +31,24 @@ const totalImages = computed(() => {
 })
 
 const shrinkImages = async () => {
-  const pdfsToCompress: File[] = files.value.filter((file) => file.type === 'application/pdf')
-  const imagesToCompress: File[] = files.value.filter((file) => file.type.includes('image'))
-
-  for (const pdf of pdfsToCompress) {
-    await compressPDF(pdf, compressedFiles)
-  }
-
-  const imageCompressionTasks = imagesToCompress.map(async (image) => {
-    if (image.type === 'image/svg+xml') {
-      return compressVectorImage(image, compressedFiles)
+  // PDFs are queued in the Ghostscript worker, so images compress alongside them
+  const compressionTasks = files.value.map(async (file) => {
+    if (file.type === 'application/pdf') {
+      // A finished PDF (progress 1) is counted through compressedFiles instead
+      return compressPDF(file, compressedFiles, (progress) =>
+        progress < 1 ? pdfProgress.set(file, progress) : pdfProgress.delete(file)
+      )
     }
-    if (image.type === 'image/jpeg' || image.type === 'image/png' || image.type === 'image/webp') {
-      return compressRasterImage(image, compressedFiles)
+    if (file.type === 'image/svg+xml') {
+      return compressVectorImage(file, compressedFiles)
+    }
+    if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/webp') {
+      return compressRasterImage(file, compressedFiles)
     }
   })
 
   try {
-    await Promise.all(imageCompressionTasks)
+    await Promise.all(compressionTasks)
     incrementStage()
   } catch (err) {
     console.log(err)
