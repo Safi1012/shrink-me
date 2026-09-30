@@ -64,7 +64,7 @@ export default defineConfig({
     })
   ],
   server: {
-    // The live counter Worker, started with `pnpm dev:counter`
+    // The live counter Worker, started alongside Vite by `pnpm dev`
     proxy: {
       '/api': { target: 'http://localhost:8787', ws: true, changeOrigin: true }
     }

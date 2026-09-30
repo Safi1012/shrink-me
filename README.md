@@ -26,8 +26,9 @@ All commands are run from the root of the project, from a terminal:
 | Command               | Action                                                                     |
 | :-------------------- | :------------------------------------------------------------------------- |
 | `pnpm install`        | Installs dependencies                                                      |
-| `pnpm dev`            | Starts local dev server at `localhost:5173`                                |
-| `pnpm dev:counter`    | Starts the live counter Worker at `localhost:8787` (proxied by `pnpm dev`) |
+| `pnpm dev`            | Starts `dev:app` and `dev:counter` together                                |
+| `pnpm dev:app`        | Starts local dev server at `localhost:5173`                                |
+| `pnpm dev:counter`    | Starts the live counter Worker at `localhost:8787` (proxied by `dev:app`)  |
 | `pnpm build`          | Type-Check, Compile and Minify for Production                              |
 | `pnpm test:unit`      | Run Unit Tests with [Vitest](https://vitest.dev/)                          |
 | `pnpm test:e2e`       | Run End-to-End Tests with [Playwright](https://playwright.dev)             |
