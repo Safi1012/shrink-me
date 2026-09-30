@@ -33,3 +33,6 @@ playwright-report/
 
 # Wrangler
 .wrangler
+
+# TypeScript build cache
+*.tsbuildinfo
