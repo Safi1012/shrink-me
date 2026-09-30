@@ -1,7 +1,8 @@
-import { optimize } from 'svgo/browser'
 import { ghostScriptToPDF } from '@/ghostscript/ghostscript'
-import Compressor from 'compressorjs'
 import type { Ref } from 'vue'
+
+// The compressors are only needed once files have been dropped, so keep them out of the
+// entry chunk (svgo alone is ~800 kB) and load each one the first time it is used
 
 export const compressVectorImage = async (svg: File, compressedFiles: Ref<File[]>) => {
   try {
@@ -16,6 +17,7 @@ export const compressVectorImage = async (svg: File, compressedFiles: Ref<File[]
 
 export const compressRasterImage = async (image: File, compressedFiles: Ref<File[]>) => {
   try {
+    const { default: Compressor } = await import('compressorjs')
     return new Promise<File>((resolve, reject) => {
       new Compressor(image, {
         quality: 0.6,
@@ -74,7 +76,8 @@ const loadPDFData = (pdfDataURL: string, filename: string) => {
   })
 }
 
-const compressSVGs = (svgFile: File) => {
+const compressSVGs = async (svgFile: File) => {
+  const { optimize } = await import('svgo/browser')
   const reader = new FileReader()
 
   return new Promise((resolve, reject) => {

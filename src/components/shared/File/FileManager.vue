@@ -4,9 +4,11 @@ import { storeToRefs } from 'pinia'
 import { defineAsyncComponent, onMounted, ref } from 'vue'
 import { useElementBounding, useEventListener } from '@vueuse/core'
 import FileSelector from './FileSelector.vue'
-import FileCompressor from './FileCompressor.vue'
-import FileExporter from './FileExporter.vue'
 
+// Only the selector is visible on first paint; the later stages pull in the
+// compressors and jszip, so they are split off and fetched once they're needed
+const FileCompressor = defineAsyncComponent(() => import('./FileCompressor.vue'))
+const FileExporter = defineAsyncComponent(() => import('./FileExporter.vue'))
 const FireworkAnimation = defineAsyncComponent(() => import('../FireworkAnimation.vue'))
 const el = ref<HTMLElement | null>(null)
 const { stage } = storeToRefs(useProgressStore())
