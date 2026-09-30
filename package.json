@@ -7,7 +7,8 @@
     "node": "24.21.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "pnpm run --parallel \"/^dev:(app|counter)$/\"",
+    "dev:app": "vite",
     "dev:counter": "wrangler dev -c workers/counter/wrangler.jsonc",
     "deploy:counter": "wrangler deploy -c workers/counter/wrangler.jsonc",
     "types:counter": "wrangler types -c workers/counter/wrangler.jsonc workers/counter/worker-configuration.d.ts",
