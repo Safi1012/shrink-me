@@ -1,4 +1,5 @@
 import JSZip from 'jszip'
+import { filesize } from 'filesize'
 import { expect, test, type Page } from '@playwright/test'
 import {
   expectAlreadyOptimized,
@@ -8,6 +9,7 @@ import {
   mockCounter,
   readDownload,
   save,
+  savings,
   startOver
 } from './support'
 
@@ -29,6 +31,15 @@ test.describe('display', () => {
     await expect(counterText(page)).toBeVisible()
     await expect.poll(() => odometerValue(page, 0)).toBe('1,234')
     await expect.poll(() => odometerValue(page, 1)).toBe('5')
+    await expect(page.locator('.display-counter')).toContainText('GB of storage')
+  })
+
+  test('shows fractional sizes with a decimal point', async ({ page }) => {
+    await mockCounter(page, { totals: { compressedImages: 1234, savedBytes: 1_250_000_000 } })
+    await page.goto('/')
+
+    await expect.poll(() => odometerValue(page, 0)).toBe('1,234')
+    await expect.poll(() => odometerValue(page, 1)).toBe('1.25')
     await expect(page.locator('.display-counter')).toContainText('GB of storage')
   })
 
@@ -94,6 +105,8 @@ test.describe('increments', () => {
 
     await expect.poll(() => counter.increments).toEqual([{ compressedImages: 1, savedBytes }])
     expect(counter.posts).toEqual([])
+    // The result screen reports the same bytes, in the same units as the hero counter
+    await expect(page.getByText(savings)).toContainText(filesize(savedBytes, { round: 1 }))
   })
 
   test('counts every file of a batch and the bytes saved across all of them', async ({ page }) => {

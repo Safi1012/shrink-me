@@ -16,7 +16,7 @@
       &nbsp;and saved
       <IOdometer
         :value="savedBytes.value"
-        format="( ddd),dd"
+        format="(,ddd).dd"
         class="mx-2 text-3xl leading-[0.8em] font-normal text-[rgba(72,191,205,0.5)]"
       />
       {{ savedBytes.symbol }}
