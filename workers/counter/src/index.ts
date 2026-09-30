@@ -2,10 +2,6 @@ import { DurableObject } from 'cloudflare:workers'
 
 export type Totals = { compressedImages: number; savedBytes: number }
 
-// One-off migration: the first time the Durable Object starts with empty storage it
-// copies the totals over from the old Firebase Realtime Database
-const FIREBASE_SNAPSHOT_URL = 'https://shrink-me-counter.firebaseio.com/.json'
-
 const ALLOWED_ORIGINS = [/^https:\/\/shrinkme\.app$/, /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/]
 
 // Anything above this in a single batch is not a real user of the site
@@ -40,30 +36,11 @@ const parseIncrement = (message: string): Totals | undefined => {
  * every increment is pushed to all of them.
  */
 export class Counter extends DurableObject<Env> {
-  private totals: Totals = { compressedImages: 0, savedBytes: 0 }
+  private totals: Totals
 
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env)
-
-    ctx.blockConcurrencyWhile(async () => {
-      const stored = ctx.storage.kv.get<Totals>('totals')
-
-      if (stored) {
-        this.totals = stored
-        return
-      }
-
-      // Throwing leaves storage empty, so the next request retries the seed
-      const response = await fetch(FIREBASE_SNAPSHOT_URL)
-      const snapshot: unknown = await response.json()
-      if (!isTotals(snapshot)) throw new Error('Unexpected Firebase snapshot')
-
-      this.totals = {
-        compressedImages: snapshot.compressedImages,
-        savedBytes: snapshot.savedBytes
-      }
-      ctx.storage.kv.put('totals', this.totals)
-    })
+    this.totals = ctx.storage.kv.get<Totals>('totals') ?? { compressedImages: 0, savedBytes: 0 }
   }
 
   async fetch(): Promise<Response> {
