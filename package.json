@@ -23,7 +23,6 @@
     "format:check": "oxfmt --check src/ public/ index.html workers/counter/src/"
   },
   "dependencies": {
-    "@intlify/unplugin-vue-i18n": "^11.2.5",
     "@okathira/ghostpdl-wasm": "^1.1.0",
     "@vueuse/core": "^15.0.0",
     "animejs": "^4.5.0",
@@ -39,6 +38,7 @@
     "vue3-odometer": "^0.1.3"
   },
   "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "^11.2.5",
     "@playwright/test": "^1.63.0",
     "@tailwindcss/vite": "^4.3.3",
     "@tsconfig/node24": "^24.0.5",
@@ -46,7 +46,6 @@
     "@types/node": "^24.19.0",
     "@typescript/native": "npm:typescript@^7.0.2",
     "@vitejs/plugin-vue": "^6.0.9",
-    "@vitejs/plugin-vue-jsx": "^5.1.6",
     "@vue/test-utils": "^2.5.1",
     "@vue/tsconfig": "^0.9.1",
     "esbuild": "^0.28.2",
