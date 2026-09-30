@@ -70,6 +70,22 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="mobile-web-app-capable" content="yes" />
 
+    <!-- Fonts are otherwise only discovered once the stylesheet has been parsed -->
+    <link
+      rel="preload"
+      href="/src/assets/fonts/opensans-light.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/src/assets/fonts/opensans-semibold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <link rel="canonical" href="https://shrinkme.app" />
     <link rel="manifest" href="/manifest.json" />
   </head>
