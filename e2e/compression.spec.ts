@@ -19,12 +19,29 @@ const save = async (page: Page) => {
 
 test.use({ locale: 'en-US' })
 
+let counterIncrements: unknown[]
+
 test.beforeEach(async ({ page }) => {
-  // Never let test runs touch the production Firebase counter
-  await page.routeWebSocket(/firebaseio\.com/, () => {})
-  await page.route(/firebaseio\.com/, (route) => route.abort())
+  // Never let test runs touch the real counter Worker
+  counterIncrements = []
+  await page.routeWebSocket(/\/api\/counter$/, (ws) => {
+    ws.send(JSON.stringify({ compressedImages: 1234, savedBytes: 5_000_000_000 }))
+    ws.onMessage((message) => counterIncrements.push(JSON.parse(message as string)))
+  })
+  await page.route(/\/api\/counter$/, (route) => route.abort())
 
   await page.goto('/')
+})
+
+test('shows the live counter and pushes new compressions to it', async ({ page }) => {
+  await expect(page.getByText('Shrink Me compressed')).toBeVisible()
+
+  await page.locator('#fileButton').setInputFiles(fixture('photo.jpg'))
+  await expect(page.getByRole('heading', { name: 'Success!' })).toBeVisible({ timeout: 20_000 })
+
+  await expect
+    .poll(() => counterIncrements)
+    .toEqual([{ compressedImages: 1, savedBytes: expect.any(Number) }])
 })
 
 test('shows the file selector with all supported formats', async ({ page }) => {

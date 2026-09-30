@@ -4,7 +4,7 @@ import { useFileStore } from '@/stores/file'
 import { storeToRefs } from 'pinia'
 import JSZip from 'jszip'
 import { useProgressStore } from '@/stores/progress'
-import { getDatabase, ref as firebaseRef, runTransaction } from 'firebase/database'
+import { addToCounter } from '@/counter'
 import FileArea from './FileArea.vue'
 
 const { files, compressedFiles } = storeToRefs(useFileStore())
@@ -72,15 +72,10 @@ const exportFiles = () => {
   })
 }
 
-const updateDatabaseCounter = () => {
-  const counterRef = firebaseRef(getDatabase(), '/')
-
-  runTransaction(counterRef, (counter) => {
-    if (counter) {
-      counter.savedBytes += totalSavedBytes.value
-      counter.compressedImages += compressedFiles.value.length
-    }
-    return counter
+const updateCounter = () => {
+  addToCounter({
+    compressedImages: compressedFiles.value.length,
+    savedBytes: Math.max(0, totalSavedBytes.value)
   })
 }
 
@@ -160,7 +155,7 @@ onMounted(() => {
   totalCompressedSizeInBytes.value = compressedFiles.value.reduce((acc, curr) => acc + curr.size, 0)
   totalSavedBytes.value = totalOriginalSizeInBytes.value - totalCompressedSizeInBytes.value
 
-  updateDatabaseCounter()
+  updateCounter()
   exportFiles()
 })
 </script>
