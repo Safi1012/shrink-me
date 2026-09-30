@@ -1,7 +1,7 @@
 <template>
   <section
     id="faq"
-    class="grid auto-rows-[minmax(6em,auto)] grid-cols-[repeat(12,1fr)] justify-items-center gap-[2em_0.75em] bg-[#032c30]"
+    class="grid auto-rows-[minmax(6em,auto)] grid-cols-12 justify-items-center gap-[2em_0.75em] bg-[#032c30]"
   >
     <div>
       <h1 class="text-center text-white">{{ $t('home.faq.headline') }}</h1>
@@ -66,7 +66,7 @@
           {{ $t('home.faq.faq_description_8') }}
         </p>
         <a
-          class="bmc mt-[2em] inline-flex items-center justify-center rounded-[5px] bg-[#ff813f] p-[0.6em] text-sm shadow-[0_6px_20px_0_#190d0d] transition-shadow duration-[0.15s] ease-[ease-in-out] hover:shadow-[0_0_0_0_#034e56]"
+          class="bmc mt-[2em] inline-flex items-center justify-center rounded-[5px] bg-[#ff813f] p-[0.6em] text-sm shadow-[0_6px_20px_0_#190d0d] transition-shadow duration-150 ease-[ease-in-out] hover:shadow-[0_0_0_0_#034e56]"
           target="_blank"
           rel="noopener nofollow"
           href="https://www.paypal.me/filipecorrea"

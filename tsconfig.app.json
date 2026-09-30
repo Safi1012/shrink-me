@@ -4,7 +4,6 @@
   "exclude": ["src/**/*.spec.ts"],
   "compilerOptions": {
     "composite": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },

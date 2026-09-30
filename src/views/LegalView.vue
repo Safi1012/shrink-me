@@ -8,7 +8,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
 
   <article
     lang="en"
-    class="grid auto-rows-[minmax(2em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em]"
+    class="grid auto-rows-[minmax(2em,auto)] grid-cols-12 justify-items-stretch gap-[2em_0.75em]"
   >
     <section>
       <h1>Website Terms and Conditions of Use</h1>
@@ -121,7 +121,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
 
   <article
     lang="de"
-    class="grid auto-rows-[minmax(2em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em]"
+    class="grid auto-rows-[minmax(2em,auto)] grid-cols-12 justify-items-stretch gap-[2em_0.75em]"
   >
     <section>
       <h1 class="center">Impressum</h1>
@@ -186,6 +186,8 @@ import PageHeader from '@/components/layout/PageHeader.vue'
 </template>
 
 <style scoped>
+@reference "@/index.css";
+
 article {
   grid-template-areas:
     '.  .  .  .  .  .  .  .  .  .  .  .'
@@ -199,7 +201,7 @@ section {
 }
 
 a {
-  @apply text-base font-light text-[#48bfcd] no-underline;
+  @apply text-base font-light text-shrink-me-primary no-underline;
 }
 
 p {

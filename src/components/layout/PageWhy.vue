@@ -11,7 +11,7 @@ const { t } = useI18n()
   >
     <section
       id="why"
-      class="grid auto-rows-[minmax(6em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em] overflow-hidden bg-shrink-me-secondary lg:max-w-[62em] lg:overflow-visible"
+      class="grid auto-rows-[minmax(6em,auto)] grid-cols-12 justify-items-stretch gap-[2em_0.75em] overflow-hidden bg-shrink-me-secondary lg:max-w-[62em] lg:overflow-visible"
     >
       <div class="desc mt-[5em]">
         <h1 class="mb-6 leading-[1.6em] text-white">{{ $t('home.why.headline') }}</h1>
@@ -27,7 +27,7 @@ const { t } = useI18n()
       </div>
 
       <ImageDiff
-        class="original lg:mr-0 lg:mt-[-5em]"
+        class="original lg:mt-[-5em] lg:mr-0"
         :headline="t('home.why.image_before')"
         :image-type="'original'"
       />

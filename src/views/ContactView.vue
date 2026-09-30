@@ -39,7 +39,7 @@ onMounted(() => {
 <template>
   <PageHeader />
   <main
-    class="grid min-h-screen auto-rows-[minmax(2em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[2em_0.75em]"
+    class="grid min-h-screen auto-rows-[minmax(2em,auto)] grid-cols-12 justify-items-stretch gap-[2em_0.75em]"
   >
     <div class="content">
       <h1 class="mb-8 text-center text-5xl font-light">{{ $t('contact.headline') }}</h1>
@@ -48,7 +48,7 @@ onMounted(() => {
       <div class="mail mt-16">
         <a
           href="mailto:mail@shrinkme.app"
-          class="inline-flex items-center justify-center rounded-[3px] bg-[#48bfcd] px-[2.5em] py-[0.5em] shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-[0.3s] ease-[ease-in-out] hover:shadow-[0_2px_10px_0_#adadadfa]"
+          class="inline-flex items-center justify-center rounded-[3px] bg-shrink-me-primary px-[2.5em] py-[0.5em] shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-300 ease-[ease-in-out] hover:shadow-[0_2px_10px_0_#adadadfa]"
         >
           <strong class="text-white">{{ $t('contact.send_mail_link') }}</strong>
         </a>

@@ -1,4 +1,4 @@
-import { optimize } from 'svgo/dist/svgo.browser.js'
+import { optimize } from 'svgo/browser'
 import { ghostScriptToPDF } from '@/ghostscript/ghostscript'
 import Compressor from 'compressorjs'
 import type { Ref } from 'vue'
@@ -79,7 +79,7 @@ const compressSVGs = (svgFile: File) => {
 
   return new Promise((resolve, reject) => {
     reader.onload = async (event: ProgressEvent<FileReader>) => {
-      const svgTree = event?.target?.result
+      const svgTree = event?.target?.result as string
       const result = await optimize(svgTree)
       const compressedSVG = new File([result.data], svgFile.name, { type: 'image/svg+xml' })
 

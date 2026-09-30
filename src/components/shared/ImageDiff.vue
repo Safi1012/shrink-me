@@ -77,17 +77,15 @@ const generateSrcset = () => {
 
 <template>
   <div
-    class="grid auto-rows-[minmax(0.1em,auto)] grid-cols-[repeat(12,1fr)] justify-items-stretch gap-[0.5em_0.5em]"
+    class="grid auto-rows-[minmax(0.1em,auto)] grid-cols-12 justify-items-stretch gap-[0.5em_0.5em]"
   >
-    <strong class="z-[1] col-[1_/_4] row-[1] ml-[1em] mt-[1em] text-white">{{
-      props.headline
-    }}</strong>
-    <p class="z-[1] col-[5_/_12] row-[1] m-0 mt-[1em] text-right text-white md:mr-[-1.5em]">
+    <strong class="z-1 col-[1/4] row-1 mt-[1em] ml-[1em] text-white">{{ props.headline }}</strong>
+    <p class="z-1 col-[5/12] row-1 m-0 mt-[1em] text-right text-white md:mr-[-1.5em]">
       {{ imageHeadline }}
     </p>
 
     <img
-      class="col-[-1_/_1] row-[-1_/_1] h-auto w-full rounded-[0.375em] shadow-[0_4px_24px_2px_hsla(0,0%,0%,0.15)]"
+      class="col-[-1/1] row-[-1/1] h-auto w-full rounded-[0.375em] shadow-[0_4px_24px_2px_hsla(0,0%,0%,0.15)]"
       :src="defaultImage"
       :srcset="generateSrcset()"
       alt="Compressed Demo Image"
