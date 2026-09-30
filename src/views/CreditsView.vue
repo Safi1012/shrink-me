@@ -193,17 +193,10 @@ const packages: Credit[] = [
           licensed under the
           <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener"
             >GNU Affero General Public License v3.0</a
-          >. The WebAssembly build (gs.wasm) is taken from
-          <a href="https://github.com/ochachacha/ps-wasm" target="_blank" rel="noopener"
-            >@ochachacha/ps-wasm</a
-          >
-          and its integration is inspired by
-          <a
-            href="https://github.com/laurentmmeyer/ghostscript-pdf-compress.wasm"
-            target="_blank"
-            rel="noopener"
-            >Laurent Meyer's Ghostscript PDF demo</a
-          >. The corresponding source code is available in these repositories, in the
+          >. The WebAssembly build (gs.wasm, Ghostscript 10.06) is taken from
+          <a href="https://github.com/okathira/ghostpdl-wasm" target="_blank" rel="noopener"
+            >@okathira/ghostpdl-wasm</a
+          >. The corresponding source code is available in that repository, in the
           <a href="https://github.com/Safi1012/shrink-me" target="_blank" rel="noopener"
             >Shrink Me repository</a
           >

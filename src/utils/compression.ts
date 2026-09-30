@@ -1,4 +1,4 @@
-import { ghostScriptToPDF } from '@/ghostscript/ghostscript'
+import { ghostscriptCompress } from '@/ghostscript/ghostscript'
 import type { Ref } from 'vue'
 
 // The compressors are only needed once files have been dropped, so keep them out of the
@@ -37,43 +37,26 @@ export const compressRasterImage = async (image: File, compressedFiles: Ref<File
   }
 }
 
-export const compressPDF = async (pdf: File, compressedFiles: Ref<File[]>) => {
-  const url = window.URL.createObjectURL(pdf)
-
-  await new Promise((resolve) => {
-    ghostScriptToPDF({
-      name: pdf.name,
-      url,
-      statusUpdate: (status) => {
-        console.log('Progress:', JSON.stringify(status))
-      },
-      onSuccess: (pdfDataURL) => {
-        loadPDFData(pdfDataURL, pdf.name).then((pdf) => {
-          compressedFiles.value.push(pdf as File)
-          resolve(pdf)
-        })
-      },
-      onError: () => {
-        // TODO: Handle error
-      }
-    })
-  })
-}
-
-const loadPDFData = (pdfDataURL: string, filename: string) => {
-  return new Promise((resolve) => {
-    const xhr = new XMLHttpRequest()
-    xhr.open('GET', pdfDataURL)
-    xhr.responseType = 'arraybuffer'
-    xhr.onload = function () {
-      window.URL.revokeObjectURL(pdfDataURL)
-      const blob = new Blob([xhr.response], { type: 'application/pdf' })
-      const pdf = new File([blob], filename, { type: blob.type })
-
-      resolve(pdf)
+export const compressPDF = async (
+  pdf: File,
+  compressedFiles: Ref<File[]>,
+  onProgress?: (progress: number) => void
+) => {
+  let result = pdf
+  try {
+    const compressed = await ghostscriptCompress(pdf, onProgress)
+    // Rewriting an already lean PDF can make it bigger, so only keep a real improvement
+    if (compressed.byteLength < pdf.size) {
+      result = new File([compressed], pdf.name, { type: 'application/pdf' })
     }
-    xhr.send()
-  })
+  } catch (err) {
+    // Hand back the original rather than leaving the file (and the progress) stuck
+    console.log(err)
+  }
+  // Reported in the same tick as the push, so the file never counts as both in progress and done
+  onProgress?.(1)
+  compressedFiles.value.push(result)
+  return result
 }
 
 const compressSVGs = async (svgFile: File) => {

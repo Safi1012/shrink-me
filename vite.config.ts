@@ -36,7 +36,7 @@ export default defineConfig({
             }
           },
           {
-            // Ghostscript is 19 MB and only needed for PDFs, so it is cached on first use
+            // Ghostscript is 15 MB and only needed for PDFs, so it is cached on first use
             // instead of being precached for every visitor. Only a real wasm response is
             // cached, never an SPA fallback served for it mid-deploy
             urlPattern: ({ url }) => url.pathname.endsWith('.wasm'),
@@ -68,6 +68,14 @@ export default defineConfig({
     proxy: {
       '/api': { target: 'http://localhost:8787', ws: true, changeOrigin: true }
     }
+  },
+  // The Ghostscript glue finds its wasm through `new URL('gs.wasm', import.meta.url)`,
+  // which breaks once pre-bundled into .vite/deps, and it needs an ES module worker
+  optimizeDeps: {
+    exclude: ['@okathira/ghostpdl-wasm']
+  },
+  worker: {
+    format: 'es'
   },
   build: {
     // odometer's default theme ships legacy IE `*property` hacks that Lightning CSS
