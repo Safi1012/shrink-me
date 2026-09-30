@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PageFooter from '@/components/layout/PageFooter.vue'
 import PageHeader from '@/components/layout/PageHeader.vue'
+import { operator } from '@/legal'
 import { useEventListener } from '@vueuse/core'
 import { onMounted, ref } from 'vue'
 
@@ -44,10 +45,10 @@ onMounted(() => {
     <div class="content">
       <h1 class="mb-8 text-center text-5xl font-light">{{ $t('contact.headline') }}</h1>
       <p class="mb-2">{{ $t('contact.description') }}</p>
-      <strong>mail@shrinkme.app</strong>
+      <strong>{{ operator.email }}</strong>
       <div class="mail mt-16">
         <a
-          href="mailto:mail@shrinkme.app"
+          :href="`mailto:${operator.email}`"
           class="inline-flex items-center justify-center rounded-[3px] bg-shrink-me-primary px-[2.5em] py-[0.5em] shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-300 ease-[ease-in-out] hover:shadow-[0_2px_10px_0_#adadadfa]"
         >
           <strong class="text-white">{{ $t('contact.send_mail_link') }}</strong>
@@ -55,7 +56,7 @@ onMounted(() => {
       </div>
     </div>
     <img
-      alt="{{ $t('contact.paper_plane_icon_alt') }}"
+      :alt="$t('contact.paper_plane_icon_alt')"
       :src="`/assets/icons/${iconName}.svg`"
       class="svg-icon h-auto w-auto"
     />

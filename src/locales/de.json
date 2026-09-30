@@ -14,9 +14,12 @@
     "headline_credits": "Credits",
     "headline_image": "Bild",
     "headline_icons": "Symbole",
+    "headline_font": "Schriftart",
     "headline_oss": "Open Source",
+    "headline_license_texts": "Lizenztexte",
+    "contents": "Inhalt",
     "description_marco": "Zuerst möchte ich Marco Eckert dafür danken, dass er mir bei Shrink Me geholfen hat, indem er mir grundlegende Designprinzipien beigebracht hat.",
-    "description_open_source": "Shrink Me verwendet Open-Source-Komponenten und CC0 / CC BY 3.0-Bilder. Unten finden Sie den Quellcode ihrer Open-Source-Projekte sowie Lizenzinformationen und die Zuschreibung an die Autoren der Bilder. Ich erkenne an und bin dankbar für diese Beiträge zur Open-Source-Community von Entwicklern und Fotografen."
+    "description_open_source": "Shrink Me basiert auf Open-Source-Software und verwendet frei lizenzierte Bilder, Symbole und Schriftarten. Unten finden Sie die jeweiligen Urheber, Lizenzen und den Quellcode. Ich bin diesen Entwicklern, Designern und Fotografen für ihre Beiträge sehr dankbar."
   },
   "home": {
     "hero": {

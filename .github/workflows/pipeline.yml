@@ -10,6 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # Personal details for the legal notice and privacy policy, kept out of the source code
+    # (Settings → Secrets and variables → Actions → Variables)
+    env:
+      VITE_LEGAL_NAME: ${{ vars.LEGAL_NAME }}
+      VITE_LEGAL_STREET: ${{ vars.LEGAL_STREET }}
+      VITE_LEGAL_POSTAL_CODE: ${{ vars.LEGAL_POSTAL_CODE }}
+      VITE_LEGAL_CITY: ${{ vars.LEGAL_CITY }}
+      VITE_LEGAL_COUNTRY: ${{ vars.LEGAL_COUNTRY }}
+      VITE_LEGAL_EMAIL: ${{ vars.LEGAL_EMAIL }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,6 +46,16 @@ jobs:
 
       - name: Lint (Oxlint)
         run: pnpm lint
+
+      - name: Check legal notice variables
+        if: github.ref == 'refs/heads/main'
+        run: |
+          for name in VITE_LEGAL_NAME VITE_LEGAL_STREET VITE_LEGAL_POSTAL_CODE VITE_LEGAL_CITY VITE_LEGAL_COUNTRY VITE_LEGAL_EMAIL; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Repository variable ${name#VITE_} is not set, the legal notice would be incomplete"
+              exit 1
+            fi
+          done
 
       - name: Build
         run: pnpm build

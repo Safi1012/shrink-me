@@ -1,309 +1,371 @@
 <script setup lang="ts">
-import PageFooter from '@/components/layout/PageFooter.vue'
-import PageHeader from '@/components/layout/PageHeader.vue'
+import LegalPage from '@/components/layout/LegalPage.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+type Credit = { name: string; url: string; license: string; copyright: string }
+
+const icons = [
+  {
+    author: 'iconnice',
+    authorUrl: 'https://www.flaticon.com/authors/iconnice',
+    works: [{ name: 'Wi-Fi', url: 'https://www.flaticon.com/free-icon/wifi_131145' }]
+  },
+  {
+    author: 'Gregor Cresnar',
+    authorUrl: 'https://www.flaticon.com/authors/gregor-cresnar',
+    works: [
+      { name: 'Piggy bank', url: 'https://www.flaticon.com/free-icon/piggy-bank_179956' },
+      { name: 'Forbidden', url: 'https://www.flaticon.com/free-icon/forbidden_159688' }
+    ]
+  },
+  {
+    author: 'Freepik',
+    authorUrl: 'https://www.flaticon.com/authors/freepik',
+    works: [
+      { name: 'Sent mail', url: 'https://www.flaticon.com/free-icon/sent-mail_71746' },
+      { name: 'Shield', url: 'https://www.flaticon.com/free-icon/shield_748276' }
+    ]
+  }
+]
+
+const packages: Credit[] = [
+  {
+    name: 'Vue',
+    url: 'https://github.com/vuejs/core',
+    license: 'MIT',
+    copyright: 'Copyright (c) 2018-present, Yuxi (Evan) You'
+  },
+  {
+    name: 'Vue Router',
+    url: 'https://github.com/vuejs/router',
+    license: 'MIT',
+    copyright: 'Copyright (c) 2019-present Eduardo San Martin Morote'
+  },
+  {
+    name: 'Pinia',
+    url: 'https://github.com/vuejs/pinia',
+    license: 'MIT',
+    copyright: 'Copyright (c) 2019-present Eduardo San Martin Morote'
+  },
+  {
+    name: 'Vue I18n',
+    url: 'https://github.com/intlify/vue-i18n',
+    license: 'MIT',
+    copyright: 'Copyright (c) 2020 kazuya kawaguchi'
+  },
+  {
+    name: 'VueUse',
+    url: 'https://github.com/vueuse/vueuse',
+    license: 'MIT',
+    copyright: 'Copyright (c) 2019-PRESENT Anthony Fu'
+  },
+  {
+    name: 'Compressor.js',
+    url: 'https://github.com/fengyuanchen/compressorjs',
+    license: 'MIT',
+    copyright: 'Copyright 2018-present Chen Fengyuan'
+  },
+  {
+    name: 'SVGO',
+    url: 'https://github.com/svg/svgo',
+    license: 'MIT',
+    copyright: 'Copyright (c) Kir Belevich'
+  },
+  {
+    name: 'JSZip',
+    url: 'https://github.com/Stuk/jszip',
+    license: 'MIT (dual licensed MIT or GPLv3, used under MIT)',
+    copyright:
+      'Copyright (c) 2009-2016 Stuart Knightley, David Duponchel, Franz Buchinger, António Afonso'
+  },
+  {
+    name: 'Anime.js',
+    url: 'https://github.com/juliangarnier/anime',
+    license: 'MIT',
+    copyright: 'Copyright (c) 2025 Julian Garnier'
+  },
+  {
+    name: 'Odometer',
+    url: 'https://github.com/HubSpot/odometer',
+    license: 'MIT',
+    copyright: 'Copyright (c) 2013 HubSpot, Inc.'
+  },
+  {
+    name: 'vue3-odometer',
+    url: 'https://github.com/java0088/vue3-odometer',
+    license: 'MIT',
+    copyright: 'Copyright (c) huangwantong'
+  },
+  {
+    name: 'Workbox',
+    url: 'https://github.com/GoogleChrome/workbox',
+    license: 'MIT',
+    copyright: 'Copyright 2018 Google LLC'
+  },
+  {
+    name: 'filesize.js',
+    url: 'https://github.com/avoidwork/filesize.js',
+    license: 'BSD-3-Clause',
+    copyright: 'Copyright (c) 2026, Jason Mulligan'
+  }
+]
 </script>
 
 <template>
-  <PageHeader />
+  <LegalPage :title="t('credits.headline_credits')" :contents-label="t('credits.contents')">
+    <p class="lead">{{ t('credits.description_marco') }}</p>
+    <p>{{ t('credits.description_open_source') }}</p>
 
-  <article
-    class="grid auto-rows-[minmax(2em,auto)] grid-cols-12 justify-items-stretch gap-[2em_0.75em]"
-  >
-    <section>
-      <h1>{{ $t('credits.headline_credits') }}</h1>
-      <p>
-        {{ $t('credits.description_marco') }}
-      </p>
-
-      <p>
-        {{ $t('credits.description_open_source') }}
-      </p>
-
-      <section class="center">
-        <h1>{{ $t('credits.headline_image') }}</h1>
-
-        <a href="https://unsplash.com/@sotti" target="_blank" rel="noopener">
-          <h3>Shifaaz shamoon</h3>
-        </a>
-        <a
-          href="https://unsplash.com/photos/sLAk1guBG90"
-          target="_blank"
-          rel="noopener"
-          class="wrap"
-        >
-          https://unsplash.com/photos/sLAk1guBG90
-        </a>
-      </section>
-
-      <section class="center">
-        <h1>{{ $t('credits.headline_icons') }}</h1>
-
-        <a href="https://www.flaticon.com/authors/iconnice" target="_blank" rel="noopener">
-          <h3>iconnice</h3>
-        </a>
-        <a href="https://www.flaticon.com/free-icon/wifi_131145" target="_blank" rel="noopener">
-          https://www.flaticon.com/free-icon/wifi_131145
-        </a>
-
-        <a href="https://www.flaticon.com/authors/gregor-cresnar" target="_blank" rel="noopener">
-          <h3>Gregor Cresnar</h3>
-        </a>
-        <a
-          href="https://www.flaticon.com/free-icon/piggy-bank_179956"
-          target="_blank"
-          rel="noopener"
-        >
-          https://www.flaticon.com/free-icon/piggy-bank_179956
-        </a>
-        <a
-          href="https://www.flaticon.com/free-icon/forbidden_159688"
-          target="_blank"
-          rel="noopener"
-        >
-          https://www.flaticon.com/free-icon/forbidden_159688
-        </a>
-
-        <a href="https://www.flaticon.com/authors/freepik" target="_blank" rel="noopener">
-          <h3>Freepik</h3>
-        </a>
-        <a href="https://www.flaticon.com/free-icon/sent-mail_71746" target="_blank" rel="noopener">
-          https://www.flaticon.com/free-icon/sent-mail_71746
-        </a>
-        <a href="https://www.flaticon.com/free-icon/shield_748276" target="_blank" rel="noopener">
-          https://www.flaticon.com/free-icon/shield_748276
-        </a>
-      </section>
-
-      <section>
-        <h1>{{ $t('credits.headline_oss') }}</h1>
-
-        <a
-          href="https://github.com/laurentmmeyer/ghostscript-pdf-compress.wasm"
-          target="_blank"
-          rel="noopener"
-        >
-          <h3>@laurentmmeyer & @ochachacha</h3>
-        </a>
-        <p>
-          Shrink Me incorporates a Ghostscript WebAssembly (Wasm) module and draws significant
-          inspiration from Laurent Meyers' demo, leveraging the pre-compiled gs.wasm binary from
-          @ochachacha.
-        </p>
-        <a
-          href="https://github.com/laurentmmeyer/ghostscript-pdf-compress.wasm/blob/master/LICENSE"
-          target="_blank"
-          rel="noopener"
-        >
-          <p>License</p>
-        </a>
-        <a
-          href="https://github.com/laurentmmeyer/ghostscript-pdf-compress.wasm"
-          target="_blank"
-          rel="noopener"
-        >
-          <p>@laurentmmeyer: Ghostscript pdf demo</p>
-        </a>
-        <a href="https://github.com/ochachacha/ps-wasm" target="_blank" rel="noopener">
-          <p>@ochachacha: Pre-compiled gs.wasm binary</p>
-        </a>
-
-        <a href="https://github.com/xkeshi/image-compressor" target="_blank" rel="noopener">
-          <h3>image-compressor</h3>
-        </a>
-        <p>The MIT License (MIT)</p>
-        <p>Copyright 2017-present Xkeshi</p>
-        <p>
-          Permission is hereby granted, free of charge, to any person obtaining a copy of this
-          software and associated documentation files (the "Software"), to deal in the Software
-          without restriction, including without limitation the rights to use, copy, modify, merge,
-          publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
-          to whom the Software is furnished to do so, subject to the following conditions:
-        </p>
-        <p>
-          The above copyright notice and this permission notice shall be included in all copies or
-          substantial portions of the Software.
-        </p>
-        <p>
-          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-          INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-          PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-          FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-          OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-          DEALINGS IN THE SOFTWARE.
-        </p>
-
-        <a href="https://github.com/svg/svgo" target="_blank" rel="noopener">
-          <h3>svgo</h3>
-        </a>
-        <p>The MIT License (MIT)</p>
-        <p>Copyright 2012–2016 Kir Belevich</p>
-        <p>
-          Permission is hereby granted, free of charge, to any person obtaining a copy of this
-          software and associated documentation files (the "Software"), to deal in the Software
-          without restriction, including without limitation the rights to use, copy, modify, merge,
-          publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
-          to whom the Software is furnished to do so, subject to the following conditions:
-        </p>
-        <p>
-          The above copyright notice and this permission notice shall be included in all copies or
-          substantial portions of the Software.
-        </p>
-        <p>
-          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-          INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-          PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-          FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-          OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-          DEALINGS IN THE SOFTWARE.
-        </p>
-
-        <a href="https://github.com/Stuk/jszip" target="_blank" rel="noopener">
-          <h3>JSZip</h3>
-        </a>
-        <p>The MIT License (MIT)</p>
-        <p>
-          Copyright 2009-2016 Stuart Knightley, David Duponchel, Franz Buchinger, António Afonso
-        </p>
-        <p>
-          Permission is hereby granted, free of charge, to any person obtaining a copy of this
-          software and associated documentation files (the "Software"), to deal in the Software
-          without restriction, including without limitation the rights to use, copy, modify, merge,
-          publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
-          to whom the Software is furnished to do so, subject to the following conditions:
-        </p>
-        <p>
-          The above copyright notice and this permission notice shall be included in all copies or
-          substantial portions of the Software.
-        </p>
-        <p>
-          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-          INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-          PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-          FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-          OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-          DEALINGS IN THE SOFTWARE.
-        </p>
-
-        <a href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
-          <h3>vue, vue-cli, vue-router</h3>
-        </a>
-        <p>The MIT License (MIT)</p>
-        <p>Copyright (c) 2013-present, Yuxi (Evan) You</p>
-        <p>
-          Permission is hereby granted, free of charge, to any person obtaining a copy of this
-          software and associated documentation files (the "Software"), to deal in the Software
-          without restriction, including without limitation the rights to use, copy, modify, merge,
-          publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
-          to whom the Software is furnished to do so, subject to the following conditions:
-        </p>
-        <p>
-          The above copyright notice and this permission notice shall be included in all copies or
-          substantial portions of the Software.
-        </p>
-        <p>
-          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-          INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-          PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-          FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-          OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-          DEALINGS IN THE SOFTWARE.
-        </p>
-
-        <a href="https://github.com/juliangarnier/anime" target="_blank" rel="noopener">
-          <h3>anime.js</h3>
-        </a>
-        <p>The MIT License (MIT)</p>
-        <p>Copyright (c) 2017 Julian Garnier</p>
-        <p>
-          Permission is hereby granted, free of charge, to any person obtaining a copy of this
-          software and associated documentation files (the "Software"), to deal in the Software
-          without restriction, including without limitation the rights to use, copy, modify, merge,
-          publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
-          to whom the Software is furnished to do so, subject to the following conditions:
-        </p>
-        <p>
-          The above copyright notice and this permission notice shall be included in all copies or
-          substantial portions of the Software.
-        </p>
-        <p>
-          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-          INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-          PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-          FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-          OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-          DEALINGS IN THE SOFTWARE.
-        </p>
-      </section>
+    <section id="image">
+      <h2>{{ t('credits.headline_image') }}</h2>
+      <ul class="credit-list">
+        <li>
+          <div class="credit-head">
+            <a href="https://unsplash.com/photos/sLAk1guBG90" target="_blank" rel="noopener"
+              >Aerial photo of the shoreline</a
+            >
+            <a href="https://unsplash.com/license" target="_blank" rel="noopener" class="license"
+              >Unsplash License</a
+            >
+          </div>
+          <p class="copyright">
+            by
+            <a href="https://unsplash.com/@sotti" target="_blank" rel="noopener">Shifaaz Shamoon</a>
+          </p>
+        </li>
+      </ul>
     </section>
-  </article>
 
-  <PageFooter />
+    <section id="icons">
+      <h2>{{ t('credits.headline_icons') }}</h2>
+      <ul class="credit-list">
+        <li v-for="icon in icons" :key="icon.author">
+          <div class="credit-head">
+            <a :href="icon.authorUrl" target="_blank" rel="noopener">{{ icon.author }}</a>
+            <a href="https://www.flaticon.com/legal" target="_blank" rel="noopener" class="license"
+              >Flaticon License</a
+            >
+          </div>
+          <p class="copyright">
+            <template v-for="(work, index) in icon.works" :key="work.url"
+              ><template v-if="index">, </template
+              ><a :href="work.url" target="_blank" rel="noopener">{{ work.name }}</a></template
+            >
+            on
+            <a href="https://www.flaticon.com" target="_blank" rel="noopener">flaticon.com</a>
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="font">
+      <h2>{{ t('credits.headline_font') }}</h2>
+      <ul class="credit-list">
+        <li>
+          <div class="credit-head">
+            <a href="https://github.com/googlefonts/opensans" target="_blank" rel="noopener"
+              >Open Sans</a
+            >
+            <a
+              href="https://openfontlicense.org/open-font-license-official-text/"
+              target="_blank"
+              rel="noopener"
+              class="license"
+              >SIL Open Font License 1.1</a
+            >
+          </div>
+          <p class="copyright">Copyright 2020 The Open Sans Project Authors</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="open-source">
+      <h2>{{ t('credits.headline_oss') }}</h2>
+
+      <div class="callout">
+        <h3>Ghostscript</h3>
+        <p>
+          PDF compression is powered by
+          <a href="https://www.ghostscript.com" target="_blank" rel="noopener">Ghostscript</a>,
+          compiled to WebAssembly. Ghostscript is Copyright (C) Artifex Software, Inc. and is
+          licensed under the
+          <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener"
+            >GNU Affero General Public License v3.0</a
+          >. The WebAssembly build (gs.wasm) is taken from
+          <a href="https://github.com/ochachacha/ps-wasm" target="_blank" rel="noopener"
+            >@ochachacha/ps-wasm</a
+          >
+          and its integration is inspired by
+          <a
+            href="https://github.com/laurentmmeyer/ghostscript-pdf-compress.wasm"
+            target="_blank"
+            rel="noopener"
+            >Laurent Meyer's Ghostscript PDF demo</a
+          >. The corresponding source code is available in these repositories, in the
+          <a href="https://github.com/Safi1012/shrink-me" target="_blank" rel="noopener"
+            >Shrink Me repository</a
+          >
+          and from
+          <a href="https://www.ghostscript.com/releases/" target="_blank" rel="noopener"
+            >ghostscript.com</a
+          >.
+        </p>
+      </div>
+
+      <ul class="credit-list">
+        <li v-for="credit in packages" :key="credit.name">
+          <div class="credit-head">
+            <a :href="credit.url" target="_blank" rel="noopener">{{ credit.name }}</a>
+            <span class="license">{{ credit.license }}</span>
+          </div>
+          <p class="copyright">{{ credit.copyright }}</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="license-texts">
+      <h2>{{ t('credits.headline_license_texts') }}</h2>
+
+      <details>
+        <summary>The MIT License (MIT)</summary>
+        <p>
+          Permission is hereby granted, free of charge, to any person obtaining a copy of this
+          software and associated documentation files (the "Software"), to deal in the Software
+          without restriction, including without limitation the rights to use, copy, modify, merge,
+          publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+          to whom the Software is furnished to do so, subject to the following conditions:
+        </p>
+        <p>
+          The above copyright notice and this permission notice shall be included in all copies or
+          substantial portions of the Software.
+        </p>
+        <p>
+          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+          INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+          PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+          FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+          OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+          DEALINGS IN THE SOFTWARE.
+        </p>
+      </details>
+
+      <details>
+        <summary>BSD 3-Clause License</summary>
+        <p>
+          Redistribution and use in source and binary forms, with or without modification, are
+          permitted provided that the following conditions are met:
+        </p>
+        <ol>
+          <li>
+            Redistributions of source code must retain the above copyright notice, this list of
+            conditions and the following disclaimer.
+          </li>
+          <li>
+            Redistributions in binary form must reproduce the above copyright notice, this list of
+            conditions and the following disclaimer in the documentation and/or other materials
+            provided with the distribution.
+          </li>
+          <li>
+            Neither the name of the copyright holder nor the names of its contributors may be used
+            to endorse or promote products derived from this software without specific prior written
+            permission.
+          </li>
+        </ol>
+        <p>
+          THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+          EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+          MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+          COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+          EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+          SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+          HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+          TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+          SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        </p>
+      </details>
+    </section>
+  </LegalPage>
 </template>
 
 <style scoped>
-@reference "@/index.css";
-
-article {
-  grid-template-areas:
-    '.  .  .  .  .  .  .  .  .  .  .  .'
-    '.  c  c  c  c  c  c  c  c  c  c  .'
-    '.  .  .  .  .  .  .  .  .  .  .  .';
+.credit-list {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid #d9e8ea;
 }
 
-a {
-  @apply text-base font-light text-shrink-me-primary no-underline;
+.credit-list li {
+  margin: 0;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #d9e8ea;
 }
 
-section {
-  grid-area: c;
-  margin-top: 4em;
+.credit-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
-section:not(:first-child) {
-  @apply mt-24;
+.credit-head > a:first-child {
+  font-weight: 600;
+  text-decoration: none;
 }
 
-h1,
-h2,
-h3 {
-  text-align: center;
-  @apply mb-4 text-shrink-me-secondary;
+.credit-head > a:first-child:hover {
+  text-decoration: underline;
 }
 
-h3 {
-  margin-bottom: 0.25em;
-  margin-top: 2em;
+.license {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #6f8184;
 }
 
-p {
-  @apply mb-4 text-justify;
+a.license {
+  color: #6f8184;
+  text-decoration-color: #d9e8ea;
 }
 
-.wrap {
-  display: block;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.copyright {
+  margin: 0.15rem 0 0;
+  font-size: 0.9375rem;
+  color: #6f8184;
 }
 
-.center {
-  text-align: center;
+.callout + .credit-list {
+  margin-top: 1.5rem;
 }
 
-@media (min-width: 576px) {
-  article {
-    grid-template-areas:
-      '.  .  .  .  .  .  .  .  .  .  .  .'
-      '.  .  .  c  c  c  c  c  c  .  .  .'
-      '.  .  .  .  .  .  .  .  .  .  .  .';
-  }
+details {
+  border-bottom: 1px solid #d9e8ea;
 }
 
-@media (min-width: 992px) {
-  article {
-    grid-template-areas:
-      '.  .  .  .  .  .  .  .  .  .  .  .'
-      '.  .  .  .  c  c  c  c  .  .  .  .'
-      '.  .  .  .  .  .  .  .  .  .  .  .';
-  }
+details:first-of-type {
+  border-top: 1px solid #d9e8ea;
+}
+
+summary {
+  padding: 0.9rem 0;
+  font-weight: 600;
+  color: var(--color-shrink-me-secondary);
+  cursor: pointer;
+}
+
+summary::marker {
+  color: var(--color-shrink-me-primary);
+}
+
+summary:focus-visible {
+  outline: 2px solid var(--color-shrink-me-primary);
+  outline-offset: 2px;
+}
+
+details p,
+details ol {
+  font-size: 0.9375rem;
 }
 </style>
