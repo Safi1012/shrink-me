@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { useFileStore } from '@/stores/file'
 import { useProgressStore } from '@/stores/progress'
+import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import FileArea from './FileArea.vue'
 
 const { setFiles } = useFileStore()
+const { files: selectedFiles } = storeToRefs(useFileStore())
 const { incrementStage } = useProgressStore()
 const isDragAreaActive = ref(false)
 const acceptedFileTypes = '.png,.jpg,.jpeg,.webp,.svg,.pdf'
@@ -38,7 +40,8 @@ const onInputChange = (e: Event) => {
 }
 
 const navigateToNextStage = () => {
-  incrementStage()
+  // Nothing left to compress when only unsupported files were dropped
+  if (selectedFiles.value.length) incrementStage()
 }
 </script>
 
