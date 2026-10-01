@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/Safi1012/shrink-me/compare/shrink-me-v1.2.1...shrink-me-v1.3.0) (2026-10-01)
+
+
+### Features
+
+* **privacy:** only let the page talk to shrinkme.app ([1c00faa](https://github.com/Safi1012/shrink-me/commit/1c00faa2e3250fddfef6ceb4949e7deed41fa86c))
+
+
+### Bug Fixes
+
+* **counter:** stop the totals at the largest safe integer ([02fce22](https://github.com/Safi1012/shrink-me/commit/02fce22ef31355648efd82e9092252807bdbf47d))
+
 ## [1.2.1](https://github.com/Safi1012/shrink-me/compare/shrink-me-v1.2.0...shrink-me-v1.2.1) (2026-10-01)
 
 
