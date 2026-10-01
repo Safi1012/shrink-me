@@ -46,7 +46,7 @@ const setHidden = (value: boolean) => {
 const fetchMock = vi.fn()
 
 // counter.ts keeps its socket and totals at module level, so every test gets a fresh copy
-const loadCounter = () => import('../counter')
+const loadCounter = () => import('./counter')
 
 const subscribe = async () => {
   const { useCounter } = await loadCounter()

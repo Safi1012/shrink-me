@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
-import RollingNumber from '../RollingNumber.vue'
+import RollingNumber from './RollingNumber.vue'
 
 // What each digit rolls through, as text, e.g. ['1', '.', '12', '23'] for 1.12 → 1.23
 const ribbons = (wrapper: ReturnType<typeof mount>) =>
