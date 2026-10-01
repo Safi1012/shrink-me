@@ -11,8 +11,7 @@ import {
   mockCounter,
   readDownload,
   save,
-  saveButton,
-  startOver
+  saveButton
 } from './support'
 
 test.use({ locale: 'en-US' })
@@ -113,13 +112,11 @@ test('keeps a pdf that ghostscript cannot read and says it is already optimized'
 })
 
 test('keeps a pdf that ghostscript cannot shrink any further', async ({ page }) => {
-  await page.locator('#fileButton').setInputFiles(fixture('multipage.pdf'))
-  await expectSuccess(page)
-  const compressed = await readDownload(await save(page))
-
-  // Rewriting a PDF Ghostscript already wrote makes it bigger, so the original is kept
-  await startOver(page)
-  await dropFiles(page, [{ name: 'multipage.pdf', type: 'application/pdf', bytes: compressed }])
+  // A hand-written page of a few hundred bytes: Ghostscript adds kilobytes of metadata to
+  // anything it writes, so its rewrite is always bigger and the original is kept. (Feeding it
+  // its own output instead is flaky, that rewrite lands within a byte of the input depending
+  // on the timestamps it embeds.)
+  await page.locator('#fileButton').setInputFiles(fixture('lean.pdf'))
 
   await expectAlreadyOptimized(page)
   await expect(saveButton(page)).toBeHidden()
