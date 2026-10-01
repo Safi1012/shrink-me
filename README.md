@@ -12,7 +12,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fe5196.svg)](https://www.conventionalcommits.org)
 
-**Free, private image and PDF compression in your browser.**
+Free, private image and PDF compression in your browser.
 
 **Try it live at [shrinkme.app](https://shrinkme.app/)**
 
@@ -76,25 +76,18 @@ Then open [localhost:5173](http://localhost:5173).
 
 `pnpm dev` starts both the Vite dev server and the counter Worker (on `localhost:8787`, proxied under `/api`). The app also works without the Worker; only the live counter stays empty.
 
-### Environment variables
-
-The legal notice, privacy policy and contact page show the operator's name, address and email. These details are injected at build time and never committed. Locally, the git-ignored `.env.local` provides them; in CI, they come from the GitHub repository variables. See [`.env.example`](.env.example) for the full list. Its placeholder values are enough for development.
-
 ## Scripts
 
-| Command               | Action                                                                  |
-| :-------------------- | :---------------------------------------------------------------------- |
-| `pnpm dev`            | Starts `dev:app` and `dev:counter` together                             |
-| `pnpm dev:app`        | Starts the Vite dev server at `localhost:5173`                          |
-| `pnpm dev:counter`    | Starts the live counter Worker at `localhost:8787`                      |
-| `pnpm build`          | Type-checks and builds for production into `dist/`                      |
-| `pnpm preview`        | Serves the production build locally                                     |
-| `pnpm test:unit`      | Runs unit tests with [Vitest](https://vitest.dev/) (watch mode)         |
-| `pnpm test:e2e`       | Runs end-to-end tests with [Playwright](https://playwright.dev)         |
-| `pnpm lint`           | Lints and auto-fixes with [Oxlint](https://oxc.rs/docs/guide/usage/linter) |
-| `pnpm format`         | Formats with [Oxfmt](https://oxc.rs/docs/guide/usage/formatter)         |
-| `pnpm type-check`     | Type-checks every project with `vue-tsc --build`                        |
-| `pnpm deploy:counter` | Deploys the counter Worker (CI does this on `main`)                     |
+| Command                | Action                                                          |
+| :--------------------- | :-------------------------------------------------------------- |
+| `pnpm dev`             | Starts the app at `localhost:5173` and the live counter Worker  |
+| `pnpm build`           | Type-checks and builds for production into `dist/`              |
+| `pnpm test:unit --run` | Runs the unit tests with [Vitest](https://vitest.dev/)          |
+| `pnpm test:e2e`        | Runs the end-to-end tests with [Playwright](https://playwright.dev) |
+| `pnpm lint`            | Lints and fixes with [Oxlint](https://oxc.rs/docs/guide/usage/linter) |
+| `pnpm format`          | Formats with [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) |
+
+All scripts are in [`package.json`](package.json).
 
 ## Project Structure
 
@@ -146,23 +139,15 @@ On every push to `main`, release-please keeps a release pull request open that b
 
 ## Contributing
 
-Contributions are welcome, from bug reports and translations to new features.
+Contributions are welcome, from bug reports and translations to new features. For anything bigger than a small fix, please [open an issue](https://github.com/Safi1012/shrink-me/issues) first.
 
-1. For anything bigger than a small fix, please [open an issue](https://github.com/Safi1012/shrink-me/issues) first to discuss the change.
-2. Fork the repository and create a branch from `main`.
-3. Make your change, and add or update tests where it makes sense.
-4. Make sure these pass locally:
-   ```sh
-   pnpm format:check && pnpm lint:check && pnpm type-check && pnpm test:unit --run
-   ```
-5. Commit using [Conventional Commits](https://www.conventionalcommits.org) (for example `fix(pdf): keep the page size of rotated pages`).
-6. Open a pull request against `main` that describes what changed and why.
+Open pull requests against `main`, use [Conventional Commits](https://www.conventionalcommits.org), and make sure the checks pass:
 
-Using an AI coding agent? Point it at [`AGENTS.md`](AGENTS.md), which describes the project's conventions and the checks a change has to pass.
+```sh
+pnpm format:check && pnpm lint:check && pnpm type-check && pnpm test:unit --run
+```
 
-### Recommended IDE setup
-
-[VS Code](https://code.visualstudio.com/) with the extensions recommended in [`.vscode/extensions.json`](.vscode/extensions.json): Vue (Volar), Playwright and Oxc.
+Using an AI coding agent? Point it at [`AGENTS.md`](AGENTS.md).
 
 ## Security
 
