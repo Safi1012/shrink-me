@@ -17,7 +17,7 @@
     "test:unit": "vitest",
     "test:e2e": "playwright test",
     "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false && tsc --noEmit -p tsconfig.node.json --composite false && tsc --noEmit -p e2e/tsconfig.json && tsc --noEmit -p workers/counter/tsconfig.json",
+    "type-check": "vue-tsc --build",
     "lint": "oxlint --fix",
     "format": "oxfmt src/ public/ index.html workers/counter/src/",
     "format:check": "oxfmt --check src/ public/ index.html workers/counter/src/"
