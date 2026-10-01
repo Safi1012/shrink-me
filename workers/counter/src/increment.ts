@@ -17,6 +17,14 @@ const isValidIncrement = (value: unknown): value is Totals =>
   value.savedBytes >= 0 &&
   value.savedBytes <= value.compressedImages * MAX_SAVED_BYTES_PER_FILE
 
+// Past this, totals lose integer precision; only reachable by flooding the counter
+const sum = (a: number, b: number) => Math.min(a + b, Number.MAX_SAFE_INTEGER)
+
+export const addIncrement = (totals: Totals, increment: Totals): Totals => ({
+  compressedImages: sum(totals.compressedImages, increment.compressedImages),
+  savedBytes: sum(totals.savedBytes, increment.savedBytes)
+})
+
 export const parseIncrement = (message: string): Totals | undefined => {
   try {
     const increment: unknown = JSON.parse(message)

@@ -1,5 +1,5 @@
 import { DurableObject } from 'cloudflare:workers'
-import { parseIncrement, type Totals } from './increment'
+import { addIncrement, parseIncrement, type Totals } from './increment'
 
 const ALLOWED_ORIGINS = [/^https:\/\/shrinkme\.app$/, /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/]
 
@@ -38,10 +38,7 @@ export class Counter extends DurableObject<Env> {
   }
 
   add(increment: Totals) {
-    this.totals = {
-      compressedImages: this.totals.compressedImages + increment.compressedImages,
-      savedBytes: this.totals.savedBytes + increment.savedBytes
-    }
+    this.totals = addIncrement(this.totals, increment)
     this.ctx.storage.kv.put('totals', this.totals)
 
     const message = JSON.stringify(this.totals)

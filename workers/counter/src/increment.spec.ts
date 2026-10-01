@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseIncrement } from './increment'
+import { addIncrement, parseIncrement } from './increment'
 
 const GB = 1024 ** 3
 
@@ -33,5 +33,25 @@ describe('parseIncrement', () => {
   it('rejects a message that is not JSON', () => {
     expect(parseIncrement('{compressedImages: 1')).toBeUndefined()
     expect(parseIncrement('')).toBeUndefined()
+  })
+})
+
+describe('addIncrement', () => {
+  it('adds an increment to the totals', () => {
+    expect(
+      addIncrement(
+        { compressedImages: 10, savedBytes: 500 },
+        { compressedImages: 2, savedBytes: 30 }
+      )
+    ).toEqual({ compressedImages: 12, savedBytes: 530 })
+  })
+
+  it('stops at the largest safe integer instead of losing precision', () => {
+    const totals = { compressedImages: Number.MAX_SAFE_INTEGER - 1, savedBytes: 2 ** 53 - 10 }
+
+    expect(addIncrement(totals, { compressedImages: 1_000, savedBytes: 1_000 * GB })).toEqual({
+      compressedImages: Number.MAX_SAFE_INTEGER,
+      savedBytes: Number.MAX_SAFE_INTEGER
+    })
   })
 })
