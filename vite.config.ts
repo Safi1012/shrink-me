@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
 import path from 'path'
 
@@ -6,6 +7,17 @@ import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+
+// The `/*` headers from Cloudflare Pages' `_headers` file (the only rule it has)
+const productionHeaders = Object.fromEntries(
+  readFileSync(path.resolve(import.meta.dirname, 'public/_headers'), 'utf8')
+    .split('\n')
+    .filter((line) => /^\s+\S+:/.test(line))
+    .map((line) => {
+      const [name, ...value] = line.trim().split(':')
+      return [name, value.join(':').trim()]
+    })
+)
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -66,6 +78,10 @@ export default defineConfig({
     proxy: {
       '/api': { target: 'http://localhost:8787', ws: true, changeOrigin: true }
     }
+  },
+  // Only the built app is held to them, as in production
+  preview: {
+    headers: productionHeaders
   },
   // The Ghostscript glue finds its wasm through `new URL('gs.wasm', import.meta.url)`,
   // which breaks once pre-bundled into .vite/deps, and it needs an ES module worker

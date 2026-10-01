@@ -1,0 +1,10 @@
+# Response headers for Cloudflare Pages. `vite preview` sends them too (see vite.config.ts),
+# so the e2e tests on CI run under the same Content-Security-Policy as production.
+#
+# connect-src 'self' is what keeps files on the device: the page can only talk to its own
+# origin (the counter, also named as wss:// for browsers whose 'self' doesn't cover WebSockets),
+# so even injected script couldn't upload anything elsewhere.
+# 'wasm-unsafe-eval' lets the Ghostscript worker compile its WebAssembly.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' wss://shrinkme.app blob:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
