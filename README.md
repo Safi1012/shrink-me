@@ -1,3 +1,5 @@
+[![Shrink Me: free, private image and PDF compression in your browser](.github/assets/hero.jpg)](https://shrinkme.app/)
+
 # Shrink Me
 
 [![CI](https://github.com/Safi1012/shrink-me/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/Safi1012/shrink-me/actions/workflows/pipeline.yml)
