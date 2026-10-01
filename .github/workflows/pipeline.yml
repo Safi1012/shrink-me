@@ -17,6 +17,9 @@ permissions:
 jobs:
   check:
     name: Lint, unit test and build
+    # A release pull request only bumps the version and the changelog, which the push to main
+    # after merging it checks and deploys anyway. Skipping this job skips the ones that need it
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     runs-on: ubuntu-26.04
     timeout-minutes: 15
 
