@@ -131,8 +131,7 @@ jobs:
   deploy:
     name: Deploy
     needs: [check, e2e]
-    # Pull requests from forks get no secrets, so they cannot deploy a preview
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'push'
     runs-on: ubuntu-26.04
     timeout-minutes: 10
 
@@ -151,7 +150,6 @@ jobs:
           path: dist/
 
       - name: Deploy counter Worker
-        if: github.ref == 'refs/heads/main'
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

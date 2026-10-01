@@ -121,7 +121,7 @@ Locally, the e2e tests start (or reuse) the dev server. CI runs them against the
 
 ## Deployment
 
-On every push to `main`, the [CI pipeline](.github/workflows/pipeline.yml) checks formatting, lints, runs the unit tests, builds the app, and runs the e2e tests in Chromium and WebKit. It then deploys the site to Cloudflare Pages and the counter Worker to Cloudflare. Pull requests from this repository also get a preview deployment. Pull requests from forks are checked but not deployed, because they don't get the deployment secrets.
+On every push to `main`, the [CI pipeline](.github/workflows/pipeline.yml) checks formatting, lints, runs the unit tests, builds the app, and runs the e2e tests in Chromium and WebKit. It then deploys the site to Cloudflare Pages and the counter Worker to Cloudflare. Pull requests are checked the same way but not deployed.
 
 ## Versioning and Releases
 
