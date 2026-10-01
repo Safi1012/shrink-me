@@ -27,10 +27,12 @@ jobs:
         id: release
         uses: googleapis/release-please-action@v5
 
-      # prs_created is also true when the pull request was only updated, adding an assignee again is a no-op
+      # release-please labels its open pull request, and its `pr` output is only set when the
+      # pull request was created, not when a later push updated it
       - name: Assign the release pull request
         if: steps.release.outputs.prs_created == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ fromJSON(steps.release.outputs.pr).number }}
-        run: gh pr edit "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --add-assignee "$GITHUB_REPOSITORY_OWNER"
+        run: |
+          gh pr list --repo "$GITHUB_REPOSITORY" --label 'autorelease: pending' --json number --jq '.[].number' |
+            xargs -I {} gh api "repos/$GITHUB_REPOSITORY/issues/{}/assignees" -f "assignees[]=$GITHUB_REPOSITORY_OWNER" --silent
