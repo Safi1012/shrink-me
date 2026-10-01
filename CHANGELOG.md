@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Safi1012/shrink-me/compare/shrink-me-v1.0.0...shrink-me-v1.1.0) (2026-10-01)
+
+
+### Features
+
+* show the changelog when clicking the version on the contact page ([d309766](https://github.com/Safi1012/shrink-me/commit/d30976629aa8a228bc6c5a69381e64dc649833e7))
+
 ## 1.0.0 (2026-10-01)
 
 
