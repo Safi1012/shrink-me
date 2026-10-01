@@ -5,7 +5,7 @@
 
 ### Features
 
-* show the changelog when clicking the version on the contact page ([d309766](https://github.com/Safi1012/shrink-me/commit/d30976629aa8a228bc6c5a69381e64dc649833e7))
+* show the changelog when clicking the version on the contact page ([74a28d4](https://github.com/Safi1012/shrink-me/commit/74a28d4e9431c4309860719b3c7b707bf1e4b328))
 
 ## 1.0.0 (2026-10-01)
 
