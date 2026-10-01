@@ -155,6 +155,8 @@ Please don't report security vulnerabilities in public issues. Report them priva
 
 ## License
 
-Shrink Me is licensed under the [MIT License](LICENSE).
+Shrink Me's own code is licensed under the [MIT License](LICENSE).
+
+PDF compression uses [Ghostscript](https://www.ghostscript.com/), which is licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html). The site ships it unmodified, as the WebAssembly build from [`@okathira/ghostpdl-wasm`](https://github.com/okathira/ghostpdl-wasm), and loads it in a separate Web Worker. Its source code is available from [ghostscript.com/releases](https://www.ghostscript.com/releases/). The MIT License doesn't apply to Ghostscript.
 
 The credits for third-party images, icons and libraries are listed on [shrinkme.app/credits](https://shrinkme.app/credits).
