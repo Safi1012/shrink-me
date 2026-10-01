@@ -116,8 +116,9 @@ jobs:
       - name: E2E tests (Playwright)
         run: pnpm test:e2e --project=${{ matrix.browser }}
 
+      # Also after a green run, so the traces of tests that only passed on a retry can be looked at
       - name: Upload Playwright report
-        if: failure()
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
           name: playwright-report-${{ matrix.browser }}
