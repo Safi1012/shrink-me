@@ -36,6 +36,20 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm format`         | Format with [Oxfmt](https://oxc.rs/docs/guide/usage/formatter)             |
 | `pnpm deploy:counter` | Deploys the live counter Worker (also done by CI on `main`)                |
 
+## 🏷️ Versioning & Releases
+
+Shrink Me follows [Semantic Versioning](https://semver.org) and is released with [release-please](https://github.com/googleapis/release-please). Commit messages follow [Conventional Commits](https://www.conventionalcommits.org), since they decide the next version and end up in the changelog:
+
+| Commit message                               | Release | Changelog section |
+| :------------------------------------------- | :------ | :---------------- |
+| `fix: keep the file name of renamed PNGs`    | Patch   | Bug Fixes         |
+| `perf: decode images off the main thread`    | Patch   | Performance       |
+| `feat: let the JPG quality be chosen`        | Minor   | Features          |
+| `feat!: drop support for Safari 15`          | Major   | Breaking Changes  |
+| `chore:`, `ci:`, `test:`, `docs:`, `refactor:` | None    | Not listed        |
+
+On every push to `main`, release-please keeps a release pull request open that bumps `package.json` and adds the new entries to [`CHANGELOG.md`](CHANGELOG.md). Merging it tags the release and publishes it on GitHub, and the deploy that follows ships the new version, whose changelog is shown at [`/changelog`](https://shrinkme.app/changelog) (linked from the version on the contact page).
+
 ## 💻 Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) +

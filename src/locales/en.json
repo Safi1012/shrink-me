@@ -21,6 +21,19 @@
     "description_marco": "First I want to thank Marco Eckert for helping me with my Shrink Me by teaching me fundamental design principles.",
     "description_open_source": "Shrink Me is built on open source software and uses freely licensed images, icons and fonts. Below you can find their authors, licenses and source code. I am grateful to these developers, designers and photographers for their contributions."
   },
+  "changelog": {
+    "headline": "Changelog",
+    "description": "Every version of Shrink Me and what changed in it.",
+    "versions": "Versions",
+    "current": "Current version",
+    "sections": {
+      "breaking": "Breaking changes",
+      "features": "New features",
+      "fixes": "Bug fixes",
+      "performance": "Performance",
+      "reverts": "Reverted"
+    }
+  },
   "home": {
     "hero": {
       "headline": "Shrink your images",

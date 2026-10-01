@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { version } from '../../../package.json'
+import { useRoute } from 'vue-router'
 
-const getVersion = () => {
-  return window.location.pathname.includes('contact') ? `Version: ${version}` : ''
-}
+const route = useRoute()
 </script>
 
 <template>
@@ -46,7 +45,12 @@ const getVersion = () => {
             >Filipe Santos Correa</a
           >
         </div>
-        <p class="m-0 text-right text-sm font-semibold text-[#9b9b9b]">{{ getVersion() }}</p>
+        <router-link
+          v-if="route.name === 'contact'"
+          to="/changelog"
+          class="m-0 text-right text-sm font-semibold text-[#9b9b9b] hover:text-shrink-me-secondary"
+          >Version: {{ version }}</router-link
+        >
       </div>
     </nav>
   </footer>

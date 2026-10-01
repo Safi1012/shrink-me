@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "node",
+  "bootstrap-sha": "91b6a09c1ffcab52cfbcb4b79cf657037b0cb2ff",
+  "packages": {
+    ".": {
+      "package-name": "shrink-me",
+      "changelog-path": "CHANGELOG.md"
+    }
+  }
+}

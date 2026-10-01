@@ -21,6 +21,19 @@
     "description_marco": "Zuerst möchte ich Marco Eckert dafür danken, dass er mir bei Shrink Me geholfen hat, indem er mir grundlegende Designprinzipien beigebracht hat.",
     "description_open_source": "Shrink Me basiert auf Open-Source-Software und verwendet frei lizenzierte Bilder, Symbole und Schriftarten. Unten finden Sie die jeweiligen Urheber, Lizenzen und den Quellcode. Ich bin diesen Entwicklern, Designern und Fotografen für ihre Beiträge sehr dankbar."
   },
+  "changelog": {
+    "headline": "Änderungen",
+    "description": "Alle Versionen von Shrink Me und was sich in ihnen geändert hat. Die Einträge sind auf Englisch.",
+    "versions": "Versionen",
+    "current": "Aktuelle Version",
+    "sections": {
+      "breaking": "Grundlegende Änderungen",
+      "features": "Neue Funktionen",
+      "fixes": "Fehlerbehebungen",
+      "performance": "Leistung",
+      "reverts": "Zurückgenommen"
+    }
+  },
   "home": {
     "hero": {
       "headline": "Bilder verkleinern",
