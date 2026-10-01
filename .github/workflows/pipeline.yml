@@ -135,6 +135,10 @@ jobs:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-26.04
     timeout-minutes: 10
+    permissions:
+      contents: read
+      # To comment the preview URL on the pull request
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -158,9 +162,39 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy -c workers/counter/wrangler.jsonc
 
+      # A pull request is checked out as a detached merge commit, so Wrangler can't tell its
+      # branch and every preview would land on the same "HEAD" alias. The name is reduced to
+      # the characters Cloudflare keeps in an alias anyway, so it is safe to pass on
+      - name: Branch
+        id: branch
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: echo "name=$(printf '%s' "$BRANCH" | tr -c 'a-zA-Z0-9-' '-')" >> "$GITHUB_OUTPUT"
+
       - name: Deploy
+        id: deploy
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=shrink-me --commit-dirty=true
+          command: pages deploy dist --project-name=shrink-me --branch=${{ steps.branch.outputs.name }} --commit-dirty=true
+
+      # Keeps a single comment up to date instead of adding one for every push
+      - name: Comment preview URL
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          body="### Preview deployment
+
+          | | |
+          | :-- | :-- |
+          | Branch preview | ${ALIAS_URL:-not available} |
+          | This commit (\`${SHA::7}\`) | $DEPLOYMENT_URL |
+
+          The live counter stays empty in previews, because the counter only accepts shrinkme.app."
+          gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --edit-last --create-if-none --body "$body"
