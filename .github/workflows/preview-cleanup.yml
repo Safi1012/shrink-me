@@ -1,0 +1,47 @@
+name: Preview cleanup
+
+# Cloudflare Pages keeps every preview deployment forever, so a pull request's previews are
+# deleted once it is merged or closed
+on:
+  pull_request:
+    types: [closed]
+
+permissions: {}
+
+jobs:
+  cleanup:
+    name: Delete preview deployments
+    # Pull requests from forks get no secrets, and never got a preview either
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Delete preview deployments
+        env:
+          API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          api="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/shrink-me/deployments"
+          # The same name the pipeline deploys the branch under
+          branch=$(printf '%s' "$BRANCH" | tr -c 'a-zA-Z0-9-' '-')
+
+          # Collect the ids first, since deleting while paging would shift the pages
+          ids=()
+          page=1
+          while :; do
+            response=$(curl -fsS -H "Authorization: Bearer $API_TOKEN" \
+              "$api?env=preview&page=$page&per_page=25")
+            # Deployment ids are UUIDs, so splitting on whitespace is safe
+            ids+=($(jq -r --arg branch "$branch" \
+              '.result[] | select(.deployment_trigger.metadata.branch == $branch) | .id' <<< "$response"))
+            [ "$(jq '.result | length' <<< "$response")" -lt 25 ] && break
+            page=$((page + 1))
+          done
+
+          # force also deletes the deployment the branch alias points to
+          for id in "${ids[@]}"; do
+            curl -fsS -o /dev/null -X DELETE -H "Authorization: Bearer $API_TOKEN" "$api/$id?force=true"
+          done
+          echo "Deleted ${#ids[@]} preview deployment(s) of $branch"
