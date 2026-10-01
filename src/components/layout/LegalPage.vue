@@ -65,7 +65,7 @@ watch(
       </svg>
     </div>
 
-    <div class="body">
+    <div class="body" :class="{ 'has-toc': toc.length > 1 }">
       <nav v-if="toc.length > 1" class="toc" :aria-label="contentsLabel">
         <p class="toc-label">{{ contentsLabel }}</p>
         <ol>
@@ -149,10 +149,13 @@ h1 {
   }
 
   .body {
+    padding: 4rem 2rem 8rem;
+  }
+
+  .body.has-toc {
     display: grid;
     grid-template-columns: 14rem minmax(0, 40rem);
     gap: 4rem;
-    padding: 4rem 2rem 8rem;
   }
 
   .toc {
@@ -222,6 +225,8 @@ a:focus-visible {
 @reference "@/index.css";
 
 .legal-content {
+  /* Also a readable line length on a page without a table of contents */
+  max-width: 40rem;
   font-size: 1.0625rem;
   line-height: 1.7;
 }

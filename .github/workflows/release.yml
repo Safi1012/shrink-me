@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+# Two pushes in a row must not open or update the release pull request at the same time
+concurrency:
+  group: ${{ github.workflow }}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    name: Release Please
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+
+    steps:
+      # Keeps a release pull request open that bumps package.json and adds the conventional
+      # commits since the last release to CHANGELOG.md; merging it tags vX.Y.Z and creates the
+      # GitHub release, and the push to main deploys the app with the new version as usual
+      - name: Release Please
+        uses: googleapis/release-please-action@v5
