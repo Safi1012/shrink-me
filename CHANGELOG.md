@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/Safi1012/shrink-me/compare/shrink-me-v1.1.0...shrink-me-v1.2.0) (2026-10-01)
+
+
+### Features
+
+* **i18n:** add Chinese, Hindi, Spanish, Arabic, Bengali and Portuguese ([0849792](https://github.com/Safi1012/shrink-me/commit/08497920a22f7a4b1460d5c3ef6f5ac70e8e2255))
+* link to the GitHub repository from the app ([73bb04f](https://github.com/Safi1012/shrink-me/commit/73bb04f64f3227828fb6bf16eccab2b61551fe7e))
+
 ## [1.1.0](https://github.com/Safi1012/shrink-me/compare/shrink-me-v1.0.0...shrink-me-v1.1.0) (2026-10-01)
 
 
