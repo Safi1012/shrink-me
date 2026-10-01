@@ -93,12 +93,6 @@ const packages: Credit[] = [
     copyright: 'Copyright (c) 2013 HubSpot, Inc.'
   },
   {
-    name: 'vue3-odometer',
-    url: 'https://github.com/java0088/vue3-odometer',
-    license: 'MIT',
-    copyright: 'Copyright (c) huangwantong'
-  },
-  {
     name: 'Workbox',
     url: 'https://github.com/GoogleChrome/workbox',
     license: 'MIT',
