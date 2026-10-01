@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/Safi1012/shrink-me/compare/shrink-me-v1.2.0...shrink-me-v1.2.1) (2026-10-01)
+
+
+### Bug Fixes
+
+* **i18n:** line up the language picker with the name in the footer ([7557004](https://github.com/Safi1012/shrink-me/commit/7557004a9aeff3cb57a3eff6ee1eaa40e2ad0d00))
+
 ## [1.2.0](https://github.com/Safi1012/shrink-me/compare/shrink-me-v1.1.0...shrink-me-v1.2.0) (2026-10-01)
 
 
