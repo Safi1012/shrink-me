@@ -1,4 +1,9 @@
-[![Shrink Me: free, private image and PDF compression in your browser](.github/assets/hero.jpg)](https://shrinkme.app/)
+<a href="https://shrinkme.app/">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset=".github/assets/hero.jpg" />
+    <img src=".github/assets/hero.webp" alt="Shrink Me: free, private image and PDF compression in your browser. Six files are dragged into the app and compressed on the spot." />
+  </picture>
+</a>
 
 # Shrink Me
 
