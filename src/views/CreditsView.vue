@@ -117,17 +117,20 @@ const packages: Credit[] = [
       <ul class="credit-list">
         <li>
           <div class="credit-head">
-            <a href="https://unsplash.com/photos/sLAk1guBG90" target="_blank" rel="noopener"
-              >Aerial photo of the shoreline</a
-            >
+            <a href="https://unsplash.com/photos/sLAk1guBG90" target="_blank" rel="noopener">{{
+              t('credits.image_title')
+            }}</a>
             <a href="https://unsplash.com/license" target="_blank" rel="noopener" class="license"
               >Unsplash License</a
             >
           </div>
-          <p class="copyright">
-            by
-            <a href="https://unsplash.com/@sotti" target="_blank" rel="noopener">Shifaaz Shamoon</a>
-          </p>
+          <i18n-t keypath="credits.by" tag="p" scope="global" class="copyright">
+            <template #author>
+              <a href="https://unsplash.com/@sotti" target="_blank" rel="noopener"
+                >Shifaaz Shamoon</a
+              >
+            </template>
+          </i18n-t>
         </li>
       </ul>
     </section>
@@ -142,14 +145,17 @@ const packages: Credit[] = [
               >Flaticon License</a
             >
           </div>
-          <p class="copyright">
-            <template v-for="(work, index) in icon.works" :key="work.url"
-              ><template v-if="index">, </template
-              ><a :href="work.url" target="_blank" rel="noopener">{{ work.name }}</a></template
-            >
-            on
-            <a href="https://www.flaticon.com" target="_blank" rel="noopener">flaticon.com</a>
-          </p>
+          <i18n-t keypath="credits.on" tag="p" scope="global" class="copyright">
+            <template #works>
+              <template v-for="(work, index) in icon.works" :key="work.url"
+                ><template v-if="index">, </template
+                ><a :href="work.url" target="_blank" rel="noopener">{{ work.name }}</a></template
+              >
+            </template>
+            <template #site>
+              <a href="https://www.flaticon.com" target="_blank" rel="noopener">flaticon.com</a>
+            </template>
+          </i18n-t>
         </li>
       </ul>
     </section>
@@ -180,25 +186,31 @@ const packages: Credit[] = [
 
       <div class="callout">
         <h3>Ghostscript</h3>
-        <p>
-          PDF compression is powered by
-          <a href="https://www.ghostscript.com" target="_blank" rel="noopener">Ghostscript</a>,
-          compiled to WebAssembly. Ghostscript is Copyright (C) Artifex Software, Inc. and is
-          licensed under the
-          <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener"
-            >GNU Affero General Public License v3.0</a
-          >. The WebAssembly build (gs.wasm, Ghostscript 10.06) is taken from
-          <a href="https://github.com/okathira/ghostpdl-wasm" target="_blank" rel="noopener"
-            >@okathira/ghostpdl-wasm</a
-          >. The corresponding source code is available in that repository, in the
-          <a href="https://github.com/Safi1012/shrink-me" target="_blank" rel="noopener"
-            >Shrink Me repository</a
-          >
-          and from
-          <a href="https://www.ghostscript.com/releases/" target="_blank" rel="noopener"
-            >ghostscript.com</a
-          >.
-        </p>
+        <i18n-t keypath="credits.ghostscript" tag="p" scope="global">
+          <template #ghostscript>
+            <a href="https://www.ghostscript.com" target="_blank" rel="noopener">Ghostscript</a>
+          </template>
+          <template #license>
+            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener"
+              >GNU Affero General Public License v3.0</a
+            >
+          </template>
+          <template #build>
+            <a href="https://github.com/okathira/ghostpdl-wasm" target="_blank" rel="noopener"
+              >@okathira/ghostpdl-wasm</a
+            >
+          </template>
+          <template #repository>
+            <a href="https://github.com/Safi1012/shrink-me" target="_blank" rel="noopener">{{
+              t('credits.ghostscript_repository')
+            }}</a>
+          </template>
+          <template #releases>
+            <a href="https://www.ghostscript.com/releases/" target="_blank" rel="noopener"
+              >ghostscript.com</a
+            >
+          </template>
+        </i18n-t>
       </div>
 
       <ul class="credit-list">
@@ -215,7 +227,7 @@ const packages: Credit[] = [
     <section id="license-texts">
       <h2>{{ t('credits.headline_license_texts') }}</h2>
 
-      <details>
+      <details lang="en">
         <summary>The MIT License (MIT)</summary>
         <p>
           Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -238,7 +250,7 @@ const packages: Credit[] = [
         </p>
       </details>
 
-      <details>
+      <details lang="en">
         <summary>BSD 3-Clause License</summary>
         <p>
           Redistribution and use in source and binary forms, with or without modification, are

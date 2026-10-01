@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useFileStore } from '@/stores/file'
 import { storeToRefs } from 'pinia'
 import JSZip from 'jszip'
@@ -12,6 +13,7 @@ import FileArea from './FileArea.vue'
 const { files, compressedFiles } = storeToRefs(useFileStore())
 const { resetProgress } = useProgressStore()
 const { resetFiles } = useFileStore()
+const { t, locale } = useI18n()
 
 const download = ref<HTMLAnchorElement | null>(null)
 const url = ref('')
@@ -21,21 +23,21 @@ const totalCompressedSizeInBytes = ref(0)
 const totalSavedBytes = ref(0)
 
 // Same units as the counter in the hero, so a batch adds exactly what it says it saved
-const totalSavedSize = computed(() => filesize(totalSavedBytes.value, { round: 1 }))
+const totalSavedSize = computed(() =>
+  filesize(totalSavedBytes.value, { round: 1, locale: locale.value })
+)
 
+// e.g. "-94%", rounded down so a saving is never overstated
 const totalSavedPercentage = computed(() => {
-  return Math.floor((totalSavedBytes.value / totalOriginalSizeInBytes.value) * 100)
+  const percent = Math.floor((totalSavedBytes.value / totalOriginalSizeInBytes.value) * 100)
+  return new Intl.NumberFormat(locale.value, { style: 'percent' }).format(-percent / 100)
 })
 
 const resultTitle = computed(() => {
-  return totalSavedBytes.value === 0 ? 'Done!' : 'Success!'
+  return totalSavedBytes.value === 0 ? t('home.result.done') : t('home.result.success')
 })
 
-const resultSubtitle = computed(() => {
-  return files.value.length === 1
-    ? 'File was already optimized 🤓'
-    : 'Files were already optimized 🤓'
-})
+const resultSubtitle = computed(() => t('home.result.already_optimized', files.value.length))
 
 const exportFiles = () => {
   if (totalSavedBytes.value === 0) return
@@ -137,8 +139,8 @@ const shareFiles = () => {
     navigator
       .share({
         files,
-        title: 'Compressed Files',
-        text: 'Your compressed Files from Shrink Me'
+        title: t('home.result.share_title'),
+        text: t('home.result.share_text')
       })
       .then(() => console.log('Share was successful.'))
       .catch((error) => console.log('Sharing failed', error))
@@ -166,14 +168,14 @@ onMounted(() => {
 
       <FileArea>
         <div class="content flex h-full flex-col items-center justify-center">
-          <img for="file" alt="Files icon" src="@/assets/icons/files.svg" class="h-[40%] w-auto" />
+          <img for="file" alt="" src="@/assets/icons/files.svg" class="h-[40%] w-auto" />
           <span v-if="totalSavedBytes === 0" class="mt-3">{{ resultSubtitle }}</span>
-          <span v-else class="mt-3"
-            >You saved
-            <strong class="font-semibold text-shrink-me-primary">{{ totalSavedSize }}</strong> (-{{
-              totalSavedPercentage
-            }}%) &nbsp;🎉</span
-          >
+          <i18n-t v-else keypath="home.result.saved" tag="span" scope="global" class="mt-3">
+            <template #size>
+              <strong class="font-semibold text-shrink-me-primary">{{ totalSavedSize }}</strong>
+            </template>
+            <template #percent>{{ totalSavedPercentage }}</template>
+          </i18n-t>
         </div>
       </FileArea>
 
@@ -182,45 +184,49 @@ onMounted(() => {
         id="myButton"
         class="relative m-auto mt-[-2em] inline-block cursor-pointer rounded-[3px] border-0 bg-shrink-me-primary px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-300 ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
         @click="resetFileManagerComponentData"
-        >Select New</a
+        >{{ $t('home.result.select_new') }}</a
       >
       <a
         v-else-if="isDownloadAttributeSupported()"
         id="myButton"
         ref="download"
-        class="relative m-auto mt-[-2em] inline-block cursor-pointer rounded-[3px] border-0 bg-shrink-me-primary px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-300 ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
+        class="relative m-auto mt-[-2em] inline-block cursor-pointer rounded-[3px] border-0 bg-shrink-me-primary px-[0.75em] py-[0.6em] text-base tracking-wider text-white uppercase shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-300 ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
         href="#"
         @click="handleDownloadClick"
       >
-        SAVE
+        {{ $t('home.result.save') }}
       </a>
       <!-- iOS Safari fallback, IE -->
-      <button v-else ref="download" class="relative" type="submit" @click="downloadFiles">
-        SAVE
+      <button v-else ref="download" class="relative uppercase" type="submit" @click="downloadFiles">
+        {{ $t('home.result.save') }}
       </button>
 
       <button
         v-if="getMobileOperatingSystem() === 'Android'"
-        class="retry share relative z-2 m-auto mt-[-2.7em] mr-auto ml-[-1.25em] flex h-[2.7em] w-[2.7em] cursor-pointer items-center justify-center rounded-[3px] border-0 bg-shrink-me-primary p-0 px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#c7c7c7fa] transition-shadow duration-300 ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
+        class="retry share relative z-2 m-auto ms-[-1.25em] me-auto mt-[-2.7em] flex h-[2.7em] w-[2.7em] cursor-pointer items-center justify-center rounded-[3px] border-0 bg-shrink-me-primary p-0 px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#c7c7c7fa] transition-shadow duration-300 ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
+        :aria-label="$t('home.result.share')"
+        :title="$t('home.result.share')"
         @click="shareFiles"
       >
         <img
           for="file"
-          alt="Files icon more"
+          alt=""
           src="@/assets/icons/share.svg"
-          class="icon-share my-0 mr-[0.125em] ml-0 h-[55%] w-[55%]"
+          class="icon-share my-0 ms-0 me-[0.125em] h-[55%] w-[55%]"
         />
       </button>
     </div>
 
     <button
       v-if="userPressedSave"
-      class="retry z-2 m-auto mt-[-2.7em] mr-[-1.25em] flex h-[2.7em] w-[2.7em] cursor-pointer items-center justify-center rounded-[50%] border-0 bg-shrink-me-primary p-0 px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#c7c7c7fa] transition-shadow duration-300 ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
+      class="retry z-2 m-auto me-[-1.25em] mt-[-2.7em] flex h-[2.7em] w-[2.7em] cursor-pointer items-center justify-center rounded-[50%] border-0 bg-shrink-me-primary p-0 px-[0.75em] py-[0.6em] text-base tracking-wider text-white shadow-[0_6px_30px_0_#c7c7c7fa] transition-shadow duration-300 ease-[ease-in-out] hover:cursor-pointer hover:shadow-[0_2px_10px_0_#adadadfa]"
+      :aria-label="$t('home.result.start_over')"
+      :title="$t('home.result.start_over')"
       @click="resetFileManagerComponentData"
     >
       <img
         for="file"
-        alt="Files icon more"
+        alt=""
         src="@/assets/icons/more.svg"
         class="icon-retry m-0 h-8 w-8 max-w-none"
       />

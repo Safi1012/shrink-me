@@ -4,7 +4,14 @@ import { nextTick, ref, shallowRef, watch } from 'vue'
 // Rolls each digit to its new value like a mechanical counter. The roll and the styles are
 // ported from HubSpot's Odometer and its default theme (MIT, credited on the credits page)
 
-const props = defineProps<{ value: number }>()
+const props = withDefaults(
+  defineProps<{
+    value: number
+    /** The locale's decimal and grouping separators */
+    separators?: { decimal: string; group: string }
+  }>(),
+  { separators: () => ({ decimal: '.', group: ',' }) }
+)
 
 type Token = { kind: 'digit'; frames: number[] } | { kind: 'mark'; char: string }
 
@@ -25,8 +32,12 @@ const layout = (columns: number[][], fractionCount: number): Token[] => {
 
   columns.forEach((frames, index) => {
     const wholeIndex = index - fractionCount
-    if (wholeIndex === 0 && fractionCount) tokens.push({ kind: 'mark', char: '.' })
-    if (wholeIndex > 0 && wholeIndex % 3 === 0) tokens.push({ kind: 'mark', char: ',' })
+    if (wholeIndex === 0 && fractionCount) {
+      tokens.push({ kind: 'mark', char: props.separators.decimal })
+    }
+    if (wholeIndex > 0 && wholeIndex % 3 === 0) {
+      tokens.push({ kind: 'mark', char: props.separators.group })
+    }
     tokens.push({ kind: 'digit', frames })
   })
 
@@ -105,6 +116,14 @@ watch(
   }
 )
 
+// e.g. after switching the language, a roll in progress picks them up once it settles
+watch(
+  () => props.separators,
+  () => {
+    if (!direction.value) tokens.value = staticTokens(current)
+  }
+)
+
 const settle = () => {
   if (!direction.value) return
   tokens.value = staticTokens(current)
@@ -117,10 +136,12 @@ const settle = () => {
 <template>
   <span
     ref="root"
+    dir="ltr"
     class="rolling-number"
     :class="[direction && `is-${direction}`, { 'is-rolling': rolling }]"
     @transitionend="settle"
   >
+    <!-- dir: the digits are laid out one by one, so a right-to-left page would reverse them -->
     <span :key="generation" class="inside">
       <template v-for="(token, index) in tokens" :key="index">
         <span v-if="token.kind === 'mark'">{{ token.char }}</span>

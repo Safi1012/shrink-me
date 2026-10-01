@@ -31,7 +31,7 @@ const formatDate = (date: string) =>
     :content-key="locale"
   >
     <template #band>
-      <p class="current">{{ t('changelog.current') }} {{ version }}</p>
+      <p class="current">{{ t('changelog.current', { version }) }}</p>
     </template>
 
     <p class="lead">{{ t('changelog.description') }}</p>

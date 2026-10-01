@@ -28,9 +28,6 @@ watchEffect(() => {
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
   >
-    <title>Group</title>
-    <desc>Drag and Drop area</desc>
-
     <defs>
       <path id="path-1" :d="getPath"></path>
       <mask

@@ -3,9 +3,13 @@ import './index.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import i18n from './i18n'
+import i18n, { detectLocale, setLocale } from './i18n'
 import App from './App.vue'
 import router from './router'
+
+// Wait for the messages, so the page doesn't flash in English first. If they can't be
+// loaded the page still works, in English
+await setLocale(detectLocale()).catch(() => setLocale('en'))
 
 const app = createApp(App)
 

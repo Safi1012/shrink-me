@@ -1,14 +1,21 @@
 {
+  "meta": {
+    "title": "Shrink Me - Compress JPG, PNG, WEBP, SVG, and PDF Files"
+  },
   "navigation": {
-    "why": "WHY",
-    "what": "WHAT",
-    "faq": "FAQ",
-    "github": "Shrink Me on GitHub"
+    "github": "Shrink Me on GitHub",
+    "privacy": "Privacy",
+    "legal": "Legal",
+    "credits": "Credits",
+    "contact": "Contact",
+    "copyright": "Copyright © {year}",
+    "version": "Version: {version}",
+    "language": "Language"
   },
   "contact": {
     "headline": "Contact",
     "description": "If you have any questions, feel free to contact me:",
-    "send_mail_link": "SEND MAIL",
+    "send_mail_link": "Send mail",
     "paper_plane_icon_alt": "Paper plane icon: Symbolizes sending an email."
   },
   "credits": {
@@ -20,13 +27,18 @@
     "headline_license_texts": "License texts",
     "contents": "Contents",
     "description_marco": "First I want to thank Marco Eckert for helping me with my Shrink Me by teaching me fundamental design principles.",
-    "description_open_source": "Shrink Me is built on open source software and uses freely licensed images, icons and fonts. Below you can find their authors, licenses and source code. I am grateful to these developers, designers and photographers for their contributions."
+    "description_open_source": "Shrink Me is built on open source software and uses freely licensed images, icons and fonts. Below you can find their authors, licenses and source code. I am grateful to these developers, designers and photographers for their contributions.",
+    "image_title": "Aerial photo of the shoreline",
+    "by": "by {author}",
+    "on": "{works} on {site}",
+    "ghostscript": "PDF compression is powered by {ghostscript}, compiled to WebAssembly. Ghostscript is Copyright (C) Artifex Software, Inc. and is licensed under the {license}. The WebAssembly build (gs.wasm, Ghostscript 10.06) is taken from {build}. The corresponding source code is available in that repository, in the {repository} and from {releases}.",
+    "ghostscript_repository": "Shrink Me repository"
   },
   "changelog": {
     "headline": "Changelog",
     "description": "Every version of Shrink Me and what changed in it.",
     "versions": "Versions",
-    "current": "Current version",
+    "current": "Current version {version}",
     "sections": {
       "breaking": "Breaking changes",
       "features": "New features",
@@ -41,12 +53,34 @@
       "instructions": "Drag and Drop",
       "button": "Select"
     },
+    "counter": {
+      "compressed": "Shrink Me compressed {count} file | Shrink Me compressed {count} files",
+      "saved": "and saved {amount} {unit} of storage"
+    },
+    "progress": {
+      "headline": "Shrinking...",
+      "count": "Image: {done} / {total}"
+    },
+    "result": {
+      "success": "Success!",
+      "done": "Done!",
+      "already_optimized": "File was already optimized 🤓 | Files were already optimized 🤓",
+      "saved": "You saved {size} ({percent}) 🎉",
+      "save": "Save",
+      "select_new": "Select New",
+      "share": "Share",
+      "start_over": "Compress more files",
+      "share_title": "Compressed Files",
+      "share_text": "Your compressed Files from Shrink Me"
+    },
     "why": {
       "headline": "Why?",
       "description_top": "With Shrink Me, you can reduce the sizes of your images and PDF files without experiencing any loss in visual quality, thereby making your sites and apps faster for your users.",
       "description_bottom": "As the following two images show, it is almost impossible for the human eye to find any visual distinctions.",
-      "image_before": "BEFORE",
-      "image_after": "AFTER"
+      "image_before": "Before",
+      "image_after": "After",
+      "image_before_alt": "Original photo: an aerial view of waves rolling onto a beach.",
+      "image_after_alt": "Compressed photo: the same aerial view of waves rolling onto a beach."
     },
     "what": {
       "headline": "What?",
@@ -66,27 +100,39 @@
     },
     "faq": {
       "headline": "FAQs",
-      "faq_headline_1": "Why is it free?",
-      "faq_description_1": "I created Shrink Me in order to compress my own images and pdf files in a fun and intuitive way.",
-      "faq_description_11": "I also love to create new product experiences in order to extend and refresh my developer knowledge.",
-      "faq_headline_2": "Why should I compress images/pdfs?",
-      "faq_description_2": "Image/PDF compression is ideal if you want to make your site/app load faster, save storage space,",
-      "faq_description_22": "or even when sending emails, where smaller file sizes can help improve delivery and reduce loading times for recipients.",
-      "faq_headline_3": "Do compressed images suffer from quality loss?",
-      "faq_description_3": "No, your images should look identical to the human eye.",
-      "faq_description_33": "You almost won't see any differences, just give it a try.",
-      "faq_headline_4": "What Compression Quality is used for JPG and WEBP images?",
-      "faq_description_4": "Shrink Me's compression quality for JPG and WEBP images is 60%.",
-      "faq_description_44": "In the future, you will be able to change this value.",
-      "faq_headline_5": "What is the maximum file size?",
-      "faq_description_5": "Currently there is no maximum file size limit.",
-      "faq_description_55": "Beware that big file sizes will take longer to compress.",
-      "faq_headline_6": "Can I compress multiple files at once?",
-      "faq_description_6": "Yes, you can shrink as many as you like at once.",
-      "faq_headline_7": "Why didn't my image get any smaller?",
-      "faq_description_7": "This may happen to images which already have been optimized.",
-      "faq_headline_8": "Shrink Me? ❤️",
-      "faq_description_8": "If you truly enjoy using Shrink Me, please consider supporting me with a cup of coffee."
+      "free": {
+        "question": "Why is it free?",
+        "answer": "I created Shrink Me in order to compress my own images and pdf files in a fun and intuitive way.\nI also love to create new product experiences in order to extend and refresh my developer knowledge."
+      },
+      "why_compress": {
+        "question": "Why should I compress images/pdfs?",
+        "answer": "Image/PDF compression is ideal if you want to make your site/app load faster, save storage space,\nor even when sending emails, where smaller file sizes can help improve delivery and reduce loading times for recipients."
+      },
+      "quality_loss": {
+        "question": "Do compressed images suffer from quality loss?",
+        "answer": "No, your images should look identical to the human eye.\nYou almost won't see any differences, just give it a try."
+      },
+      "quality_setting": {
+        "question": "What Compression Quality is used for JPG and WEBP images?",
+        "answer": "Shrink Me's compression quality for JPG and WEBP images is 60%.\nIn the future, you will be able to change this value."
+      },
+      "max_size": {
+        "question": "What is the maximum file size?",
+        "answer": "Currently there is no maximum file size limit.\nBeware that big file sizes will take longer to compress."
+      },
+      "multiple_files": {
+        "question": "Can I compress multiple files at once?",
+        "answer": "Yes, you can shrink as many as you like at once."
+      },
+      "not_smaller": {
+        "question": "Why didn't my image get any smaller?",
+        "answer": "This may happen to images which already have been optimized."
+      },
+      "support": {
+        "question": "Shrink Me? ❤️",
+        "answer": "If you truly enjoy using Shrink Me, please consider supporting me with a cup of coffee.",
+        "button": "Buy me a coffee"
+      }
     }
   }
 }

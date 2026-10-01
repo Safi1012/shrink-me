@@ -2,7 +2,8 @@
 import { useFileStore } from '@/stores/file'
 import { useProgressStore } from '@/stores/progress'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import FileArea from './FileArea.vue'
 
 const { setFiles } = useFileStore()
@@ -10,6 +11,18 @@ const { files: selectedFiles } = storeToRefs(useFileStore())
 const { incrementStage } = useProgressStore()
 const isDragAreaActive = ref(false)
 const acceptedFileTypes = '.png,.jpg,.jpeg,.webp,.svg,.pdf'
+const { locale } = useI18n()
+
+// "JPG, PNG, WEBP, SVG & PDF", with the separators and conjunction of the current language
+const formats = computed(() =>
+  new Intl.ListFormat(locale.value, { style: 'short' }).formatToParts([
+    'JPG',
+    'PNG',
+    'WEBP',
+    'SVG',
+    'PDF'
+  ])
+)
 
 const onDragEnter = () => {
   isDragAreaActive.value = true
@@ -76,22 +89,18 @@ const navigateToNextStage = () => {
           <img
             v-if="isDragAreaActive"
             for="file"
-            alt="Files icon"
+            alt=""
             src="@/assets/icons/files-fill.svg"
             class="h-2/5 w-auto"
           />
-          <img
-            v-else
-            for="file"
-            alt="Files icon"
-            src="@/assets/icons/files.svg"
-            class="h-2/5 w-auto"
-          />
+          <img v-else for="file" alt="" src="@/assets/icons/files.svg" class="h-2/5 w-auto" />
 
           <span class="area-text mt-3 text-center leading-[1.7em]">
             <span class="hidden sm:block">{{ $t('home.hero.instructions') }}<br /></span>
-            <strong>JPG</strong>, <strong>PNG</strong>, <strong>WEBP</strong>,
-            <strong>SVG</strong> & <strong>PDF</strong>
+            <template v-for="(part, index) in formats" :key="index"
+              ><strong v-if="part.type === 'element'">{{ part.value }}</strong
+              ><template v-else>{{ part.value }}</template></template
+            >
           </span>
         </label>
       </form>

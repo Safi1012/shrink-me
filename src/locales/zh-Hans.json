@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "title": "Shrink Me - 压缩 JPG、PNG、WEBP、SVG 和 PDF 文件"
+  },
+  "navigation": {
+    "github": "GitHub 上的 Shrink Me",
+    "privacy": "隐私",
+    "legal": "法律声明",
+    "credits": "致谢",
+    "contact": "联系",
+    "copyright": "版权所有 © {year}",
+    "version": "版本：{version}",
+    "language": "语言"
+  },
+  "contact": {
+    "headline": "联系方式",
+    "description": "如有任何问题，欢迎随时联系我：",
+    "send_mail_link": "发送邮件",
+    "paper_plane_icon_alt": "纸飞机图标：象征发送电子邮件。"
+  },
+  "credits": {
+    "headline_credits": "致谢",
+    "headline_image": "图片",
+    "headline_icons": "图标",
+    "headline_font": "字体",
+    "headline_oss": "开源软件",
+    "headline_license_texts": "许可证全文",
+    "contents": "目录",
+    "description_marco": "首先，我要感谢 Marco Eckert 教会我基本的设计原则，帮助我完成了 Shrink Me。",
+    "description_open_source": "Shrink Me 基于开源软件构建，并使用了采用自由许可证的图片、图标和字体。下面列出了它们的作者、许可证和源代码。感谢这些开发者、设计师和摄影师的贡献。",
+    "image_title": "海岸线航拍照片",
+    "by": "摄影：{author}",
+    "on": "{works}，来自 {site}",
+    "ghostscript": "PDF 压缩由编译为 WebAssembly 的 {ghostscript} 提供支持。Ghostscript 版权归 Artifex Software, Inc. 所有，并依据 {license} 授权。WebAssembly 构建（gs.wasm，Ghostscript 10.06）取自 {build}。对应的源代码可在该仓库、{repository}以及 {releases} 获取。",
+    "ghostscript_repository": "Shrink Me 仓库"
+  },
+  "changelog": {
+    "headline": "更新日志",
+    "description": "Shrink Me 的所有版本及其改动。条目为英文。",
+    "versions": "版本",
+    "current": "当前版本 {version}",
+    "sections": {
+      "breaking": "重大变更",
+      "features": "新功能",
+      "fixes": "问题修复",
+      "performance": "性能",
+      "reverts": "已撤销"
+    }
+  },
+  "home": {
+    "hero": {
+      "headline": "压缩你的图片",
+      "instructions": "拖放文件到此处",
+      "button": "选择文件"
+    },
+    "counter": {
+      "compressed": "Shrink Me 已压缩 {count} 个文件",
+      "saved": "并节省了 {amount} {unit} 存储空间"
+    },
+    "progress": {
+      "headline": "正在压缩…",
+      "count": "文件：{done} / {total}"
+    },
+    "result": {
+      "success": "压缩成功！",
+      "done": "完成！",
+      "already_optimized": "文件已经是最优大小 🤓",
+      "saved": "你节省了 {size}（{percent}）🎉",
+      "save": "保存",
+      "select_new": "重新选择",
+      "share": "分享",
+      "start_over": "压缩更多文件",
+      "share_title": "已压缩的文件",
+      "share_text": "你用 Shrink Me 压缩的文件"
+    },
+    "why": {
+      "headline": "为什么？",
+      "description_top": "使用 Shrink Me，你可以在不损失任何视觉质量的情况下减小图片和 PDF 文件的大小，从而让你的网站和应用为用户提供更快的体验。",
+      "description_bottom": "如下面两张图片所示，人眼几乎无法分辨它们之间的任何差别。",
+      "image_before": "压缩前",
+      "image_after": "压缩后",
+      "image_before_alt": "原始照片：海浪涌上沙滩的航拍画面。",
+      "image_after_alt": "压缩后的照片：同一幅海浪涌上沙滩的航拍画面。"
+    },
+    "what": {
+      "headline": "有什么特点？",
+      "description": "Shrink Me 真正与众不同之处在于：没有广告、完全免费、速度快，而且可以离线使用。",
+      "no_ads_headline": "无广告",
+      "no_ads_description": "我相信好的应用不需要广告。",
+      "no_ads_image_alt": "禁止图标：一个带斜线的红色圆圈，象征禁止广告。",
+      "free_headline": "免费",
+      "free_description": "人人都可免费使用，想压缩多少就压缩多少。",
+      "free_image_alt": "存钱罐图标：一个存钱罐，表示这项服务完全免费。",
+      "fast_headline": "快速",
+      "fast_description": "只需几秒钟即可压缩你的图片。",
+      "fast_image_alt": "快速图标：一道闪电，象征压缩服务的高速度。",
+      "offline_headline": "离线可用",
+      "offline_description": "Shrink Me 在任何现代浏览器中都能离线使用。",
+      "offline_image_alt": "Wi-Fi 图标：表示该服务可在任何现代浏览器中离线使用。"
+    },
+    "faq": {
+      "headline": "常见问题",
+      "free": {
+        "question": "为什么免费？",
+        "answer": "我开发 Shrink Me，是为了用一种有趣又直观的方式压缩我自己的图片和 PDF 文件。\n我也喜欢打造新的产品体验，以拓展和更新我作为开发者的知识。"
+      },
+      "why_compress": {
+        "question": "为什么要压缩图片/PDF？",
+        "answer": "如果你想让网站/应用加载更快、节省存储空间，图片/PDF 压缩是理想之选；\n发送电子邮件时也同样适用，更小的文件有助于顺利送达，并缩短收件人的加载时间。"
+      },
+      "quality_loss": {
+        "question": "压缩后的图片会损失画质吗？",
+        "answer": "不会，在人眼看来，你的图片应该完全一样。\n你几乎看不出任何差别，不妨试一试。"
+      },
+      "quality_setting": {
+        "question": "JPG 和 WEBP 图片使用什么压缩质量？",
+        "answer": "Shrink Me 对 JPG 和 WEBP 图片使用的压缩质量为 60%。\n将来你可以自行调整这个数值。"
+      },
+      "max_size": {
+        "question": "文件大小上限是多少？",
+        "answer": "目前没有文件大小上限。\n请注意，文件越大，压缩所需时间越长。"
+      },
+      "multiple_files": {
+        "question": "可以一次压缩多个文件吗？",
+        "answer": "可以，一次想压缩多少就压缩多少。"
+      },
+      "not_smaller": {
+        "question": "为什么我的图片没有变小？",
+        "answer": "已经优化过的图片可能会出现这种情况。"
+      },
+      "support": {
+        "question": "喜欢 Shrink Me 吗？❤️",
+        "answer": "如果你真的喜欢使用 Shrink Me，欢迎请我喝杯咖啡来支持我。",
+        "button": "请我喝杯咖啡"
+      }
+    }
+  }
+}

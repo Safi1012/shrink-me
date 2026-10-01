@@ -39,7 +39,7 @@ Shrink Me compresses JPG, PNG, WEBP, SVG and PDF files. All compression runs on 
 - **PDFs**: compresses PDFs with Ghostscript compiled to WebAssembly, running in a Web Worker.
 - **Batch processing**: compresses any number of files at once and downloads them as a single ZIP.
 - **Works offline**: an installable Progressive Web App (PWA) with a service worker.
-- **Multilingual**: available in English, German and French.
+- **Multilingual**: available in English, Mandarin Chinese, Hindi, Spanish, Arabic, French, Bengali, Portuguese and German, picked from the browser languages or in the footer.
 - **Live counter**: a global count of compressed files and saved bytes, updated live over WebSockets.
 
 ## How It Works
@@ -104,7 +104,7 @@ The legal notice, privacy policy and contact page show the operator's name, addr
 ├── src/
 │   ├── components/      layout/ (page sections) and shared/ (file handling, counter, …)
 │   ├── ghostscript/     PDF compression Web Worker
-│   ├── locales/         Translations (en, de, fr)
+│   ├── locales/         Translations, one file per language
 │   ├── router/          Vue Router routes
 │   ├── stores/          Pinia stores
 │   ├── utils/           Compression and file helpers

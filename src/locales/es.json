@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "title": "Shrink Me - Comprime archivos JPG, PNG, WEBP, SVG y PDF"
+  },
+  "navigation": {
+    "github": "Shrink Me en GitHub",
+    "privacy": "Privacidad",
+    "legal": "Aviso legal",
+    "credits": "Créditos",
+    "contact": "Contacto",
+    "copyright": "Copyright © {year}",
+    "version": "Versión: {version}",
+    "language": "Idioma"
+  },
+  "contact": {
+    "headline": "Contacto",
+    "description": "Si tienes alguna pregunta, no dudes en escribirme:",
+    "send_mail_link": "Enviar correo",
+    "paper_plane_icon_alt": "Icono de avión de papel: simboliza el envío de un correo electrónico."
+  },
+  "credits": {
+    "headline_credits": "Créditos",
+    "headline_image": "Imagen",
+    "headline_icons": "Iconos",
+    "headline_font": "Fuente",
+    "headline_oss": "Código abierto",
+    "headline_license_texts": "Textos de licencia",
+    "contents": "Contenido",
+    "description_marco": "En primer lugar, quiero agradecer a Marco Eckert por ayudarme con Shrink Me enseñándome principios fundamentales de diseño.",
+    "description_open_source": "Shrink Me está construido con software de código abierto y utiliza imágenes, iconos y fuentes con licencias libres. A continuación encontrarás sus autores, licencias y código fuente. Estoy agradecido a estos desarrolladores, diseñadores y fotógrafos por sus contribuciones.",
+    "image_title": "Foto aérea de la costa",
+    "by": "por {author}",
+    "on": "{works} en {site}",
+    "ghostscript": "La compresión de PDF funciona con {ghostscript}, compilado a WebAssembly. Ghostscript es Copyright (C) Artifex Software, Inc. y se distribuye bajo la {license}. La compilación de WebAssembly (gs.wasm, Ghostscript 10.06) procede de {build}. El código fuente correspondiente está disponible en ese repositorio, en el {repository} y en {releases}.",
+    "ghostscript_repository": "repositorio de Shrink Me"
+  },
+  "changelog": {
+    "headline": "Novedades",
+    "description": "Todas las versiones de Shrink Me y lo que cambió en cada una. Las entradas están en inglés.",
+    "versions": "Versiones",
+    "current": "Versión actual {version}",
+    "sections": {
+      "breaking": "Cambios importantes",
+      "features": "Nuevas funciones",
+      "fixes": "Correcciones de errores",
+      "performance": "Rendimiento",
+      "reverts": "Revertido"
+    }
+  },
+  "home": {
+    "hero": {
+      "headline": "Reduce tus imágenes",
+      "instructions": "Arrastra y suelta",
+      "button": "Seleccionar"
+    },
+    "counter": {
+      "compressed": "Shrink Me ha comprimido {count} archivo | Shrink Me ha comprimido {count} de archivos | Shrink Me ha comprimido {count} archivos",
+      "saved": "y ahorrado {amount} {unit} de almacenamiento"
+    },
+    "progress": {
+      "headline": "Reduciendo…",
+      "count": "Archivo: {done} / {total}"
+    },
+    "result": {
+      "success": "¡Listo!",
+      "done": "¡Terminado!",
+      "already_optimized": "El archivo ya estaba optimizado 🤓 | Los archivos ya estaban optimizados 🤓 | Los archivos ya estaban optimizados 🤓",
+      "saved": "Has ahorrado {size} ({percent}) 🎉",
+      "save": "Guardar",
+      "select_new": "Seleccionar otros",
+      "share": "Compartir",
+      "start_over": "Comprimir más archivos",
+      "share_title": "Archivos comprimidos",
+      "share_text": "Tus archivos comprimidos con Shrink Me"
+    },
+    "why": {
+      "headline": "¿Por qué?",
+      "description_top": "Con Shrink Me puedes reducir el tamaño de tus imágenes y archivos PDF sin ninguna pérdida de calidad visual, haciendo así que tus sitios y aplicaciones sean más rápidos para tus usuarios.",
+      "description_bottom": "Como muestran las dos imágenes siguientes, es casi imposible para el ojo humano encontrar diferencias visuales.",
+      "image_before": "Antes",
+      "image_after": "Después",
+      "image_before_alt": "Foto original: vista aérea de olas llegando a una playa.",
+      "image_after_alt": "Foto comprimida: la misma vista aérea de olas llegando a una playa."
+    },
+    "what": {
+      "headline": "¿Qué?",
+      "description": "Lo que realmente distingue a Shrink Me es que el servicio no tiene anuncios, es gratuito, es rápido y funciona sin conexión.",
+      "no_ads_headline": "Sin anuncios",
+      "no_ads_description": "Creo en aplicaciones bonitas sin anuncios.",
+      "no_ads_image_alt": "Icono de prohibido: un círculo rojo atravesado por una línea diagonal, que simboliza la prohibición de anuncios.",
+      "free_headline": "Gratis",
+      "free_description": "Gratis para todos. Comprime todo lo que quieras.",
+      "free_image_alt": "Icono de hucha: una hucha que representa que el servicio no tiene coste.",
+      "fast_headline": "Rápido",
+      "fast_description": "Solo tarda unos segundos en comprimir tus imágenes.",
+      "fast_image_alt": "Icono de rapidez: un rayo que simboliza la gran velocidad del servicio de compresión.",
+      "offline_headline": "Sin conexión",
+      "offline_description": "Shrink Me funciona incluso sin conexión en cualquier navegador moderno.",
+      "offline_image_alt": "Icono de wifi: indica que el servicio funciona sin conexión en cualquier navegador moderno."
+    },
+    "faq": {
+      "headline": "Preguntas frecuentes",
+      "free": {
+        "question": "¿Por qué es gratis?",
+        "answer": "Creé Shrink Me para comprimir mis propias imágenes y archivos PDF de una forma divertida e intuitiva.\nTambién me encanta crear nuevas experiencias de producto para ampliar y actualizar mis conocimientos como desarrollador."
+      },
+      "why_compress": {
+        "question": "¿Por qué debería comprimir imágenes/PDF?",
+        "answer": "La compresión de imágenes/PDF es ideal si quieres que tu sitio/aplicación cargue más rápido, ahorrar espacio de almacenamiento\no incluso al enviar correos, donde los archivos más pequeños mejoran la entrega y reducen los tiempos de carga para los destinatarios."
+      },
+      "quality_loss": {
+        "question": "¿Pierden calidad las imágenes comprimidas?",
+        "answer": "No, tus imágenes deberían verse idénticas para el ojo humano.\nApenas notarás diferencias, simplemente pruébalo."
+      },
+      "quality_setting": {
+        "question": "¿Qué calidad de compresión se usa para las imágenes JPG y WEBP?",
+        "answer": "La calidad de compresión de Shrink Me para imágenes JPG y WEBP es del 60 %.\nEn el futuro podrás cambiar este valor."
+      },
+      "max_size": {
+        "question": "¿Cuál es el tamaño máximo de archivo?",
+        "answer": "Actualmente no hay un límite de tamaño de archivo.\nTen en cuenta que los archivos grandes tardarán más en comprimirse."
+      },
+      "multiple_files": {
+        "question": "¿Puedo comprimir varios archivos a la vez?",
+        "answer": "Sí, puedes reducir tantos como quieras a la vez."
+      },
+      "not_smaller": {
+        "question": "¿Por qué mi imagen no se hizo más pequeña?",
+        "answer": "Esto puede ocurrir con imágenes que ya han sido optimizadas."
+      },
+      "support": {
+        "question": "¿Shrink Me? ❤️",
+        "answer": "Si de verdad te gusta usar Shrink Me, considera apoyarme invitándome a un café.",
+        "button": "Invítame a un café"
+      }
+    }
+  }
+}

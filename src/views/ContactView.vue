@@ -51,7 +51,7 @@ onMounted(() => {
           :href="`mailto:${operator.email}`"
           class="inline-flex items-center justify-center rounded-[3px] bg-shrink-me-primary px-[2.5em] py-[0.5em] shadow-[0_6px_30px_0_#adadadfa] transition-shadow duration-300 ease-[ease-in-out] hover:shadow-[0_2px_10px_0_#adadadfa]"
         >
-          <strong class="text-white">{{ $t('contact.send_mail_link') }}</strong>
+          <strong class="text-white uppercase">{{ $t('contact.send_mail_link') }}</strong>
         </a>
       </div>
     </div>

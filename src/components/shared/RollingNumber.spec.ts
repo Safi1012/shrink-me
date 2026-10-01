@@ -35,6 +35,19 @@ describe('RollingNumber', () => {
     expect(ribbons(mount(RollingNumber, { props: { value: 1.25 } }))).toEqual(['1', '.', '2', '5'])
   })
 
+  it("uses the locale's separators", async () => {
+    const separators = { decimal: ',', group: '.' }
+    const wrapper = mount(RollingNumber, { props: { value: 1234.5, separators } })
+    expect(ribbons(wrapper)).toEqual(['1', '.', '2', '3', '4', ',', '5'])
+
+    await wrapper.setProps({ separators: { decimal: '.', group: ',' } })
+    expect(ribbons(wrapper)).toEqual(['1', ',', '2', '3', '4', '.', '5'])
+  })
+
+  it('always lays the digits out left to right', () => {
+    expect(mount(RollingNumber, { props: { value: 12 } }).attributes('dir')).toBe('ltr')
+  })
+
   it('rolls every digit up to its new value', async () => {
     const wrapper = await roll(98, 103)
 

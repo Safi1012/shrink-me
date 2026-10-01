@@ -14,6 +14,7 @@ interface HeadlineSizes {
 const props = defineProps<{
   imageType: ImageType
   headline: string
+  alt: string
 }>()
 
 const imageHeadline = ref('')
@@ -79,9 +80,11 @@ const generateSrcset = () => {
   <div
     class="grid auto-rows-[minmax(0.1em,auto)] grid-cols-12 justify-items-stretch gap-[0.5em_0.5em]"
   >
-    <strong class="z-1 col-[1/4] row-1 mt-[1em] ml-[1em] text-white">{{ props.headline }}</strong>
-    <p class="z-1 col-[5/12] row-1 m-0 mt-[1em] text-right text-white md:mr-[-1.5em]">
-      {{ imageHeadline }}
+    <strong class="z-1 col-[1/4] row-1 ms-[1em] mt-[1em] text-white uppercase">{{
+      props.headline
+    }}</strong>
+    <p class="z-1 col-[5/12] row-1 m-0 mt-[1em] text-end text-white md:me-[-1.5em]">
+      <bdi>{{ imageHeadline }}</bdi>
     </p>
 
     <img
@@ -91,7 +94,7 @@ const generateSrcset = () => {
       sizes="(min-width: 1024px) 574px, (min-width: 992px) 58vw, 83vw"
       width="1280"
       height="720"
-      alt="Compressed Demo Image"
+      :alt="props.alt"
       loading="lazy"
       decoding="async"
       @load="imgOnload"

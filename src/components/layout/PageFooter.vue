@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { version } from '../../../package.json'
 import { useRoute } from 'vue-router'
+import LanguageSelect from '@/components/shared/LanguageSelect.vue'
 
 const route = useRoute()
 </script>
@@ -12,19 +13,19 @@ const route = useRoute()
     >
       <ul class="flex list-none flex-row justify-between pl-0">
         <li>
-          <router-link to="/privacy">Privacy</router-link>
+          <router-link to="/privacy">{{ $t('navigation.privacy') }}</router-link>
         </li>
         <li>
           <span class="s1">|</span>
         </li>
         <li>
-          <router-link to="/legal">Legal</router-link>
+          <router-link to="/legal">{{ $t('navigation.legal') }}</router-link>
         </li>
         <li>
           <span>|</span>
         </li>
         <li>
-          <router-link to="/credits">Credits</router-link>
+          <router-link to="/credits">{{ $t('navigation.credits') }}</router-link>
         </li>
         <li>
           <span>|</span>
@@ -36,13 +37,15 @@ const route = useRoute()
           <span>|</span>
         </li>
         <li>
-          <router-link to="/contact">Contact</router-link>
+          <router-link to="/contact">{{ $t('navigation.contact') }}</router-link>
         </li>
       </ul>
 
       <div class="information mx-0 mt-2 mb-6 flex items-end justify-between text-base">
         <div>
-          <h1 class="mb-1 text-sm text-[#9b9b9b]">Copyright © {{ new Date().getFullYear() }}</h1>
+          <h1 class="mb-1 text-sm text-[#9b9b9b]">
+            {{ $t('navigation.copyright', { year: new Date().getFullYear() }) }}
+          </h1>
           <a
             href="https://filipesantoscorrea.com"
             target="_blank"
@@ -51,12 +54,15 @@ const route = useRoute()
             >Filipe Santos Correa</a
           >
         </div>
-        <router-link
-          v-if="route.name === 'contact'"
-          to="/changelog"
-          class="m-0 text-right text-sm font-semibold text-[#9b9b9b] hover:text-shrink-me-secondary"
-          >Version: {{ version }}</router-link
-        >
+        <div class="flex flex-col items-end gap-2">
+          <router-link
+            v-if="route.name === 'contact'"
+            to="/changelog"
+            class="m-0 text-end text-sm font-semibold text-[#9b9b9b] hover:text-shrink-me-secondary"
+            >{{ $t('navigation.version', { version }) }}</router-link
+          >
+          <LanguageSelect />
+        </div>
       </div>
     </nav>
   </footer>

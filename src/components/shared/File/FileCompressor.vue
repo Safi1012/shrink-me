@@ -63,16 +63,20 @@ onMounted(() => {
 <template>
   <div>
     <h1 class="mb-5 text-center text-2xl font-light text-black md:mt-0 md:mb-10 md:text-5xl">
-      Shrinking...
+      {{ $t('home.progress.headline') }}
     </h1>
 
     <FileArea>
       <div class="content flex h-full flex-col items-center justify-center">
-        <img for="file" alt="Files icon" src="@/assets/icons/files.svg" class="h-2/5 w-auto" />
-        <span class="mt-3">
-          Image: &nbsp;<strong class="text-shrink-me-primary">{{ alreadyCompressed }}</strong> /
-          <strong class="text-shrink-me-primary">{{ totalImages }}</strong>
-        </span>
+        <img for="file" alt="" src="@/assets/icons/files.svg" class="h-2/5 w-auto" />
+        <i18n-t keypath="home.progress.count" tag="span" scope="global" class="mt-3">
+          <template #done>
+            <strong class="text-shrink-me-primary">{{ alreadyCompressed }}</strong>
+          </template>
+          <template #total>
+            <strong class="text-shrink-me-primary">{{ totalImages }}</strong>
+          </template>
+        </i18n-t>
       </div>
     </FileArea>
   </div>

@@ -29,11 +29,13 @@ const { t } = useI18n()
       <ImageDiff
         class="original lg:mt-[-5em] lg:mr-0"
         :headline="t('home.why.image_before')"
+        :alt="t('home.why.image_before_alt')"
         :image-type="'original'"
       />
       <ImageDiff
         class="compressed lg:mt-0"
         :headline="t('home.why.image_after')"
+        :alt="t('home.why.image_after_alt')"
         :image-type="'compressed'"
       />
     </section>

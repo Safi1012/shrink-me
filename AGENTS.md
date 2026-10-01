@@ -47,7 +47,7 @@ pnpm test:e2e --project=chromium
 | `src/utils/`             | Compression and file helpers                                      |
 | `src/ghostscript/`       | PDF compression Web Worker and its typed message protocol         |
 | `src/stores/`            | Pinia stores (setup-function style)                               |
-| `src/locales/`           | Translations: `en.json`, `de.json`, `fr.json`                     |
+| `src/locales/`           | Translations, one JSON file per locale listed in `src/i18n.ts`    |
 | `src/legal.ts`           | Operator details for the legal pages, read from env vars          |
 | `workers/counter/`       | Cloudflare Worker + Durable Object for the live counter           |
 | `e2e/`                   | Playwright specs and fixture files                                |
@@ -71,7 +71,12 @@ pnpm test:e2e --project=chromium
 
 ### Translations
 
-- Add every user-facing string to **all three** locale files (`en`, `de`, `fr`) under the same key. Don't hard-code text in templates.
+- Add every user-facing string to **every** locale file in `src/locales/` under the same key. Don't hard-code text in templates, alt texts or aria-labels. `src/i18n.spec.ts` fails on missing keys, empty messages, mismatched `{placeholders}` and keys used in code that don't exist.
+- Write whole sentences with named placeholders (`"You saved {size}"`), never sentences glued together from several keys. Put markup or components inside a sentence with `<i18n-t>` slots.
+- Plural messages list one form per plural category of the language, separated by `|`, in the order declared for that locale in `src/i18n.ts` (e.g. Arabic has six forms, Chinese one).
+- Format numbers, percentages, lists and dates with `Intl` and the current locale instead of writing them into messages.
+- Use logical CSS (`ms-*`, `me-*`, `text-start`, `text-end`) instead of `ml-*`/`mr-*`/`text-left`/`text-right`, so the layout mirrors for Arabic (right to left).
+- To add a language, add it to `locales` in `src/i18n.ts` and add its JSON file. Only English is bundled; the others are loaded when they are needed.
 - The legal pages (`/legal`, `/privacy`) exist only in German (binding) and English. They are not translated through the locale files.
 
 ### Personal data
