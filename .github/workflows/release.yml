@@ -24,4 +24,13 @@ jobs:
       # commits since the last release to CHANGELOG.md; merging it tags vX.Y.Z and creates the
       # GitHub release, and the push to main deploys the app with the new version as usual
       - name: Release Please
+        id: release
         uses: googleapis/release-please-action@v5
+
+      # prs_created is also true when the pull request was only updated, adding an assignee again is a no-op
+      - name: Assign the release pull request
+        if: steps.release.outputs.prs_created == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ fromJSON(steps.release.outputs.pr).number }}
+        run: gh pr edit "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --add-assignee "$GITHUB_REPOSITORY_OWNER"
