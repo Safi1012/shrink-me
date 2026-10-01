@@ -30,6 +30,12 @@ const route = useRoute()
           <span>|</span>
         </li>
         <li>
+          <a href="https://github.com/Safi1012/shrink-me" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <span>|</span>
+        </li>
+        <li>
           <router-link to="/contact">Contact</router-link>
         </li>
       </ul>
