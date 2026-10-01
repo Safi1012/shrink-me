@@ -30,7 +30,7 @@ const config: PlaywrightTestConfig = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   /* List every test as it runs; on CI also annotate failures and keep the HTML report as an artifact */
   reporter: process.env.CI
-    ? [['list'], ['github'], ['html', { open: 'never' }]]
+    ? [['list'], ['./e2e/github-reporter.ts'], ['html', { open: 'never' }]]
     : [['list'], ['html']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
