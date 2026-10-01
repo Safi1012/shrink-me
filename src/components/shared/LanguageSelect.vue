@@ -9,7 +9,7 @@ const onChange = (e: Event) => chooseLocale((e.target as HTMLSelectElement).valu
 
 <template>
   <div
-    class="relative inline-flex items-center gap-1.5 text-sm font-semibold text-[#9b9b9b] hover:text-shrink-me-secondary"
+    class="relative inline-flex h-6 items-center gap-1.5 text-sm font-semibold text-[#9b9b9b] hover:text-shrink-me-secondary"
   >
     <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" aria-hidden="true">
       <circle cx="12" cy="12" r="9" stroke-width="1.75" />
