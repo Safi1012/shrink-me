@@ -1,0 +1,12 @@
+# Keeps the actions pinned to commit SHAs up to date (and their `# vX.Y.Z` comments with them)
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directories: ["/", "/.github/actions/*"]
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: ci
