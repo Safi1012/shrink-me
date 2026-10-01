@@ -75,11 +75,6 @@ export default defineConfig({
   worker: {
     format: 'es'
   },
-  build: {
-    // odometer's default theme ships legacy IE `*property` hacks that Lightning CSS
-    // (Vite's default CSS minifier) rejects, so keep minifying CSS with esbuild
-    cssMinify: 'esbuild'
-  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

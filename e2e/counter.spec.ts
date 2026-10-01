@@ -10,18 +10,19 @@ import {
   readDownload,
   save,
   savings,
-  startOver
+  startOver,
+  type CounterTotals
 } from './support'
 
 test.use({ locale: 'en-US' })
 
 const counterText = (page: Page) => page.getByText('Shrink Me compressed')
 
-// The odometer renders every digit on its own (and several while it rolls), so read its
+// The counter renders every digit on its own (and several while it rolls), so read its
 // value once it has settled
-const odometers = (page: Page) => page.locator('.display-counter .odometer')
-const odometerValue = async (page: Page, index: number) =>
-  (await odometers(page).nth(index).innerText()).replace(/\s/g, '')
+const numbers = (page: Page) => page.locator('.display-counter .rolling-number')
+const counterValue = async (page: Page, index: number) =>
+  (await numbers(page).nth(index).innerText()).replace(/\s/g, '')
 
 test.describe('display', () => {
   test('shows the totals the server sends', async ({ page }) => {
@@ -29,8 +30,8 @@ test.describe('display', () => {
     await page.goto('/')
 
     await expect(counterText(page)).toBeVisible()
-    await expect.poll(() => odometerValue(page, 0)).toBe('1,234')
-    await expect.poll(() => odometerValue(page, 1)).toBe('5')
+    await expect.poll(() => counterValue(page, 0)).toBe('1,234')
+    await expect.poll(() => counterValue(page, 1)).toBe('5')
     await expect(page.locator('.display-counter')).toContainText('GB of storage')
   })
 
@@ -38,20 +39,37 @@ test.describe('display', () => {
     await mockCounter(page, { totals: { compressedImages: 1234, savedBytes: 1_250_000_000 } })
     await page.goto('/')
 
-    await expect.poll(() => odometerValue(page, 0)).toBe('1,234')
-    await expect.poll(() => odometerValue(page, 1)).toBe('1.25')
+    await expect.poll(() => counterValue(page, 0)).toBe('1,234')
+    await expect.poll(() => counterValue(page, 1)).toBe('1.25')
     await expect(page.locator('.display-counter')).toContainText('GB of storage')
   })
 
   test('rolls the totals forward after a compression', async ({ page }) => {
     await mockCounter(page, { totals: { compressedImages: 1234, savedBytes: 5_000_000_000 } })
     await page.goto('/')
-    await expect.poll(() => odometerValue(page, 0)).toBe('1,234')
+    await expect.poll(() => counterValue(page, 0)).toBe('1,234')
 
     await page.locator('#fileButton').setInputFiles(fixture('photo.jpg'))
     await expectSuccess(page)
 
-    await expect.poll(() => odometerValue(page, 0)).toBe('1,235')
+    await expect.poll(() => counterValue(page, 0)).toBe('1,235')
+  })
+
+  test('settles on the latest totals when they change mid-roll', async ({ page }) => {
+    let push!: (totals: CounterTotals) => void
+    await page.routeWebSocket(/\/api\/counter$/, (ws) => {
+      push = (totals) => ws.send(JSON.stringify(totals))
+      push({ compressedImages: 1234, savedBytes: 1_130_000_000 })
+    })
+    await page.goto('/')
+    await expect.poll(() => counterValue(page, 0)).toBe('1,234')
+
+    push({ compressedImages: 1300, savedBytes: 1_290_000_000 })
+    await page.waitForTimeout(500)
+    push({ compressedImages: 1297, savedBytes: 2_130_000_000 })
+
+    await expect.poll(() => counterValue(page, 0)).toBe('1,297')
+    await expect.poll(() => counterValue(page, 1)).toBe('2.13')
   })
 
   test('shows the last known totals while the server is unreachable', async ({ page }) => {
@@ -65,7 +83,7 @@ test.describe('display', () => {
     await page.goto('/')
 
     await expect(counterText(page)).toBeVisible()
-    await expect.poll(() => odometerValue(page, 0)).toBe('42')
+    await expect.poll(() => counterValue(page, 0)).toBe('42')
   })
 
   test('stays hidden without any totals', async ({ page }) => {
@@ -81,7 +99,7 @@ test.describe('display', () => {
     await page.addInitScript(() => localStorage.setItem('counter-snapshot', '{not json'))
     await page.goto('/')
 
-    await expect.poll(() => odometerValue(page, 0)).toBe('1,234')
+    await expect.poll(() => counterValue(page, 0)).toBe('1,234')
   })
 })
 

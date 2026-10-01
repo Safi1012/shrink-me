@@ -2,10 +2,10 @@
   <div v-if="compressedImages || savedBytes.value">
     <p class="inline-flex flex-row items-end justify-center text-[#9b9b9b]">
       Shrink Me compressed
-      <IOdometer
+      <RollingNumber
         :value="compressedImages"
-        class="rgba(#48bfcd, 0.5) mx-2 text-3xl leading-[0.8em] font-normal text-[rgba(72,191,205,0.5)]"
-      ></IOdometer>
+        class="mx-2 text-3xl font-normal text-[rgba(72,191,205,0.5)]"
+      />
       files
     </p>
 
@@ -14,10 +14,9 @@
       class="inline-flex flex-row items-end justify-center text-[#9b9b9b]"
     >
       &nbsp;and saved
-      <IOdometer
+      <RollingNumber
         :value="savedBytes.value"
-        format="(,ddd).dd"
-        class="mx-2 text-3xl leading-[0.8em] font-normal text-[rgba(72,191,205,0.5)]"
+        class="mx-2 text-3xl font-normal text-[rgba(72,191,205,0.5)]"
       />
       {{ savedBytes.symbol }}
       of storage
@@ -27,8 +26,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import IOdometer from 'vue3-odometer'
-import 'odometer/themes/odometer-theme-default.css'
+import RollingNumber from '@/components/shared/RollingNumber.vue'
 import { filesize } from 'filesize'
 import { useCounter } from '@/counter'
 
@@ -47,7 +45,7 @@ const savedBytes = computed(() => {
 </script>
 
 <style scoped>
-.odometer.odometer-theme-default {
+.rolling-number {
   line-height: 0.9em;
 }
 </style>
