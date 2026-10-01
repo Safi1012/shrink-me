@@ -19,6 +19,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "oxlint --fix",
+    "lint:check": "oxlint",
     "format": "oxfmt src/ public/ index.html workers/counter/src/",
     "format:check": "oxfmt --check src/ public/ index.html workers/counter/src/"
   },
