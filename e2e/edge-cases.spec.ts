@@ -43,7 +43,8 @@ test('hands back a smaller, valid file of the same type', async ({ page }) => {
 })
 
 test('keeps the name of a file with spaces, accents and an uppercase extension', async ({
-  page
+  page,
+  browserName
 }) => {
   const name = 'Café photo (1).JPG'
   await page.locator('#fileButton').setInputFiles({
@@ -53,8 +54,10 @@ test('keeps the name of a file with spaces, accents and an uppercase extension',
   })
   await expectSuccess(page)
 
-  // WebKit hands the name back decomposed (e + combining accent)
-  expect((await save(page)).suggestedFilename().normalize()).toBe(name)
+  // WebKit hands the name back decomposed (e + combining accent), and its Linux build on
+  // Ubuntu 26 replaces the spaces with underscores when saving, whatever name the app gives it
+  const saved = (await save(page)).suggestedFilename().normalize()
+  expect(browserName === 'webkit' ? saved.replaceAll('_', ' ') : saved).toBe(name)
 })
 
 test('says both files were already optimized when none of them shrink', async ({ page }) => {
