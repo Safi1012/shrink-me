@@ -1,7 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { useFileStore } from '../file'
-import { useProgressStore } from '../progress'
+import { useFileStore } from './file'
+import { useProgressStore } from './progress'
 
 beforeEach(() => {
   setActivePinia(createPinia())

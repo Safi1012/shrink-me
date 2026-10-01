@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { uniqueName } from '../files'
+import { uniqueName } from './files'
 
 const nameAll = (names: string[]) => {
   const taken = new Set<string>()

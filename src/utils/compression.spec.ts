@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ref } from 'vue'
-import { compressPDF, compressRasterImage, compressVectorImage } from '../compression'
+import { compressPDF, compressRasterImage, compressVectorImage } from './compression'
 
 const ghostscript = vi.hoisted(() => ({ compress: vi.fn() }))
 vi.mock('@/ghostscript/ghostscript', () => ({ ghostscriptCompress: ghostscript.compress }))
