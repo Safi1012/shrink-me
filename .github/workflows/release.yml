@@ -24,13 +24,11 @@ jobs:
       # commits since the last release to CHANGELOG.md; merging it tags vX.Y.Z and creates the
       # GitHub release, and the push to main deploys the app with the new version as usual
       - name: Release Please
-        id: release
         uses: googleapis/release-please-action@v5
 
-      # release-please labels its open pull request, and its `pr` output is only set when the
-      # pull request was created, not when a later push updated it
+      # Looked up by the label release-please gives it, since the action's `pr` output is only set
+      # when the pull request was created. Assigning someone already assigned is a no-op
       - name: Assign the release pull request
-        if: steps.release.outputs.prs_created == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
